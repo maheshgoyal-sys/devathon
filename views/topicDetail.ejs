@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= topic.title %> - Topic Detail</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+  <a href="/dashboard/lessons/Grammar" class="text-blue-600 hover:underline mb-4 inline-block">← Back to Lessons</a>
+
+  <div class="bg-white p-8 rounded-2xl shadow-md max-w-3xl mx-auto">
+    <h1 class="text-3xl font-bold mb-4 text-gray-800"><%= topic.title %></h1>
+    <p class="text-gray-700 leading-relaxed mb-6"><%= topic.description %></p>
+
+    <div class="prose max-w-none text-gray-800">
+      <%= topic.content %>
+    </div>
+  </div>
+</body>
+</html>
