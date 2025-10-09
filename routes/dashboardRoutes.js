@@ -57,8 +57,26 @@ router.get('/dashboard/setting', isAuthenticated, (req, res) => {
 });
 router.get('/dashboard/resume', isAuthenticated, (req, res) => {
   res.render('resume.ejs', {
-    title: 'English Learning Dashboard',
-    
+    title: 'Resume & Writing Lab',
+    userName: req.session.userName || 'Student'
+  });
+});
+router.get('/dashboard/resume/builder', isAuthenticated, (req, res) => {
+  res.render('resumeBuilder.ejs', {
+    title: 'Resume Builder',
+    userName: req.session.userName || 'Student'
+  });
+});
+router.get('/dashboard/resume/coverletter', isAuthenticated, (req, res) => {
+  res.render('coverletter.ejs', {
+    title: 'Cover Letter ',
+    userName: req.session.userName || 'Student'
+  });
+});
+router.get('/dashboard/resume/template', isAuthenticated, (req, res) => {
+  res.render('template.ejs', {
+    title: 'Templates ',
+    userName: req.session.userName || 'Student'
   });
 });
 router.get('/dashboard/vocabulary', isAuthenticated, (req, res) => {

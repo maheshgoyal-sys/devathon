@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Professional Resume Builder</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-green-50">
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="text-center mb-12">
+      <h1 class="text-5xl font-bold text-gray-900 mb-4">Professional Resume Builder</h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Create a stunning resume in minutes. Fill in your details and download a beautiful PDF instantly.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+
+      <!-- Form -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 space-y-6">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-6">Your Information</h2>
+        <form id="resumeForm" class="space-y-4">
+          <input type="text" name="name" placeholder="Full Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400" />
+          <input type="email" name="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400" />
+          <input type="text" name="phone" placeholder="Phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400" />
+          <textarea name="education" rows="4" placeholder="Education" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 resize-none"></textarea>
+          <textarea name="experience" rows="4" placeholder="Experience" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 resize-none"></textarea>
+          <input type="text" name="skills" placeholder="Skills" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400" />
+
+          <button type="button" id="downloadBtn"
+            class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-200">
+            Download Resume PDF
+          </button>
+        </form>
+      </div>
+
+      <!-- Live Preview -->
+      <div class="bg-white rounded-2xl shadow-lg p-8">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-6">Live Preview</h2>
+        <div id="preview" class="border-2 border-gray-200 rounded-lg p-8 bg-gradient-to-br from-white to-green-50 min-h-[600px] text-gray-700 flex items-center justify-center">
+          <p class="text-gray-400 text-lg text-center">Start filling the form to see your resume preview</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("resumeForm");
+    const preview = document.getElementById("preview");
+    const downloadBtn = document.getElementById("downloadBtn");
+    const { jsPDF } = window.jspdf;
+
+    form.addEventListener("input", updatePreview);
+
+    function updatePreview() {
+      const data = Object.fromEntries(new FormData(form).entries());
+      preview.innerHTML = `
+        <div class="text-center">
+          <h3 class="text-3xl font-bold text-green-700">${data.name || "Your Name"}</h3>
+          <p class="text-sm text-gray-600 mt-1">
+            ${data.email ? data.email : ""}${data.email && data.phone ? " | " : ""}${data.phone ? data.phone : ""}
+          </p>
+        </div>
+
+        ${data.education ? `<div class="mt-6"><h4 class="text-lg font-bold text-green-700 mb-1 border-b border-green-700">EDUCATION</h4><p class="whitespace-pre-line text-sm">${data.education}</p></div>` : ""}
+        ${data.experience ? `<div class="mt-6"><h4 class="text-lg font-bold text-green-700 mb-1 border-b border-green-700">EXPERIENCE</h4><p class="whitespace-pre-line text-sm">${data.experience}</p></div>` : ""}
+        ${data.skills ? `<div class="mt-6"><h4 class="text-lg font-bold text-green-700 mb-1 border-b border-green-700">SKILLS</h4><p class="text-sm">${data.skills}</p></div>` : ""}
+      `;
+    }
+
+    downloadBtn.addEventListener("click", () => {
+      const data = Object.fromEntries(new FormData(form).entries());
+      const doc = new jsPDF();
+
+      doc.setFillColor(16, 185, 129);
+      doc.rect(0, 0, 210, 40, "F");
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(28);
+      doc.setFont("helvetica", "bold");
+      doc.text(data.name || "Your Name", 20, 25);
+
+      doc.setFontSize(11);
+      doc.setFont("helvetica", "normal");
+      let yPos = 33;
+      if (data.email) doc.text(data.email, 20, yPos);
+      if (data.phone) doc.text(" | " + (data.phone || ""), 20 + (data.email ? doc.getTextWidth(data.email) + 5 : 0), yPos);
+
+      const addSection = (title, text) => {
+        if (!text) return;
+        doc.setFontSize(16);
+        doc.setFont("helvetica", "bold");
+        doc.setTextColor(16, 185, 129);
+        doc.text(title, 20, yPos);
+        doc.line(20, yPos + 2, 190, yPos + 2);
+        yPos += 10;
+        doc.setFontSize(11);
+        doc.setFont("helvetica", "normal");
+        doc.setTextColor(0,0,0);
+        const lines = doc.splitTextToSize(text, 170);
+        doc.text(lines, 20, yPos);
+        yPos += lines.length * 6 + 5;
+      };
+
+      addSection("EDUCATION", data.education);
+      addSection("EXPERIENCE", data.experience);
+      addSection("SKILLS", data.skills);
+
+      const fileName = data.name ? `${data.name.replace(/\s+/g,"_")}_Resume.pdf` : "Resume.pdf";
+      doc.save(fileName);
+    });
+  </script>
+
+</body>
+</html>

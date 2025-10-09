@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title><%= title %> - GLA English</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-green-50">
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-4xl font-bold text-gray-900 mb-8 text-center">Templates & Tips</h1>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Resume Template 1 -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-between">
+        <h3 class="text-xl font-semibold text-teal-600 mb-4">Modern Resume</h3>
+        <p class="text-gray-500 mb-6">A clean, modern layout for tech and business roles.</p>
+        <button onclick="downloadResume('Modern Resume')" class="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg transition">Download PDF</button>
+      </div>
+
+      <!-- Resume Template 2 -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-between">
+        <h3 class="text-xl font-semibold text-purple-600 mb-4">Creative Resume</h3>
+        <p class="text-gray-500 mb-6">Perfect for designers, marketers, and creative roles.</p>
+        <button onclick="downloadResume('Creative Resume')" class="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg transition">Download PDF</button>
+      </div>
+
+      <!-- Cover Letter Template -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-between">
+        <h3 class="text-xl font-semibold text-green-600 mb-4">Cover Letter Template</h3>
+        <p class="text-gray-500 mb-6">Professional template to complement your resume.</p>
+        <button onclick="downloadCoverLetter('Cover Letter Template')" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition">Download PDF</button>
+      </div>
+
+      <!-- More templates can be added in the same way -->
+    </div>
+  </div>
+
+  <script>
+    const { jsPDF } = window.jspdf;
+
+    function downloadResume(title) {
+      const doc = new jsPDF();
+      doc.setFontSize(24);
+      doc.setTextColor(20, 184, 166);
+      doc.text(title, 20, 30);
+      doc.setFontSize(12);
+      doc.setTextColor(0, 0, 0);
+      doc.text("This is a pre-made resume template. You can customize it using the Resume Builder.", 20, 50, {maxWidth:170});
+      doc.save(title.replace(/\s+/g,"_") + ".pdf");
+    }
+
+    function downloadCoverLetter(title) {
+      const doc = new jsPDF();
+      doc.setFontSize(24);
+      doc.setTextColor(20, 184, 166);
+      doc.text(title, 20, 30);
+      doc.setFontSize(12);
+      doc.setTextColor(0, 0, 0);
+      doc.text("This is a professional cover letter template. You can customize it using the Cover Letter Generator.", 20, 50, {maxWidth:170});
+      doc.save(title.replace(/\s+/g,"_") + ".pdf");
+    }
+  </script>
+
+</body>
+</html>
