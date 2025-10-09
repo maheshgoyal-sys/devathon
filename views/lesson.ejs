@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title><%= title %></title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-white min-h-screen p-8">
-  <h1 class="text-2xl font-bold mb-4"><%= lesson.title %></h1>
-  <div class="prose max-w-full">
-    <%- lesson.content %>
-  </div>
-  <a href="/lessons" class="mt-6 inline-block bg-teal-500 text-white px-4 py-2 rounded hover:bg-teal-600">Back to Lessons</a>
-</body>
-</html>
+<div id="lessons-submenu" class="hidden pl-6 space-y-1">
+  <% lessons.forEach(lesson => { %>
+    <a href="/lessons/<%= lesson._id %>" 
+       class="block px-4 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-100">
+       <%= lesson.title %>
+    </a>
+  <% }) %>
+</div>
