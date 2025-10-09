@@ -12,28 +12,22 @@ const app = express();
 
 // Import routes
 const authRoutes = require('./routes/authRoutes');
-// at top with other imports
+const dashboardRoutes = require('./routes/dashboardRoutes');
 const apiRoutes = require('./routes/apiRoutes');
-
-// after app.use('/', authRoutes);
-app.use('/api', apiRoutes);
+const lessonRoutes = require('./routes/lessonRoutes');
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
-const lessonRoutes = require('./routes/lessonRoutes');
-app.use('/', lessonRoutes);
 
 // Session configuration
 app.use(session({
   secret: process.env.SESSION_SECRET || 'your-secret-key-change-in-production',
   resave: false,
   saveUninitialized: false,
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 24 // 24 hours
-  }
+  cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hours
 }));
 
 // View engine setup
@@ -49,9 +43,10 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/gla_exam_
 .catch(err => console.error('❌ MongoDB connection error:', err));
 
 // Routes
-app.use('/', authRoutes);
-const dashboardRoutes = require('./routes/dashboardRoutes');
-app.use('/', dashboardRoutes);
+app.use('/', authRoutes);        // Login, Register, Logout
+app.use('/', dashboardRoutes);   // Dashboard, profile, etc.
+app.use('/', lessonRoutes);      // Lessons page
+app.use('/api', apiRoutes);      // API for stats, etc.
 
 // Error handling middleware
 app.use((req, res, next) => {

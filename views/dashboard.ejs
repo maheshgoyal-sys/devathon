@@ -72,9 +72,11 @@
 
       <div class="flex items-center gap-4">
         <button id="notifBtn" class="p-2 bg-white rounded-lg shadow">🔔</button>
-        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400 flex items-center justify-center text-white font-bold">
-          <%= userName.charAt(0).toUpperCase() %>
-        </div>
+        <a href="/dashboard/profile" 
+   class="w-10 h-10 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400 flex items-center justify-center text-white font-bold hover:scale-105 transition">
+  <%= userName.charAt(0).toUpperCase() %>
+</a>
+
       </div>
     </header>
 
