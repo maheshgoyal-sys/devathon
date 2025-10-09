@@ -41,6 +41,46 @@ router.get('/dashboard/lessons/:slug/:topicName', isAuthenticated, async (req, r
   }
 });
 
+// Vocabulary Page
+router.get('/Vocabulary', isAuthenticated, (req, res) => {
+  res.render('vocabulary', {
+    title: 'Vocabulary',
+    userName: req.session.userName || 'Student'
+  });
+});
+
+// Tests & Assessments Page
+router.get('/test', isAuthenticated, (req, res) => {
+  res.render('test', {
+    title: 'Tests & Assessments',
+    userName: req.session.userName || 'Student'
+  });
+});
+
+// Resume & Writing Lab Page
+router.get('/resume', isAuthenticated, (req, res) => {
+  res.render('resume', {
+    title: 'Resume & Writing Lab',
+    userName: req.session.userName || 'Student'
+  });
+});
+
+// Placement Resources Page
+router.get('/placement', isAuthenticated, (req, res) => {
+  res.render('placement', {
+    title: 'Placement Resources',
+    userName: req.session.userName || 'Student'
+  });
+});
+
+// Profile already exists
+// Settings Page (placeholder)
+router.get('/setting', isAuthenticated, (req, res) => {
+  res.render('setting', {
+    title: 'Settings',
+    userName: req.session.userName || 'Student'
+  });
+});
 
 // ✅ Dashboard route
 router.get('/dashboard', isAuthenticated, (req, res) => {
@@ -52,7 +92,18 @@ router.get('/dashboard', isAuthenticated, (req, res) => {
 
 // ✅ Lessons route
 // ✅ Individual lesson detail page
-
+router.get('/dashboard/lessons/Writting', isAuthenticated, (req, res) => {
+  res.render('writting', {
+    title: 'Writting Skills',
+    userName: req.session.userName || 'Student'
+  });
+});
+router.get('/dashboard/lessons/Speaking', isAuthenticated, (req, res) => {
+  res.render('speaking', {
+    title: 'Speaking Skills',
+    userName: req.session.userName || 'Student'
+  });
+});
 // Individual lesson detail page
 router.get('/dashboard/lessons/:slug', isAuthenticated, async (req, res) => {
   try {
@@ -73,6 +124,7 @@ router.get('/dashboard/lessons/:slug', isAuthenticated, async (req, res) => {
 });
 
 
+// Speaking Skills Page (Custom EJS)
 
 // ✅ Profile route (real data fetch from MongoDB)
 // Profile route

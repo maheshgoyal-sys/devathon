@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title><%= title %> | GLA English</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-teal-50 to-cyan-50 min-h-screen p-8">
+
+<a href="/dashboard" class="text-blue-600 hover:underline mb-4 inline-block">← Back to Dashboard</a>
+
+<div class="max-w-5xl mx-auto bg-white rounded-2xl shadow p-8 space-y-8">
+
+  <h1 class="text-3xl font-bold text-teal-600">🗣️ Speaking Skills - Advanced</h1>
+  <p class="text-gray-700">Improve your pronunciation, fluency, and confidence. Practice with audio, video, and exercises.</p>
+
+  <!-- 1️⃣ Pronunciation Mastery -->
+  <section>
+    <h2 class="text-2xl font-semibold text-gray-800 mb-2">🎧 Pronunciation Mastery</h2>
+    <ul class="space-y-2">
+      <li>
+        <p class="font-medium">“Thought” / “Through” / “Though” / “Tough”</p>
+        <audio controls class="w-full">
+          <source src="/audio/pronunciation1.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </li>
+      <li>
+        <p class="font-medium">“She sells seashells by the seashore”</p>
+        <audio controls class="w-full">
+          <source src="/audio/tonguetwister1.mp3" type="audio/mpeg">
+        </audio>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 2️⃣ Dialogues (Video) -->
+  <section>
+    <h2 class="text-2xl font-semibold text-gray-800 mb-2">🎬 Real-Life Dialogues</h2>
+    <p class="text-gray-700 mb-2">Practice conversations in daily situations.</p>
+    <div class="space-y-4">
+      <div class="rounded-lg overflow-hidden shadow">
+        <video controls class="w-full">
+          <source src="/videos/restaurant.mp4" type="video/mp4">
+        </video>
+        <p class="p-2 bg-gray-50 text-gray-600">Restaurant scenario: Order coffee & interact.</p>
+      </div>
+      <div class="rounded-lg overflow-hidden shadow">
+        <video controls class="w-full">
+          <source src="/videos/interview.mp4" type="video/mp4">
+        </video>
+        <p class="p-2 bg-gray-50 text-gray-600">Job interview practice: Answer common questions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3️⃣ Fluency Challenge -->
+  <section>
+    <h2 class="text-2xl font-semibold text-gray-800 mb-2">⏱️ Fluency Challenge</h2>
+    <p class="text-gray-700 mb-2">Pick a topic & speak for 1 min:</p>
+    <ul class="list-disc list-inside text-gray-600">
+      <li>Describe your favorite movie</li>
+      <li>Explain a recent event</li>
+      <li>Share your opinion on social media</li>
+    </ul>
+  </section>
+
+  <!-- 4️⃣ Tips & Tricks -->
+  <section>
+    <h2 class="text-2xl font-semibold text-gray-800 mb-2">💡 Speaking Tips</h2>
+    <ul class="list-disc list-inside text-gray-600">
+      <li>Practice voice modulation for clarity</li>
+      <li>Use pauses to emphasize key points</li>
+      <li>Observe native intonation patterns</li>
+    </ul>
+  </section>
+
+</div>
+
+</body>
+</html>
