@@ -61,6 +61,14 @@ router.get('/dashboard/lessons/:slug', isAuthenticated, async (req, res) => {
 
     if (!lesson) return res.status(404).render('error', { message: 'Lesson not found', error: {} });
 
+    // Check if the slug is for 'Grammar' and render the new view
+    if (slug.toLowerCase() === 'grammar') {
+      return res.render('basicGrammar', {
+        title: 'Grammar & Usage',
+        userName: req.session.userName || 'Student'
+      });
+    }
+
     res.render('lessonDetail', {
       title: lesson.title,
       userName: req.session.userName || 'Student',
