@@ -1,19 +1,143 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Lessons | GLA English App</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lessons | GLA English</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg,#ecfdf5,#e0f2fe); }
+  </style>
 </head>
-<body>
-  <h1>Available Lessons</h1>
-  
-  <div class="lessons">
-    <% lessons.forEach(lesson => { %>
-      <div class="lesson-card">
-        <h2><%= lesson.title %></h2>
-        <div><%- lesson.content %></div>
+<body class="min-h-screen flex">
+
+  <!-- Sidebar (collapsible) -->
+  <aside id="sidebar" class="bg-white w-72 p-6 border-r border-gray-100 hidden md:flex flex-col">
+    <div class="mb-6">
+      <h1 class="text-2xl font-bold text-teal-600">GLA English</h1>
+      <p class="text-sm text-gray-500 mt-1">Welcome, <%= typeof userName !== 'undefined' ? userName : 'User' %></p>
+    </div>
+
+    <nav class="flex-1 space-y-2">
+      <a href="/dashboard" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">🏠 Dashboard</a>
+
+      <!-- Lessons with subcategories -->
+      <div class="space-y-1">
+        <button onclick="toggleSubmenu('lessons')" class="w-full text-left px-4 py-2 rounded-lg bg-teal-50 text-teal-700 font-medium flex items-center justify-between">
+          📘 Lessons
+          <span id="lessons-arrow" class="text-xs">▶</span>
+        </button>
+        <div id="lessons-submenu" class="pl-6 space-y-1">
+          <a href="#" class="block px-4 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-100">✍️ Writing Practice</a>
+        </div>
       </div>
-    <% }) %>
+
+      <a href="#" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">🧠 Vocabulary</a>
+      
+      <a href="/tests" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">🧾 Tests & Assessments</a>
+      <a href="/resume-writing-lab" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">📄 Resume & Writing Lab</a>
+      <a href="/placement-resources" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">🎓 Placement Resources</a>
+      <a href="/profile" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">👤 My Profile</a>
+    </nav>
+
+    <div class="mt-6">
+      <a href="/logout" class="block text-center text-red-600 py-2 rounded-lg hover:bg-red-50">Logout</a>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <div class="flex-1 p-6 md:p-10">
+    <!-- Top bar -->
+    <header class="flex items-center justify-between mb-6">
+      <div class="flex items-center gap-4">
+        <!-- Mobile menu toggle -->
+        <button id="menuBtn" class="md:hidden p-2 bg-white rounded-lg shadow">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+          </svg>
+        </button>
+
+        <div>
+          <h2 class="text-2xl font-semibold text-gray-800">Lessons</h2>
+          <p class="text-sm text-gray-500">Choose a lesson to start learning</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <button id="notifBtn" class="p-2 bg-white rounded-lg shadow">🔔</button>
+        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400 flex items-center justify-center text-white font-bold">
+          <%= typeof userName !== 'undefined' ? userName.charAt(0).toUpperCase() : 'U' %>
+        </div>
+      </div>
+    </header>
+
+    <!-- Lessons content -->
+    <div class="bg-white p-6 rounded-2xl shadow">
+      <h3 class="text-lg font-semibold mb-4">Available Lessons</h3>
+
+      <% if (lessons && lessons.length > 0) { %>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <% lessons.forEach(lesson => { %>
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors">
+              <h4 class="font-semibold text-gray-800 mb-2"><%= lesson.title %></h4>
+              <div class="text-sm text-gray-600 mb-3"><%- lesson.content.substring(0, 150) %><%= lesson.content.length > 150 ? '...' : '' %></div>
+              <button class="w-full px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-colors">
+                Start Lesson
+              </button>
+            </div>
+          <% }) %>
+        </div>
+      <% } else { %>
+        <div class="text-center py-8">
+          <p class="text-gray-500">No lessons available at the moment.</p>
+        </div>
+      <% } %>
+    </div>
   </div>
+
+  <!-- Notification container -->
+  <div id="notify" class="notify hidden fixed right-4 bottom-4 z-50">
+    <div id="notifyBox" class="bg-white p-4 rounded-lg shadow-lg border border-gray-100">
+      <div class="font-semibold text-gray-800" id="notifyTitle">Notification</div>
+      <div class="text-sm text-gray-600 mt-1" id="notifyBody">You have new progress updates.</div>
+    </div>
+  </div>
+
+  <!-- Client JS -->
+  <script>
+    // Sidebar toggle for mobile
+    const menuBtn = document.getElementById('menuBtn');
+    const sidebar = document.getElementById('sidebar');
+    menuBtn?.addEventListener('click', () => {
+      sidebar.classList.toggle('hidden');
+    });
+
+    // Submenu toggle functionality
+    function toggleSubmenu(menu) {
+      const submenu = document.getElementById(menu + '-submenu');
+      const arrow = document.getElementById(menu + '-arrow');
+
+      if (submenu.classList.contains('hidden')) {
+        submenu.classList.remove('hidden');
+        arrow.style.transform = 'rotate(90deg)';
+      } else {
+        submenu.classList.add('hidden');
+        arrow.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    // Notification
+    const notifyEl = document.getElementById('notify');
+    const notifyBtn = document.getElementById('notifBtn');
+    const showNotification = (title, body) => {
+      document.getElementById('notifyTitle').textContent = title;
+      document.getElementById('notifyBody').textContent = body;
+      notifyEl.classList.remove('hidden');
+      setTimeout(() => notifyEl.classList.add('hidden'), 5000);
+    };
+    notifyBtn?.addEventListener('click', () => showNotification('Reminder', 'Complete one lesson today to keep your streak!'));
+  </script>
+
 </body>
 </html>

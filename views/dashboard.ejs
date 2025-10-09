@@ -16,7 +16,7 @@
 <body class="min-h-screen flex">
 
   <!-- Sidebar (collapsible) -->
-  <aside id="sidebar" class="bg-white w-64 p-6 border-r border-gray-100 hidden md:flex flex-col">
+  <aside id="sidebar" class="bg-white w-72 p-6 border-r border-gray-100 hidden md:flex flex-col">
     <div class="mb-6">
       <h1 class="text-2xl font-bold text-teal-600">GLA English</h1>
       <p class="text-sm text-gray-500 mt-1">Welcome, <%= userName %></p>
@@ -24,9 +24,27 @@
 
     <nav class="flex-1 space-y-2">
       <a href="/dashboard" class="block px-4 py-2 rounded-lg bg-teal-50 text-teal-700 font-medium">🏠 Dashboard</a>
-      <a href="/lessons" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">📘 Lessons</a>
+      
+      <!-- Lessons with subcategories -->
+      <div class="space-y-1">
+        <button onclick="toggleSubmenu('lessons')" class="w-full text-left px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100 flex items-center justify-between">
+          📘 Lessons
+          <span id="lessons-arrow" class="text-xs">▶</span>
+        </button>
+        <div id="lessons-submenu" class="hidden pl-6 space-y-1">
+          <a href="#" class="block px-4 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-100">🎯 Grammar & Usage</a>
+          <a href="#" class="block px-4 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-100">🗣️ Speaking Skills</a>
+          <a href="#" class="block px-4 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-100">✍️ Writing Practice</a>
+        </div>
+      </div>
+      
       <a href="#" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">🧠 Vocabulary</a>
-      <a href="#" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">📝 Tests</a>
+      
+      <a href="#" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">🧾 Tests & Assessments</a>
+      <a href="#" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">📄 Resume & Writing Lab</a>
+      <a href="#" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">🎓 Placement Resources</a>
+      <a href="#" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">👤 My Profile</a>
+      <a href="#" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">⚙️ Settings</a>
     </nav>
 
     <div class="mt-6">
@@ -132,6 +150,20 @@
     menuBtn?.addEventListener('click', () => {
       sidebar.classList.toggle('hidden');
     });
+
+    // Submenu toggle functionality
+    function toggleSubmenu(menu) {
+      const submenu = document.getElementById(menu + '-submenu');
+      const arrow = document.getElementById(menu + '-arrow');
+      
+      if (submenu.classList.contains('hidden')) {
+        submenu.classList.remove('hidden');
+        arrow.style.transform = 'rotate(90deg)';
+      } else {
+        submenu.classList.add('hidden');
+        arrow.style.transform = 'rotate(0deg)';
+      }
+    }
 
     // Notification
     const notifyEl = document.getElementById('notify');
