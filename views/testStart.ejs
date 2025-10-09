@@ -1,0 +1,21 @@
+<h1 class="text-2xl font-bold mb-4"><%= test.title %></h1>
+
+<form action="/dashboard/test/submit" method="POST">
+  <input type="hidden" name="testId" value="<%= test._id %>">
+
+  <% test.questions.forEach((q, idx) => { %>
+    <div class="mb-4 p-3 border rounded">
+      <p><%= idx + 1 %>. <%= q.question %></p>
+      <% q.options.forEach(opt => { %>
+        <label class="block">
+          <input type="radio" name="answers[<%= idx %>]" value="<%= opt %>" required>
+          <%= opt %>
+        </label>
+      <% }) %>
+    </div>
+  <% }) %>
+
+  <button type="submit" class="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600">
+    Submit Test
+  </button>
+</form>

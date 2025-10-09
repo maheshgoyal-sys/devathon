@@ -1,19 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User'); // use this if you want real DB fetch
-const Lesson = require('../models/Lesson'); // import Lesson model
-
-// ✅ Middleware: user logged in check
+const User = require('../models/User');
+const Lesson = require('../models/Lesson');
+const testController = require('../controllers/testController'); // ✅ test controller
 const isAuthenticated = (req, res, next) => {
   if (!req.session || !req.session.userId) {
-    return res.redirect('/'); // redirect to login if not authenticated
+    return res.redirect('/');
   }
   next();
 };
+
+// --------- Lessons & Dashboard Routes (same as before) ---------
+
 router.get('/dashboard/lessons/:slug/:topicName', isAuthenticated, async (req, res) => {
   try {
     const { slug } = req.params;
-    const topicName = decodeURIComponent(req.params.topicName); // ✅ decode
+    const topicName = decodeURIComponent(req.params.topicName);
 
     const lesson = await Lesson.findOne({ slug });
     if (!lesson) return res.status(404).render('error', { message: 'Lesson not found', error: {} });
@@ -41,48 +43,6 @@ router.get('/dashboard/lessons/:slug/:topicName', isAuthenticated, async (req, r
   }
 });
 
-// Vocabulary Page
-router.get('/Vocabulary', isAuthenticated, (req, res) => {
-  res.render('vocabulary', {
-    title: 'Vocabulary',
-    userName: req.session.userName || 'Student'
-  });
-});
-
-// Tests & Assessments Page
-router.get('/test', isAuthenticated, (req, res) => {
-  res.render('test', {
-    title: 'Tests & Assessments',
-    userName: req.session.userName || 'Student'
-  });
-});
-
-// Resume & Writing Lab Page
-router.get('/resume', isAuthenticated, (req, res) => {
-  res.render('resume', {
-    title: 'Resume & Writing Lab',
-    userName: req.session.userName || 'Student'
-  });
-});
-
-// Placement Resources Page
-router.get('/placement', isAuthenticated, (req, res) => {
-  res.render('placement', {
-    title: 'Placement Resources',
-    userName: req.session.userName || 'Student'
-  });
-});
-
-// Profile already exists
-// Settings Page (placeholder)
-router.get('/setting', isAuthenticated, (req, res) => {
-  res.render('setting', {
-    title: 'Settings',
-    userName: req.session.userName || 'Student'
-  });
-});
-
-// ✅ Dashboard route
 router.get('/dashboard', isAuthenticated, (req, res) => {
   res.render('dashboard', {
     title: 'English Learning Dashboard',
@@ -90,8 +50,7 @@ router.get('/dashboard', isAuthenticated, (req, res) => {
   });
 });
 
-// ✅ Lessons route
-// ✅ Individual lesson detail page
+// Individual lesson pages
 router.get('/dashboard/lessons/Writting', isAuthenticated, (req, res) => {
   res.render('writting', {
     title: 'Writting Skills',
@@ -104,7 +63,6 @@ router.get('/dashboard/lessons/Speaking', isAuthenticated, (req, res) => {
     userName: req.session.userName || 'Student'
   });
 });
-// Individual lesson detail page
 router.get('/dashboard/lessons/:slug', isAuthenticated, async (req, res) => {
   try {
     const { slug } = req.params;
@@ -112,7 +70,6 @@ router.get('/dashboard/lessons/:slug', isAuthenticated, async (req, res) => {
 
     if (!lesson) return res.status(404).render('error', { message: 'Lesson not found', error: {} });
 
-    // Check if the slug is for 'Grammar' and render the new view
     if (slug.toLowerCase() === 'grammar') {
       return res.render('basicGrammar', {
         title: 'Grammar & Usage',
@@ -131,23 +88,22 @@ router.get('/dashboard/lessons/:slug', isAuthenticated, async (req, res) => {
   }
 });
 
+// --------- Test Routes using Controller ---------
 
-// Speaking Skills Page (Custom EJS)
+// Show all tests
+router.get('/dashboard/test', isAuthenticated, testController.showTests);
 
-// ✅ Profile route (real data fetch from MongoDB)
-// Profile route
+// Start a test
+router.get('/dashboard/test/start/:id', isAuthenticated, testController.startTest);
+
+// Submit test
+router.post('/dashboard/test/submit', isAuthenticated, testController.submitTest);
+
+// --------- Profile & Other Routes ---------
 router.get('/dashboard/profile', isAuthenticated, async (req, res) => {
-  console.log('Session data:', req.session); // safe place
   try {
-    if (!req.session.userId) {
-      return res.redirect('/');
-    }
-
-    // Correct query
-    const user = await User.findById(req.session.userId); // ✅ use findById since session has _id
-    if (!user) {
-      return res.status(404).render('error', { message: 'User not found', error: {} });
-    }
+    const user = await User.findById(req.session.userId);
+    if (!user) return res.status(404).render('error', { message: 'User not found', error: {} });
 
     res.render('profile', {
       title: 'Your Profile',
@@ -159,14 +115,8 @@ router.get('/dashboard/profile', isAuthenticated, async (req, res) => {
     });
   } catch (err) {
     console.error('Profile route error:', err);
-    res.status(500).render('error', {
-      message: 'Something went wrong',
-      error: process.env.NODE_ENV === 'development' ? err : {}
-    });
+    res.status(500).render('error', { message: 'Something went wrong', error: process.env.NODE_ENV === 'development' ? err : {} });
   }
 });
-
-
-
 
 module.exports = router;

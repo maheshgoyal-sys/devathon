@@ -20,7 +20,7 @@ exports.showLogin = (req, res) => {
 // Handle login
 exports.login = async (req, res) => {
   try {
-    const { userId, password, userType, captcha } = req.body;
+    const { userId, password, captcha } = req.body; // userType removed
 
     // Validate inputs
     if (!userId || !userId.trim()) {
@@ -43,18 +43,7 @@ exports.login = async (req, res) => {
       });
     }
 
-    if (!captcha || captcha.length !== 4) {
-      const newCaptcha = generateCaptcha();
-      req.session.captcha = newCaptcha;
-      return res.render('login', {
-        title: 'GLA English Learning Platform Login',
-        captcha: newCaptcha,
-        error: 'Please Enter Valid Captcha'
-      });
-    }
-
-    // Verify captcha
-    if (captcha !== req.session.captcha) {
+    if (!captcha || captcha.length !== 4 || captcha !== req.session.captcha) {
       const newCaptcha = generateCaptcha();
       req.session.captcha = newCaptcha;
       return res.render('login', {
@@ -64,9 +53,8 @@ exports.login = async (req, res) => {
       });
     }
 
-    // Find user by userId and userType (if userType provided in form)
-    const query = userType ? { userId: userId.trim(), userType } : { userId: userId.trim() };
-    const user = await User.findOne(query);
+    // Find user by userId only
+    const user = await User.findOne({ userId: userId.trim() });
 
     if (!user) {
       const newCaptcha = generateCaptcha();
@@ -89,7 +77,7 @@ exports.login = async (req, res) => {
       });
     }
 
-    // === PLAINTEXT password check (development-only) ===
+    // Plaintext password check (dev-only)
     if (user.password !== password) {
       const newCaptcha = generateCaptcha();
       req.session.captcha = newCaptcha;
@@ -107,9 +95,9 @@ exports.login = async (req, res) => {
     // Set session
     req.session.userId = user._id;
     req.session.userName = user.name;
-    req.session.userType = user.userType;
+    // userType removed from session
 
-    // Redirect to English Learning Dashboard
+    // Redirect to dashboard
     return res.redirect('/dashboard');
 
   } catch (error) {
@@ -127,14 +115,12 @@ exports.login = async (req, res) => {
 // Handle logout
 exports.logout = (req, res) => {
   req.session.destroy((err) => {
-    if (err) {
-      console.error('Logout error:', err);
-    }
+    if (err) console.error('Logout error:', err);
     res.redirect('/');
   });
 };
 
-// Refresh captcha (AJAX endpoint)
+// Refresh captcha
 exports.refreshCaptcha = (req, res) => {
   const captcha = generateCaptcha();
   req.session.captcha = captcha;
