@@ -8,127 +8,832 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg,#ecfdf5,#e0f2fe); }
-    .submenu-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .tab-content-modal { display: none; }
+    .tab-content-modal.active { display: block; }
+    .tab-btn.active { background-color: white; color: #10b981; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .tab-button { background-color: #f3f4f6; color: #6b7280; }
+    .draggable {
+      cursor: move;
+      padding: 8px 12px;
+      margin: 4px;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    .draggable:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    .draggable.dragging {
+      opacity: 0.5;
+      transform: rotate(5deg);
+    }
+    .drop-zone {
+      min-height: 60px;
+      padding: 16px;
+      margin: 8px 0;
+      border: 2px dashed #cbd5e0;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #f7fafc, #edf2f7);
+      transition: all 0.3s ease;
+    }
+    .drop-zone.hover {
+      border-color: #10b981;
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+    }
+    .drop-zone.correct {
+      border-color: #10b981;
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+    }
+    .drop-zone.incorrect {
+      border-color: #ef4444;
+      background: linear-gradient(135deg, #fef2f2, #fee2e2);
+    }
+    .word-highlight {
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .word-highlight:hover {
+      transform: scale(1.1);
+    }
+    .noun { background-color: #dbeafe; color: #1e40af; }
+    .verb { background-color: #fef3c7; color: #92400e; }
+    .adjective { background-color: #fce7f3; color: #be185d; }
+    .adverb { background-color: #ecfdf5; color: #065f46; }
+    .pronoun { background-color: #f3e8ff; color: #7c3aed; }
+    .preposition { background-color: #fff7ed; color: #ea580c; }
+    .conjunction { background-color: #f0fdf4; color: #166534; }
+    .interjection { background-color: #fefce8; color: #a16207; }
+    .interactive-example {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 16px 0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    .feedback {
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+    .feedback.correct {
+      background-color: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+    .feedback.incorrect {
+      background-color: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+    
+    .modal-section {
+      background: linear-gradient(135deg, #ffffff, #f8fafc);
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .modal-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #10b981, #06b6d4, #8b5cf6);
+    }
+    .modal-section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+    .modal-section.notes {
+      background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+      border-left: 4px solid #0ea5e9;
+    }
+    .modal-section.video {
+      background: linear-gradient(135deg, #fefce8, #fef3c7);
+      border-left: 4px solid #eab308;
+    }
+    .modal-section.tips {
+      background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+      border-left: 4px solid #22c55e;
+    }
+    .modal-section.quiz {
+      background: linear-gradient(135deg, #faf5ff, #f3e8ff);
+      border-left: 4px solid #a855f7;
+    }
+    .section-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #1f2937;
+    }
+    .notes .section-icon { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+    .video .section-icon { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+    .tips .section-icon { background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
+    .quiz .section-icon { background: linear-gradient(135deg, #e9d5ff, #d8b4fe); }
+    .content-text {
+      color: #4b5563;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+    .tips-list {
+      list-style: none;
+      padding: 0;
+    }
+    .tips-list li {
+      background: rgba(255, 255, 255, 0.7);
+      margin: 8px 0;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border-left: 4px solid #22c55e;
+      transition: all 0.2s ease;
+    }
+    .tips-list li:hover {
+      background: rgba(255, 255, 255, 0.9);
+      transform: translateX(4px);
+    }
+    .video-placeholder {
+      background: linear-gradient(135deg, #1f2937, #374151);
+      border-radius: 12px;
+      aspect-ratio: 16/9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: all 0.3s ease;
+    }
+    .video-placeholder:hover {
+      background: linear-gradient(135deg, #374151, #4b5563);
+      transform: scale(1.02);
+    }
+    .enhanced-button {
+      background: linear-gradient(135deg, #10b981, #059669);
+      border: none;
+      color: white;
+      padding: 12px 32px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    }
+    .enhanced-button:hover {
+      background: linear-gradient(135deg, #059669, #047857);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+    }
+    /* Split Design Layout */
+    .split-topic-card {
+      display: flex;
+      background: linear-gradient(135deg, #ffffff, #f8fafc);
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      overflow: hidden;
+      min-height: 200px;
+    }
+    .split-topic-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+    .split-content {
+      flex: 1;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .split-video {
+      width: 300px;
+      background: linear-gradient(135deg, #1f2937, #374151);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .video-preview {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1f2937, #374151);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .video-preview:hover {
+      background: linear-gradient(135deg, #374151, #4b5563);
+      transform: scale(1.02);
+    }
+    .video-play-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+      opacity: 0.9;
+    }
+    .video-preview-text {
+      font-size: 14px;
+      opacity: 0.8;
+      text-align: center;
+      padding: 0 16px;
+    }
+    .topic-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .topic-icon {
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+    .topic-info h4 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .topic-info p {
+      color: #6b7280;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .topic-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+    .start-btn {
+      background: linear-gradient(135deg, #10b981, #059669);
+      border: none;
+      color: white;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+      cursor: pointer;
+    }
+    .start-btn:hover {
+      background: linear-gradient(135deg, #059669, #047857);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+    }
+    .topic-badge {
+      background: rgba(16, 185, 129, 0.1);
+      color: #059669;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .split-topic-card {
+        flex-direction: column;
+        min-height: auto;
+      }
+      .split-video {
+        width: 100%;
+        height: 200px;
+      }
+      .split-content {
+        padding: 20px;
+      }
+      .topic-actions {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+      }
+      .start-btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+    /* Level-specific colors */
+    .level-1 .split-topic-card {
+      border-left: 4px solid #10b981;
+    }
+    .level-2 .split-topic-card {
+      border-left: 4px solid #3b82f6;
+    }
+    .level-3 .split-topic-card {
+      border-left: 4px solid #8b5cf6;
+    }
   </style>
 </head>
 <body class="min-h-screen flex">
 
-  <!-- Sidebar -->
-  <aside id="sidebar" class="bg-white w-72 p-6 border-r border-gray-100 hidden md:flex flex-col">
-    <div class="mb-6">
-      <h1 class="text-2xl font-bold text-teal-600">GLA English</h1>
-      <p class="text-sm text-gray-500 mt-1">Welcome, <%= userName %></p>
-    </div>
-    <nav class="flex-1 space-y-2">
-      <a href="/dashboard" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">🏠 Dashboard</a>
-      <div class="space-y-1">
-        <button onclick="toggleSubmenu('lessons')" class="w-full text-left px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100 flex items-center justify-between">
-          📘 Lessons
-          <span id="lessons-arrow" class="text-xs" style="transform: rotate(90deg);">▶</span>
-        </button>
-        <div id="lessons-submenu" class="pl-6 space-y-1">
-          <a href="/dashboard/lessons/Grammar" class="block px-4 py-2 rounded-lg text-sm bg-teal-50 text-teal-700 font-medium">🎯 Grammar & Usage</a>
-          <a href="/dashboard/lessons/Speaking" class="block px-4 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-100">🗣️ Speaking Skills</a>
-          <a href="/dashboard/lessons/Writing" class="block px-4 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-100">✍️ Writing Practice</a>
-        </div>
-      </div>
-      <a href="#" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">🧠 Vocabulary</a>
-      <a href="#" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">🧾 Tests & Assessments</a>
-      <a href="#" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">📄 Resume & Writing Lab</a>
-      <a href="#" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">🎓 Placement Resources</a>
-      <a href="#" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">👤 My Profile</a>
-      <a href="#" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">⚙️ Settings</a>
-    </nav>
-    <div class="mt-6">
-      <a href="/logout" class="block text-center text-red-600 py-2 rounded-lg hover:bg-red-50">Logout</a>
-    </div>
-  </aside>
+  
 
   <!-- Main content -->
   <div class="flex-1 p-6 md:p-10">
-    <header class="flex items-center justify-between mb-8">
-      <div class="flex items-center gap-4">
-        <button id="menuBtn" class="md:hidden p-2 bg-white rounded-lg shadow">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" /></svg>
-        </button>
-        <div>
-          <h2 class="text-2xl font-semibold text-gray-800">Grammar & Usage</h2>
-          <p class="text-sm text-gray-500">Master grammar from basics to placement-ready levels.</p>
+    <!-- Centered Interactive Header with Profile Button in Right Corner -->
+    <div class="text-center mb-6 relative">
+      <div class="flex items-center justify-between">
+        <div class="flex-1"></div>
+        <div class="flex-1 flex justify-center">
+          <h1 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 bg-clip-text text-transparent hover:scale-105 transition-all duration-300 cursor-pointer drop-shadow-sm">
+            📚 Grammar & Usage
+          </h1>
+        </div>
+        <div class="flex-1 flex justify-end">
+          <a href="/dashboard/profile" class="w-10 h-10 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400 flex items-center justify-center text-white font-bold hover:scale-105 transition">
+            <%= userName.charAt(0).toUpperCase() %>
+          </a>
         </div>
       </div>
-      <div class="flex items-center gap-4">
-        <a href="/dashboard/profile" class="w-10 h-10 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400 flex items-center justify-center text-white font-bold hover:scale-105 transition">
-          <%= userName.charAt(0).toUpperCase() %>
-        </a>
+      <p class="text-gray-600 text-sm md:text-base font-medium max-w-2xl mx-auto leading-relaxed">
+        Master grammar from basics to placement-ready levels
+      </p>
+      <div class="mt-3 flex justify-center items-center space-x-2 text-sm text-gray-500">
+        <span class="w-6 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent"></span>
+        <span class="px-2">✨</span>
+        <span class="w-6 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent"></span>
       </div>
-    </header>
+    </div>
+
+    <!-- Tab Navigation for Sections -->
+    <div class="mb-6">
+      <div class="flex space-x-1 bg-gray-100 p-1 rounded-lg">
+        <button id="tab-level1" class="tab-button active px-4 py-2 rounded-md text-sm font-medium transition-colors" onclick="switchTab('level1')">Level 1</button>
+        <button id="tab-level2" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors" onclick="switchTab('level2')">Level 2</button>
+        <button id="tab-level3" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors" onclick="switchTab('level3')">Level 3</button>
+      </div>
+    </div>
 
     <!-- Grammar Levels -->
     <div class="space-y-6">
 
       <!-- Level 1 -->
-      <div class="bg-white rounded-xl shadow-md overflow-hidden">
-        <button onclick="toggleAccordion('level1')" class="w-full p-5 text-left flex justify-between items-center">
-          <div class="flex items-center gap-4">
-            <span class="text-2xl">1️⃣</span>
-            <div>
-              <h3 class="font-bold text-lg text-teal-700">Level 1: Basics Refresher</h3>
-              <p class="text-sm text-gray-500">Strengthen your fundamental grammar skills.</p>
+      <div id="level1-section" class="tab-content active">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <div class="p-6 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+              <span class="text-3xl">1️⃣</span>
+              <div>
+                <h3 class="font-bold text-xl text-teal-700">Level 1: Grammar Foundations Refresher</h3>
+                <p class="text-sm text-gray-500 mt-1">Quick revision before deeper learning.</p>
+              </div>
             </div>
           </div>
-          <span id="level1-arrow" class="text-teal-600 transform transition-transform">▼</span>
-        </button>
-        <div id="level1-content" class="submenu-content px-5 pb-5">
-          <ul class="mt-2 space-y-3 border-l-2 border-teal-100 ml-6 pl-6">
-            <li class="p-3 rounded-lg hover:bg-gray-50 cursor-pointer">Tenses in Use</li>
-            <li class="p-3 rounded-lg hover:bg-gray-50 cursor-pointer">Articles & Prepositions</li>
-            <li class="p-3 rounded-lg hover:bg-gray-50 cursor-pointer">Subject–Verb Agreement</li>
-          </ul>
+          <div class="px-6 pb-6">
+            <div class="level-1">
+              <div class="split-topic-card">
+                <div class="split-content">
+                  <div class="topic-header">
+                    <span class="topic-icon">🔍</span>
+                    <div class="topic-info">
+                      <h4>Parts of Speech (Crash Revision)</h4>
+                      <p>Identify roles in sentences - Mini video + quiz</p>
+                    </div>
+                  </div>
+                  <div class="topic-actions">
+                    <span class="topic-badge">Foundation</span>
+                    <button class="start-btn" data-topic="parts-of-speech">Start Learning</button>
+                  </div>
+                </div>
+                <div class="split-video">
+                  <div class="video-preview" onclick="playVideo('parts-of-speech')">
+                    <div class="video-play-icon">▶️</div>
+                    <div class="video-preview-text">Parts of Speech Video</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="split-topic-card">
+                <div class="split-content">
+                  <div class="topic-header">
+                    <span class="topic-icon">⏰</span>
+                    <div class="topic-info">
+                      <h4>Tenses in Use</h4>
+                      <p>Past, Present, Future — real job examples - Interactive chart + exercises</p>
+                    </div>
+                  </div>
+                  <div class="topic-actions">
+                    <span class="topic-badge">Essential</span>
+                    <button class="start-btn" data-topic="tenses-in-use">Start Learning</button>
+                  </div>
+                </div>
+                <div class="split-video">
+                  <div class="video-preview" onclick="playVideo('tenses-in-use')">
+                    <div class="video-play-icon">▶️</div>
+                    <div class="video-preview-text">Tenses Video</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="split-topic-card">
+                <div class="split-content">
+                  <div class="topic-header">
+                    <span class="topic-icon">📝</span>
+                    <div class="topic-info">
+                      <h4>Articles & Prepositions</h4>
+                      <p>Common professional mistakes - Fill-in-the-blank</p>
+                    </div>
+                  </div>
+                  <div class="topic-actions">
+                    <span class="topic-badge">Practice</span>
+                    <button class="start-btn" data-topic="articles-prepositions">Start Learning</button>
+                  </div>
+                </div>
+                <div class="split-video">
+                  <div class="video-preview" onclick="playVideo('articles-prepositions')">
+                    <div class="video-play-icon">▶️</div>
+                    <div class="video-preview-text">Articles & Prepositions</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="split-topic-card">
+                <div class="split-content">
+                  <div class="topic-header">
+                    <span class="topic-icon">🔗</span>
+                    <div class="topic-info">
+                      <h4>Subject–Verb Agreement</h4>
+                      <p>Error detection style practice - Multiple choice</p>
+                    </div>
+                  </div>
+                  <div class="topic-actions">
+                    <span class="topic-badge">Skills</span>
+                    <button class="start-btn" data-topic="subject-verb-agreement">Start Learning</button>
+                  </div>
+                </div>
+                <div class="split-video">
+                  <div class="video-preview" onclick="playVideo('subject-verb-agreement')">
+                    <div class="video-play-icon">▶️</div>
+                    <div class="video-preview-text">Subject-Verb Agreement</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="split-topic-card">
+                <div class="split-content">
+                  <div class="topic-header">
+                    <span class="topic-icon">🔄</span>
+                    <div class="topic-info">
+                      <h4>Voice (Active–Passive)</h4>
+                      <p>Email and report writing - Conversion task</p>
+                    </div>
+                  </div>
+                  <div class="topic-actions">
+                    <span class="topic-badge">Writing</span>
+                    <button class="start-btn" data-topic="voice-active-passive">Start Learning</button>
+                  </div>
+                </div>
+                <div class="split-video">
+                  <div class="video-preview" onclick="playVideo('voice-active-passive')">
+                    <div class="video-play-icon">▶️</div>
+                    <div class="video-preview-text">Active-Passive Voice</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Level 2 -->
-      <div class="bg-white rounded-xl shadow-md overflow-hidden">
-        <button onclick="toggleAccordion('level2')" class="w-full p-5 text-left flex justify-between items-center">
-          <div class="flex items-center gap-4">
-            <span class="text-2xl">2️⃣</span>
-            <div>
-              <h3 class="font-bold text-lg text-sky-700">Level 2: Advanced Grammar in Context</h3>
-              <p class="text-sm text-gray-500">Apply grammar in professional scenarios.</p>
+      <div id="level2-section" class="tab-content">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <div class="p-6 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+              <span class="text-3xl">2️⃣</span>
+              <div>
+                <h3 class="font-bold text-xl text-sky-700">Level 2: Applied Grammar for Communication</h3>
+                <p class="text-sm text-gray-500 mt-1">Applied grammar for interview answers, resume, and GDs.</p>
+              </div>
             </div>
           </div>
-          <span id="level2-arrow" class="text-sky-600 transform transition-transform">▼</span>
-        </button>
-        <div id="level2-content" class="submenu-content px-5 pb-5">
-          <ul class="mt-2 space-y-3 border-l-2 border-sky-100 ml-6 pl-6">
-            <li class="p-3 rounded-lg hover:bg-gray-50 cursor-pointer">Modals for Expression</li>
-            <li class="p-3 rounded-lg hover:bg-gray-50 cursor-pointer">Reported Speech in Interviews</li>
-            <li class="p-3 rounded-lg hover:bg-gray-50 cursor-pointer">Sentence Correction</li>
-          </ul>
+          <div class="px-6 pb-6">
+            <div class="level-2">
+              <div class="split-topic-card">
+                <div class="split-content">
+                  <div class="topic-header">
+                    <span class="topic-icon">❓</span>
+                    <div class="topic-info">
+                      <h4>Conditionals & Modals</h4>
+                      <p>"I would like to…" / "Can you explain…" - Role-play</p>
+                    </div>
+                  </div>
+                  <div class="topic-actions">
+                    <span class="topic-badge">Communication</span>
+                    <button class="start-btn" data-topic="conditionals-modals">Start Learning</button>
+                  </div>
+                </div>
+                <div class="split-video">
+                  <div class="video-preview" onclick="playVideo('conditionals-modals')">
+                    <div class="video-play-icon">▶️</div>
+                    <div class="video-preview-text">Conditionals & Modals</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="split-topic-card">
+                <div class="split-content">
+                  <div class="topic-header">
+                    <span class="topic-icon">🎙️</span>
+                    <div class="topic-info">
+                      <h4>Reported Speech</h4>
+                      <p>Retelling answers professionally - Conversion activity</p>
+                    </div>
+                  </div>
+                  <div class="topic-actions">
+                    <span class="topic-badge">Professional</span>
+                    <button class="start-btn" data-topic="reported-speech">Start Learning</button>
+                  </div>
+                </div>
+                <div class="split-video">
+                  <div class="video-preview" onclick="playVideo('reported-speech')">
+                    <div class="video-play-icon">▶️</div>
+                    <div class="video-preview-text">Reported Speech</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="split-topic-card">
+                <div class="split-content">
+                  <div class="topic-header">
+                    <span class="topic-icon">✍️</span>
+                    <div class="topic-info">
+                      <h4>Sentence Clarity & Structure</h4>
+                      <p>Rewrite long sentences clearly - Editing exercise</p>
+                    </div>
+                  </div>
+                  <div class="topic-actions">
+                    <span class="topic-badge">Writing Skills</span>
+                    <button class="start-btn" data-topic="sentence-clarity">Start Learning</button>
+                  </div>
+                </div>
+                <div class="split-video">
+                  <div class="video-preview" onclick="playVideo('sentence-clarity')">
+                    <div class="video-play-icon">▶️</div>
+                    <div class="video-preview-text">Sentence Structure</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="split-topic-card">
+                <div class="split-content">
+                  <div class="topic-header">
+                    <span class="topic-icon">📐</span>
+                    <div class="topic-info">
+                      <h4>Parallelism & Consistency</h4>
+                      <p>Resume writing focus - Correction activity</p>
+                    </div>
+                  </div>
+                  <div class="topic-actions">
+                    <span class="topic-badge">Resume</span>
+                    <button class="start-btn" data-topic="parallelism-consistency">Start Learning</button>
+                  </div>
+                </div>
+                <div class="split-video">
+                  <div class="video-preview" onclick="playVideo('parallelism-consistency')">
+                    <div class="video-play-icon">▶️</div>
+                    <div class="video-preview-text">Parallelism</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="split-topic-card">
+                <div class="split-content">
+                  <div class="topic-header">
+                    <span class="topic-icon">⚠️</span>
+                    <div class="topic-info">
+                      <h4>Common Workplace Grammar Errors</h4>
+                      <p>"I am agree", "discuss about" - Spot-the-error</p>
+                    </div>
+                  </div>
+                  <div class="topic-actions">
+                    <span class="topic-badge">Error Correction</span>
+                    <button class="start-btn" data-topic="common-errors">Start Learning</button>
+                  </div>
+                </div>
+                <div class="split-video">
+                  <div class="video-preview" onclick="playVideo('common-errors')">
+                    <div class="video-play-icon">▶️</div>
+                    <div class="video-preview-text">Common Errors</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Level 3 -->
-      <div class="bg-white rounded-xl shadow-md overflow-hidden">
-        <button onclick="toggleAccordion('level3')" class="w-full p-5 text-left flex justify-between items-center">
-          <div class="flex items-center gap-4">
-            <span class="text-2xl">3️⃣</span>
-            <div>
-              <h3 class="font-bold text-lg text-indigo-700">Level 3: Placement Practice</h3>
-              <p class="text-sm text-gray-500">Prepare for tests, emails, and interviews.</p>
+      <div id="level3-section" class="tab-content">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <div class="p-6 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+              <span class="text-3xl">3️⃣</span>
+              <div>
+                <h3 class="font-bold text-xl text-indigo-700">Level 3: Placement Practice Grammar</h3>
+                <p class="text-sm text-gray-500 mt-1">Simulate actual grammar test + real-life tasks.</p>
+              </div>
             </div>
           </div>
-          <span id="level3-arrow" class="text-indigo-600 transform transition-transform">▼</span>
-        </button>
-        <div id="level3-content" class="submenu-content px-5 pb-5">
-          <ul class="mt-2 space-y-3 border-l-2 border-indigo-100 ml-6 pl-6">
-            <li class="p-3 rounded-lg hover:bg-gray-50 cursor-pointer">Grammar Test Simulation</li>
-            <li class="p-3 rounded-lg hover:bg-gray-50 cursor-pointer">Email Grammar Correction</li>
-            <li class="p-3 rounded-lg hover:bg-gray-50 cursor-pointer">Spoken Grammar (Interview Phrases)</li>
-          </ul>
+          <div class="px-6 pb-6">
+            <div class="level-3">
+              <div class="split-topic-card">
+                <div class="split-content">
+                  <div class="topic-header">
+                    <span class="topic-icon">⏱️</span>
+                    <div class="topic-info">
+                      <h4>Grammar Test Simulation</h4>
+                      <p>Timed 20-question test (MCQs)</p>
+                    </div>
+                  </div>
+                  <div class="topic-actions">
+                    <span class="topic-badge">Assessment</span>
+                    <button class="start-btn" data-topic="grammar-test-simulation">Start Learning</button>
+                  </div>
+                </div>
+                <div class="split-video">
+                  <div class="video-preview" onclick="playVideo('grammar-test-simulation')">
+                    <div class="video-play-icon">▶️</div>
+                    <div class="video-preview-text">Grammar Test</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="split-topic-card">
+                <div class="split-content">
+                  <div class="topic-header">
+                    <span class="topic-icon">📧</span>
+                    <div class="topic-info">
+                      <h4>Email Correction Task</h4>
+                      <p>Fix HR email grammar</p>
+                    </div>
+                  </div>
+                  <div class="topic-actions">
+                    <span class="topic-badge">Professional</span>
+                    <button class="start-btn" data-topic="email-correction">Start Learning</button>
+                  </div>
+                </div>
+                <div class="split-video">
+                  <div class="video-preview" onclick="playVideo('email-correction')">
+                    <div class="video-play-icon">▶️</div>
+                    <div class="video-preview-text">Email Writing</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="split-topic-card">
+                <div class="split-content">
+                  <div class="topic-header">
+                    <span class="topic-icon">🎤</span>
+                    <div class="topic-info">
+                      <h4>Interview Grammar Practice</h4>
+                      <p>Identify tense errors in answers</p>
+                    </div>
+                  </div>
+                  <div class="topic-actions">
+                    <span class="topic-badge">Interview</span>
+                    <button class="start-btn" data-topic="interview-practice">Start Learning</button>
+                  </div>
+                </div>
+                <div class="split-video">
+                  <div class="video-preview" onclick="playVideo('interview-practice')">
+                    <div class="video-play-icon">▶️</div>
+                    <div class="video-preview-text">Interview Practice</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="split-topic-card">
+                <div class="split-content">
+                  <div class="topic-header">
+                    <span class="topic-icon">🗣️</span>
+                    <div class="topic-info">
+                      <h4>Spoken Grammar Quiz</h4>
+                      <p>Grammar for fluency, not formality</p>
+                    </div>
+                  </div>
+                  <div class="topic-actions">
+                    <span class="topic-badge">Speaking</span>
+                    <button class="start-btn" data-topic="spoken-grammar-quiz">Start Learning</button>
+                  </div>
+                </div>
+                <div class="split-video">
+                  <div class="video-preview" onclick="playVideo('spoken-grammar-quiz')">
+                    <div class="video-play-icon">▶️</div>
+                    <div class="video-preview-text">Spoken Grammar</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- Interactive Modal for Topic Content -->
+  <div id="topic-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 backdrop-blur-sm cursor-move">
+    <div class="bg-white rounded-xl p-6 w-full max-w-7xl mx-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h2 id="modal-title" class="text-2xl font-bold text-gray-800">Topic Content</h2>
+        <button id="close-modal" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+      </div>
+      <div id="modal-content" class="space-y-4">
+        <!-- Content will be dynamically loaded here -->
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 class="font-semibold mb-2">📚 Short Notes</h3>
+          <p class="text-gray-700">Detailed notes about the topic will appear here.</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 class="font-semibold mb-2">🎥 Video Content</h3>
+          <div class="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
+            <p class="text-gray-600">Video placeholder - Embed video here</p>
+          </div>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 class="font-semibold mb-2">💡 Tips & Tricks</h3>
+          <ul class="list-disc list-inside text-gray-700 space-y-1">
+            <li>Tip 1: Practice daily for better retention</li>
+            <li>Tip 2: Use real-life examples</li>
+            <li>Tip 3: Review mistakes regularly</li>
+          </ul>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 class="font-semibold mb-2">🧠 Quick Quiz</h3>
+          <p class="text-gray-700">Interactive quiz questions will appear here.</p>
+        </div>
+      </div>
+      <div class="mt-6 flex justify-end">
+        <button id="start-quiz" class="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700">Start Interactive Learning</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Modal for Topic Content -->
+  <div id="topic-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 backdrop-blur-sm cursor-move">
+    <div class="bg-white rounded-xl p-6 w-full max-w-7xl mx-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h2 id="modal-title" class="text-2xl font-bold text-gray-800">Topic Content</h2>
+        <button id="close-modal" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+      </div>
+      <div id="modal-content" class="space-y-4">
+        <!-- Content will be dynamically loaded here -->
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 class="font-semibold mb-2">📚 Short Notes</h3>
+          <p class="text-gray-700">Detailed notes about the topic will appear here.</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 class="font-semibold mb-2">🎥 Video Content</h3>
+          <div class="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
+            <p class="text-gray-600">Video placeholder - Embed video here</p>
+          </div>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 class="font-semibold mb-2">💡 Tips & Tricks</h3>
+          <ul class="list-disc list-inside text-gray-700 space-y-1">
+            <li>Tip 1: Practice daily for better retention</li>
+            <li>Tip 2: Use real-life examples</li>
+            <li>Tip 3: Review mistakes regularly</li>
+          </ul>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 class="font-semibold mb-2">🧠 Quick Quiz</h3>
+          <p class="text-gray-700">Interactive quiz questions will appear here.</p>
+        </div>
+      </div>
+      <div class="mt-6 flex justify-end">
+        <button id="start-quiz" class="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700">Start Interactive Learning</button>
+      </div>
     </div>
   </div>
 
@@ -147,24 +852,284 @@
       arrow.style.transform = submenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(90deg)';
     }
 
-    // Accordion toggle for main content
-    function toggleAccordion(level) {
-      const content = document.getElementById(level + '-content');
-      const arrow = document.getElementById(level + '-arrow');
-      if (content.style.maxHeight) {
-        content.style.maxHeight = null;
-        arrow.style.transform = 'rotate(0deg)';
+    // Tab switching functionality
+    function switchTab(level) {
+      // Hide all tab contents
+      const sections = document.querySelectorAll('.tab-content');
+      sections.forEach(section => section.classList.remove('active'));
+
+      // Remove active class from all buttons
+      const buttons = document.querySelectorAll('.tab-button');
+      buttons.forEach(button => button.classList.remove('active'));
+
+      // Show selected section
+      document.getElementById(level + '-section').classList.add('active');
+
+      // Add active class to clicked button
+      document.getElementById('tab-' + level).classList.add('active');
+    }
+
+    // Modal functionality
+    const modal = document.getElementById('topic-modal');
+    const closeModal = document.getElementById('close-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-content');
+
+  
+
+   
+    
+
+ 
+    // Initialize interactive features for parts of speech
+    function initializeInteractiveFeatures() {
+      // Drag and drop functionality (existing code remains the same)
+      const draggables = document.querySelectorAll('.draggable');
+      const dropZones = document.querySelectorAll('.drop-zone');
+      const checkBtn = document.getElementById('check-answers');
+      const resetBtn = document.getElementById('reset-activity');
+      const feedback = document.getElementById('feedback');
+
+      let draggedElement = null;
+
+      // Add drag event listeners
+      draggables.forEach(draggable => {
+        draggable.addEventListener('dragstart', (e) => {
+          draggedElement = e.target;
+          e.target.classList.add('dragging');
+        });
+
+        draggable.addEventListener('dragend', (e) => {
+          e.target.classList.remove('dragging');
+          draggedElement = null;
+        });
+      });
+
+      // Add drop zone event listeners
+      dropZones.forEach(zone => {
+        zone.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          zone.classList.add('hover');
+        });
+
+        zone.addEventListener('dragleave', (e) => {
+          zone.classList.remove('hover');
+        });
+
+        zone.addEventListener('drop', (e) => {
+          e.preventDefault();
+          zone.classList.remove('hover');
+
+          if (draggedElement && zone.children.length === 0) {
+            // Remove from previous zone if exists
+            const prevZone = Array.from(dropZones).find(z => z.contains(draggedElement));
+            if (prevZone) {
+              prevZone.removeChild(draggedElement);
+            }
+
+            zone.appendChild(draggedElement);
+            zone.classList.remove('correct', 'incorrect');
+          }
+        });
+      });
+
+      // Check answers functionality
+      checkBtn.addEventListener('click', () => {
+        let correct = 0;
+        let total = dropZones.length;
+
+        dropZones.forEach(zone => {
+          const droppedPos = zone.querySelector('.draggable')?.dataset.pos;
+          const correctPos = zone.dataset.answer;
+
+          if (droppedPos === correctPos) {
+            zone.classList.add('correct');
+            zone.classList.remove('incorrect');
+            correct++;
+          } else {
+            zone.classList.add('incorrect');
+            zone.classList.remove('correct');
+          }
+        });
+
+        // Show feedback
+        if (correct === total) {
+          feedback.textContent = `🎉 Perfect! All answers are correct!`;
+          feedback.className = 'feedback correct';
+        } else {
+          feedback.textContent = `✅ You got ${correct} out of ${total} correct. Try again!`;
+          feedback.className = 'feedback incorrect';
+        }
+        feedback.style.display = 'block';
+      });
+
+      // Reset functionality
+      resetBtn.addEventListener('click', () => {
+        dropZones.forEach(zone => {
+          if (zone.children.length > 0) {
+            const draggable = zone.children[0];
+            document.getElementById('pos-options').appendChild(draggable);
+          }
+          zone.classList.remove('correct', 'incorrect', 'hover');
+        });
+        feedback.style.display = 'none';
+      });
+
+      // Word highlighting functionality (existing code remains the same)
+      const wordHighlights = document.querySelectorAll('.word-highlight');
+      const wordExplanation = document.getElementById('word-explanation');
+      const wordExplanationText = document.getElementById('word-explanation-text');
+
+      wordHighlights.forEach(word => {
+        word.addEventListener('click', () => {
+          // Remove active class from all words
+          wordHighlights.forEach(w => w.classList.remove('ring-2', 'ring-offset-2'));
+          // Add active class to clicked word
+          word.classList.add('ring-2', 'ring-offset-2');
+
+          // Show explanation
+          const pos = word.dataset.pos;
+          const explanations = {
+            noun: 'A noun names a person, place, thing, or idea. Examples: dog, city, happiness',
+            verb: 'A verb shows action or state of being. Examples: run, jump, is, seems',
+            adjective: 'An adjective describes or modifies a noun. Examples: quick, red, happy',
+            adverb: 'An adverb describes a verb, adjective, or another adverb. Examples: quickly, very, well',
+            pronoun: 'A pronoun replaces a noun. Examples: he, she, it, they, we',
+            preposition: 'A preposition shows relationship between words. Examples: in, on, at, with',
+            conjunction: 'A conjunction connects words or clauses. Examples: and, but, or, because',
+            interjection: 'An interjection expresses strong emotion. Examples: Oh!, Wow!, Ouch!'
+          };
+
+          wordExplanationText.textContent = explanations[pos] || `This is a ${pos}`;
+          wordExplanation.classList.remove('hidden');
+        });
+      });
+
+      // Quiz functionality
+      const quizQuestions = [
+        {
+          question: 'What part of speech is the word "quick" in the sentence: "The quick brown fox jumps over the lazy dog."',
+          options: ['Adjective', 'Noun', 'Verb', 'Adverb'],
+          correct: 0
+        },
+        {
+          question: 'What part of speech is the word "jumps" in the sentence: "The quick brown fox jumps over the lazy dog."',
+          options: ['Adjective', 'Noun', 'Verb', 'Adverb'],
+          correct: 2
+        },
+        {
+          question: 'What part of speech is the word "fox" in the sentence: "The quick brown fox jumps over the lazy dog."',
+          options: ['Adjective', 'Noun', 'Verb', 'Adverb'],
+          correct: 1
+        },
+        {
+          question: 'What part of speech is the word "over" in the sentence: "The quick brown fox jumps over the lazy dog."',
+          options: ['Adjective', 'Noun', 'Preposition', 'Adverb'],
+          correct: 2
+        },
+        {
+          question: 'What part of speech is the word "the" in the sentence: "The quick brown fox jumps over the lazy dog."',
+          options: ['Adjective', 'Article', 'Verb', 'Adverb'],
+          correct: 1
+        }
+      ];
+
+      let currentQuestion = 0;
+      const questionText = document.getElementById('quiz-question-text');
+      const optionsContainer = document.querySelector('.quiz-question .grid');
+      const quizFeedback = document.getElementById('quiz-feedback');
+      const quizFeedbackDiv = quizFeedback.querySelector('.feedback');
+      const prevBtn = document.getElementById('prev-question');
+      const nextBtn = document.getElementById('next-question');
+      const counter = document.getElementById('question-counter');
+
+      function loadQuestion() {
+        const q = quizQuestions[currentQuestion];
+        questionText.textContent = q.question;
+        optionsContainer.innerHTML = '';
+
+        q.options.forEach((option, index) => {
+          const button = document.createElement('button');
+          button.className = 'quiz-option bg-white border border-gray-300 rounded-lg p-3 hover:bg-teal-50 hover:border-teal-300 transition-colors';
+          button.textContent = option;
+          button.dataset.index = index;
+
+          button.addEventListener('click', () => {
+            // Remove selected class from all options
+            document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+            // Add selected class to clicked option
+            button.classList.add('selected', 'bg-teal-100', 'border-teal-500');
+
+            // Show feedback
+            if (index === q.correct) {
+              quizFeedbackDiv.textContent = '✅ Correct! ' + option + ' is the right answer.';
+              quizFeedbackDiv.className = 'feedback correct';
+            } else {
+              quizFeedbackDiv.textContent = '❌ Incorrect. The correct answer is: ' + q.options[q.correct];
+              quizFeedbackDiv.className = 'feedback incorrect';
+            }
+            quizFeedback.classList.remove('hidden');
+          });
+
+          optionsContainer.appendChild(button);
+        });
+
+        // Update counter
+        counter.textContent = `${currentQuestion + 1} / ${quizQuestions.length}`;
+
+        // Update button states
+        prevBtn.disabled = currentQuestion === 0;
+        nextBtn.textContent = currentQuestion === quizQuestions.length - 1 ? 'Finish' : 'Next';
+      }
+
+      nextBtn.addEventListener('click', () => {
+        if (currentQuestion < quizQuestions.length - 1) {
+          currentQuestion++;
+          loadQuestion();
+          quizFeedback.classList.add('hidden');
+        }
+      });
+
+      prevBtn.addEventListener('click', () => {
+        if (currentQuestion > 0) {
+          currentQuestion--;
+          loadQuestion();
+          quizFeedback.classList.add('hidden');
+        }
+      });
+
+      // Load first question
+      loadQuestion();
+    }
+
+    // Video preview functionality
+    function playVideo(topic) {
+      // YouTube video URLs for each topic
+      const videoUrls = {
+        'parts-of-speech': 'https://www.youtube.com/watch?v=example1',
+        'tenses-in-use': 'https://www.youtube.com/watch?v=example2',
+        'articles-prepositions': 'https://www.youtube.com/watch?v=example3',
+        'subject-verb-agreement': 'https://www.youtube.com/watch?v=example4',
+        'voice-active-passive': 'https://www.youtube.com/watch?v=example5',
+        'conditionals-modals': 'https://www.youtube.com/watch?v=example6',
+        'reported-speech': 'https://www.youtube.com/watch?v=example7',
+        'sentence-clarity': 'https://www.youtube.com/watch?v=example8',
+        'parallelism-consistency': 'https://www.youtube.com/watch?v=example9',
+        'common-errors': 'https://www.youtube.com/watch?v=example10',
+        'grammar-test-simulation': 'https://www.youtube.com/watch?v=example11',
+        'email-correction': 'https://www.youtube.com/watch?v=example12',
+        'interview-practice': 'https://www.youtube.com/watch?v=example13',
+        'spoken-grammar-quiz': 'https://www.youtube.com/watch?v=example14'
+      };
+
+      const videoUrl = videoUrls[topic];
+      if (videoUrl) {
+        window.open(videoUrl, '_blank');
       } else {
-        content.style.maxHeight = content.scrollHeight + "px";
-        arrow.style.transform = 'rotate(180deg)';
+        alert(`Video for topic "${topic}" not found.`);
       }
     }
-    
-    // Auto-open the first level on page load
-    window.addEventListener('DOMContentLoaded', () => {
-        toggleAccordion('level1');
-    });
   </script>
 
-</body>
+
 </html>
