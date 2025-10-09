@@ -49,6 +49,30 @@ router.get('/dashboard', isAuthenticated, (req, res) => {
     userName: req.session.userName || 'Student'
   });
 });
+router.get('/dashboard/setting', isAuthenticated, (req, res) => {
+  res.render('setting.ejs', {
+    title: 'English Learning Dashboard',
+    
+  });
+});
+router.get('/dashboard/resume', isAuthenticated, (req, res) => {
+  res.render('resume.ejs', {
+    title: 'English Learning Dashboard',
+    
+  });
+});
+router.get('/dashboard/vocabulary', isAuthenticated, (req, res) => {
+  res.render('vocabulary.ejs', {
+    title: 'English Learning Dashboard',
+    
+  });
+});
+router.get('/dashboard/placement', isAuthenticated, (req, res) => {
+  res.render('placement.ejs', {
+    title: 'English Learning Dashboard',
+    
+  });
+});
 
 // Individual lesson pages
 router.get('/dashboard/lessons/Writting', isAuthenticated, (req, res) => {
