@@ -10,73 +10,1343 @@
 
 <a href="/dashboard" class="text-blue-600 hover:underline mb-4 inline-block">← Back to Dashboard</a>
 
-<div class="max-w-5xl mx-auto bg-white rounded-2xl shadow p-8 space-y-8">
+<div class="max-w-6xl mx-auto bg-white rounded-2xl shadow p-8">
 
-  <h1 class="text-3xl font-bold text-teal-600">🗣️ Speaking Skills - Advanced</h1>
-  <p class="text-gray-700">Improve your pronunciation, fluency, and confidence. Practice with audio, video, and exercises.</p>
+  <!-- Main Title -->
+  <div class="text-center mb-12">
+    <h1 class="text-4xl font-bold text-purple-900 mb-4">Choose a speaking lesson</h1>
+  </div>
 
-  <!-- 1️⃣ Pronunciation Mastery -->
-  <section>
-    <h2 class="text-2xl font-semibold text-gray-800 mb-2">🎧 Pronunciation Mastery</h2>
-    <ul class="space-y-2">
-      <li>
-        <p class="font-medium">“Thought” / “Through” / “Though” / “Tough”</p>
-        <audio controls class="w-full">
-          <source src="/audio/pronunciation1.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-      </li>
-      <li>
-        <p class="font-medium">“She sells seashells by the seashore”</p>
-        <audio controls class="w-full">
-          <source src="/audio/tonguetwister1.mp3" type="audio/mpeg">
-        </audio>
-      </li>
-    </ul>
-  </section>
+  <!-- Interactive Speaking Exercises -->
+  <div class="mb-12">
+    <h2 class="text-3xl font-bold text-purple-900 mb-8 text-center">🎯 Interactive Speaking Exercises</h2>
 
-  <!-- 2️⃣ Dialogues (Video) -->
-  <section>
-    <h2 class="text-2xl font-semibold text-gray-800 mb-2">🎬 Real-Life Dialogues</h2>
-    <p class="text-gray-700 mb-2">Practice conversations in daily situations.</p>
-    <div class="space-y-4">
-      <div class="rounded-lg overflow-hidden shadow">
-        <video controls class="w-full">
-          <source src="/videos/restaurant.mp4" type="video/mp4">
-        </video>
-        <p class="p-2 bg-gray-50 text-gray-600">Restaurant scenario: Order coffee & interact.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Pronunciation Drills -->
+      <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer" onclick="startExercise('pronunciation')">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-blue-800">🎵 Pronunciation Drills</h3>
+        </div>
       </div>
-      <div class="rounded-lg overflow-hidden shadow">
-        <video controls class="w-full">
-          <source src="/videos/interview.mp4" type="video/mp4">
-        </video>
-        <p class="p-2 bg-gray-50 text-gray-600">Job interview practice: Answer common questions.</p>
+
+      <!-- Role-play Scenarios -->
+      <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer" onclick="startExercise('roleplay')">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-green-800">🎭 Role-play Scenarios</h3>
+        </div>
+      </div>
+
+      <!-- Picture Description -->
+      <div class="bg-gradient-to-br from-purple-50 to-violet-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer" onclick="startExercise('picture')">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-3">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-purple-800">🖼️ Picture Description</h3>
+        </div>
+      </div>
+
+      <!-- Story Completion -->
+      <div class="bg-gradient-to-br from-orange-50 to-amber-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer" onclick="startExercise('story')">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-3">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-orange-800">📚 Story Completion</h3>
+        </div>
+      </div>
+
+      <!-- Conversation Starters -->
+      <div class="bg-gradient-to-br from-teal-50 to-cyan-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer" onclick="startExercise('conversation')">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-3">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-teal-800">💬 Conversation Starters</h3>
+        </div>
+      </div>
+
+      <!-- Debate Topics -->
+      <div class="bg-gradient-to-br from-red-50 to-pink-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer" onclick="startExercise('debate')">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-3">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-red-800">⚖️ Debate Topics</h3>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Speaking Lessons Grid -->
+  <div class="space-y-8">
+    
+    <!-- A1 Speaking -->
+    <div class="flex flex-col md:flex-row items-center bg-gray-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+      <div class="md:w-1/3 mb-6 md:mb-0 md:pr-6">
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+               alt="A1 Speaking - Group discussion" 
+               class="w-full h-48 object-cover rounded-xl shadow-lg">
+          <div class="absolute top-3 left-3">
+            <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+              <svg class="w-4 h-4 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="md:w-2/3">
+        <h2 class="text-2xl font-bold text-purple-900 mb-3">A1 speaking</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Speaking practice to help you learn useful language for everyday communication. 
+          Situations include meeting new people, checking understanding and making suggestions.
+        </p>
       </div>
     </div>
-  </section>
 
-  <!-- 3️⃣ Fluency Challenge -->
-  <section>
-    <h2 class="text-2xl font-semibold text-gray-800 mb-2">⏱️ Fluency Challenge</h2>
-    <p class="text-gray-700 mb-2">Pick a topic & speak for 1 min:</p>
-    <ul class="list-disc list-inside text-gray-600">
-      <li>Describe your favorite movie</li>
-      <li>Explain a recent event</li>
-      <li>Share your opinion on social media</li>
-    </ul>
-  </section>
+    <!-- A2 Speaking -->
+    <div class="flex flex-col md:flex-row items-center bg-gray-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+      <div class="md:w-1/3 mb-6 md:mb-0 md:pr-6">
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+               alt="A2 Speaking - Conversation" 
+               class="w-full h-48 object-cover rounded-xl shadow-lg">
+          <div class="absolute top-3 left-3">
+            <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+              <svg class="w-4 h-4 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="md:w-2/3">
+        <h2 class="text-2xl font-bold text-purple-900 mb-3">A2 speaking</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Speaking practice to help you learn useful language for everyday communication. 
+          Situations include showing interest, talking about where you're from and talking about your job.
+        </p>
+      </div>
+    </div>
 
-  <!-- 4️⃣ Tips & Tricks -->
-  <section>
-    <h2 class="text-2xl font-semibold text-gray-800 mb-2">💡 Speaking Tips</h2>
-    <ul class="list-disc list-inside text-gray-600">
-      <li>Practice voice modulation for clarity</li>
-      <li>Use pauses to emphasize key points</li>
-      <li>Observe native intonation patterns</li>
-    </ul>
-  </section>
+    <!-- B1 Speaking -->
+    <div class="flex flex-col md:flex-row items-center bg-gray-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+      <div class="md:w-1/3 mb-6 md:mb-0 md:pr-6">
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+               alt="B1 Speaking - Office discussion" 
+               class="w-full h-48 object-cover rounded-xl shadow-lg">
+          <div class="absolute top-3 left-3">
+            <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+              <svg class="w-4 h-4 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="md:w-2/3">
+        <h2 class="text-2xl font-bold text-purple-900 mb-3">B1 speaking</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Speaking practice to help you learn useful language for everyday communication. 
+          Situations include responding to news, meeting face-to-face and asking a favour.
+        </p>
+      </div>
+    </div>
+
+    <!-- B2 Speaking -->
+    <div class="flex flex-col md:flex-row items-center bg-gray-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+      <div class="md:w-1/3 mb-6 md:mb-0 md:pr-6">
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+               alt="B2 Speaking - Team discussion" 
+               class="w-full h-48 object-cover rounded-xl shadow-lg">
+          <div class="absolute top-3 left-3">
+            <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+              <svg class="w-4 h-4 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="md:w-2/3">
+        <h2 class="text-2xl font-bold text-purple-900 mb-3">B2 speaking</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Speaking practice to help you learn useful language for everyday communication. 
+          Situations include giving advice, dealing with a problem and challenging someone's ideas.
+        </p>
+      </div>
+    </div>
+
+  </div>
 
 </div>
 
 </body>
+
+<!-- Exercise Modal -->
+<div id="exerciseModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div class="p-6">
+      <!-- Modal Header -->
+      <div class="flex justify-between items-center mb-6">
+        <h2 id="modalTitle" class="text-2xl font-bold text-purple-900"></h2>
+        <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Exercise Content -->
+      <div id="exerciseContent" class="space-y-6">
+        <!-- Content will be dynamically loaded here -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Exercise data
+const exerciseData = {
+  pronunciation: {
+    title: "🎵 Pronunciation Drills",
+    exercises: [
+      {
+        id: 1,
+        text: "The quick brown fox jumps over the lazy dog",
+        difficulty: "Easy",
+        focus: "General pronunciation"
+      },
+      {
+        id: 2,
+        text: "She sells seashells by the seashore",
+        difficulty: "Medium",
+        focus: "S and SH sounds"
+      },
+      {
+        id: 3,
+        text: "Peter Piper picked a peck of pickled peppers",
+        difficulty: "Hard",
+        focus: "P and B sounds"
+      }
+    ]
+  },
+  roleplay: {
+    title: "🎭 Interactive Role-play Scenarios",
+    exercises: [
+      {
+        id: 1,
+        scenario: "Restaurant Conversation",
+        roles: ["Customer", "Waiter"],
+        description: "Practice ordering food, asking about dietary restrictions, and discussing menu items in a restaurant setting. Focus on polite conversation and clear communication.",
+        situation: "You are at an upscale Italian restaurant for dinner. The customer wants to order pasta but has questions about ingredients and preparation.",
+        key_phrases: ["I'd like to order...", "Could you tell me about...", "Is this dish...", "That sounds perfect!"],
+        difficulty: "Beginner"
+      },
+      {
+        id: 2,
+        scenario: "Job Interview Discussion",
+        roles: ["HR Manager", "Job Candidate"],
+        description: "Practice professional communication in a job interview. Discuss experience, skills, and career goals while maintaining confident body language and clear speech.",
+        situation: "A software developer is interviewing for a senior position. The candidate needs to discuss their 5 years of experience and technical skills.",
+        key_phrases: ["Tell me about yourself", "What experience do you have with...", "Why are you interested in this role?", "I believe I would be a great fit because..."],
+        difficulty: "Intermediate"
+      },
+      {
+        id: 3,
+        scenario: "Shopping Experience",
+        roles: ["Customer", "Store Assistant"],
+        description: "Practice customer service interactions including asking for help, comparing products, and making informed purchasing decisions.",
+        situation: "A customer is looking for a smartphone and needs detailed information about features, prices, and warranty options from a knowledgeable sales assistant.",
+        key_phrases: ["I'm looking for...", "What's the difference between...", "How much does this cost?", "I'll take this one!"],
+        difficulty: "Beginner"
+      },
+      {
+        id: 4,
+        scenario: "Medical Appointment",
+        roles: ["Doctor", "Patient"],
+        description: "Practice healthcare communication including describing symptoms, asking medical questions, and understanding treatment options.",
+        situation: "A patient visits the doctor with persistent headaches and needs to explain their symptoms clearly while the doctor asks relevant questions.",
+        key_phrases: ["I've been experiencing...", "How long has this been going on?", "What do you recommend?", "I understand, thank you doctor."],
+        difficulty: "Intermediate"
+      },
+      {
+        id: 5,
+        scenario: "Airport Check-in",
+        roles: ["Airport Staff", "Traveler"],
+        description: "Practice travel-related conversations including check-in procedures, baggage questions, and flight information requests.",
+        situation: "A passenger is checking in for an international flight and needs to declare items, ask about baggage allowance, and confirm flight details.",
+        key_phrases: ["I'd like to check in for flight...", "How many bags can I check?", "Do I need to declare anything?", "Thank you for your help."],
+        difficulty: "Intermediate"
+      }
+    ]
+  },
+  picture: {
+    title: "🖼️ Picture Description",
+    exercises: [
+      {
+        id: 1,
+        image: "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        prompt: "Describe this busy city street scene. Talk about the people, activities, buildings, and atmosphere you can see."
+      },
+      {
+        id: 2,
+        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        prompt: "Describe what you see in this modern office environment. Focus on the technology, people working, and professional atmosphere."
+      },
+      {
+        id: 3,
+        image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        prompt: "Describe this cozy kitchen scene. Talk about the cooking activities, ingredients, and warm family atmosphere."
+      },
+      {
+        id: 4,
+        image: "https://images.unsplash.com/photo-1533460004989-cef01064af7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        prompt: "Describe this peaceful park setting. Focus on the nature, people relaxing, and the calm environment."
+      }
+    ]
+  },
+  story: {
+    title: "📚 Story Completion",
+    exercises: [
+      {
+        id: 1,
+        title: "The Missing Cat Mystery",
+        beginning: "Sarah woke up to find her beloved cat Whiskers missing from the house. The back door was slightly open, and there were muddy paw prints leading to the garden...",
+        content: "As Sarah searched through the neighborhood, she noticed strange lights coming from the old abandoned house at the end of the street. Her heart raced as she approached, wondering if Whiskers had gotten into some kind of trouble.",
+        prompt: "Continue this story. What happens when Sarah investigates the strange lights? How does she find Whiskers? Make your story exciting and descriptive."
+      },
+      {
+        id: 2,
+        title: "The Mysterious Attic Discovery",
+        beginning: "The old man had lived in the same house for 50 years when he decided to clean out his dusty attic. As he sorted through boxes, he found an ancient wooden chest hidden behind some old furniture...",
+        content: "The chest was covered in strange symbols and seemed to hum with an otherworldly energy. When he finally managed to open it, a bright light filled the attic, revealing items that hadn't seen the light of day for centuries.",
+        prompt: "Continue this story. What's inside the mysterious chest? What adventures await the old man? Create an engaging tale with vivid descriptions."
+      },
+      {
+        id: 3,
+        title: "The Unexpected Journey",
+        beginning: "Emma had always been afraid of flying, but when her best friend moved to another country, she knew she had to overcome her fear. As she boarded the plane for the first time...",
+        content: "The flight attendants were kind and understanding, and as the plane took off, Emma discovered that the view from above was absolutely breathtaking. She started to relax and even enjoy the experience.",
+        prompt: "Continue this story. What happens during Emma's flight? Does she reach her destination safely? How does this experience change her? Tell a heartwarming story about overcoming fears."
+      }
+    ]
+  },
+  conversation: {
+    title: "💬 Conversation Starters",
+    exercises: [
+      {
+        id: 1,
+        topic: "Travel",
+        questions: ["What's your dream destination?", "Tell me about your best vacation", "What's the most interesting place you've visited?"]
+      },
+      {
+        id: 2,
+        topic: "Food",
+        questions: ["What's your favorite cuisine?", "Do you like to cook?", "Tell me about a memorable meal"]
+      }
+    ]
+  },
+  debate: {
+    title: "⚖️ Debate Topics",
+    exercises: [
+      {
+        id: 1,
+        topic: "Technology in Education",
+        sides: ["Technology improves learning", "Traditional methods are better"],
+        prompt: "Choose a side and present your argument with supporting points."
+      },
+      {
+        id: 2,
+        topic: "Remote Work",
+        sides: ["Remote work is better", "Office work is more effective"],
+        prompt: "Argue for your chosen position with specific examples."
+      }
+    ]
+  }
+};
+
+// Start exercise function
+function startExercise(exerciseType) {
+  const modal = document.getElementById('exerciseModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const exerciseContent = document.getElementById('exerciseContent');
+  
+  const exercise = exerciseData[exerciseType];
+  modalTitle.textContent = exercise.title;
+  
+  let content = '';
+  
+  switch(exerciseType) {
+    case 'pronunciation':
+      content = generatePronunciationContent(exercise);
+      break;
+    case 'roleplay':
+      content = generateRoleplayContent(exercise);
+      break;
+    case 'picture':
+      content = generatePictureContent(exercise);
+      break;
+    case 'story':
+      content = generateStoryContent(exercise);
+      break;
+    case 'conversation':
+      content = generateConversationContent(exercise);
+      break;
+    case 'debate':
+      content = generateDebateContent(exercise);
+      break;
+  }
+  
+  exerciseContent.innerHTML = content;
+  modal.classList.remove('hidden');
+}
+
+// Generate content for each exercise type
+function generatePronunciationContent(exercise) {
+  let content = '<div class="space-y-6">';
+  
+  exercise.exercises.forEach((ex, index) => {
+    content += `
+      <div class="border rounded-xl p-6 bg-blue-50">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <h3 class="text-lg font-semibold text-blue-800">Exercise ${index + 1}</h3>
+            <p class="text-blue-600 text-sm">Focus: ${ex.focus}</p>
+            <span class="inline-block px-3 py-1 bg-blue-200 text-blue-800 text-xs rounded-full">${ex.difficulty}</span>
+          </div>
+          <button onclick="playAudio(${ex.id})" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+            🔊 Play
+          </button>
+        </div>
+        <div class="bg-white p-4 rounded-lg mb-4">
+          <p class="text-lg text-gray-800 font-medium">"${ex.text}"</p>
+        </div>
+        <div class="flex space-x-4">
+          <button onclick="startRecording(${ex.id}, this)" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+            🎤 Record
+          </button>
+          <button onclick="playRecording(${ex.id})" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
+            ▶️ Playback
+          </button>
+          <button onclick="submitExercise(${ex.id})" class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600">
+            ✅ Submit
+          </button>
+        </div>
+      </div>
+    `;
+  });
+  
+  content += '</div>';
+  return content;
+}
+
+function generateRoleplayContent(exercise) {
+  let content = '<div class="space-y-6">';
+
+  exercise.exercises.forEach((ex, index) => {
+    content += `
+      <div class="border rounded-xl p-6 bg-gradient-to-br from-green-50 to-emerald-100">
+        <div class="flex justify-between items-start mb-4">
+          <div class="flex-1">
+            <h3 class="text-xl font-bold text-green-800 mb-2">${ex.scenario}</h3>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="px-3 py-1 bg-green-200 text-green-800 text-sm rounded-full">${ex.difficulty}</span>
+              <span class="text-green-700 text-sm">🎯 Interactive Role-play</span>
+            </div>
+            <p class="text-green-700 mb-4">${ex.description}</p>
+
+            <!-- Situation Details -->
+            <div class="bg-white p-4 rounded-lg mb-4">
+              <h4 class="font-semibold text-green-800 mb-2">📍 Situation:</h4>
+              <p class="text-gray-700 text-sm">${ex.situation}</p>
+            </div>
+
+            <!-- Key Phrases -->
+            <div class="bg-blue-50 p-4 rounded-lg mb-4">
+              <h4 class="font-semibold text-blue-800 mb-2">💬 Key Phrases:</h4>
+              <div class="flex flex-wrap gap-2">
+                ${ex.key_phrases.map(phrase => `<span class="px-3 py-1 bg-blue-200 text-blue-700 text-sm rounded-full">${phrase}</span>`).join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Role Selection -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div class="bg-white p-4 rounded-lg border-2 border-green-200 hover:border-green-400 transition-colors">
+            <h4 class="font-bold text-green-800 mb-2">👤 ${ex.roles[0]}</h4>
+            <p class="text-green-700 text-sm mb-3">Choose this role to practice ${ex.roles[0].toLowerCase()} communication</p>
+            <button onclick="selectRole('${ex.roles[0]}', ${ex.id})" class="w-full bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
+              Select ${ex.roles[0]}
+            </button>
+          </div>
+          <div class="bg-white p-4 rounded-lg border-2 border-blue-200 hover:border-blue-400 transition-colors">
+            <h4 class="font-bold text-blue-800 mb-2">👤 ${ex.roles[1]}</h4>
+            <p class="text-blue-700 text-sm mb-3">Choose this role to practice ${ex.roles[1].toLowerCase()} communication</p>
+            <button onclick="selectRole('${ex.roles[1]}', ${ex.id})" class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+              Select ${ex.roles[1]}
+            </button>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-wrap gap-3">
+          <button onclick="startRoleplay(${ex.id}, this)" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold">
+            🎭 Start Role-play
+          </button>
+          <button onclick="showScript(${ex.id})" class="bg-purple-500 text-white px-6 py-3 rounded-lg hover:bg-purple-600 transition-colors font-semibold">
+            📋 View Script & Tips
+          </button>
+        </div>
+      </div>
+    `;
+  });
+
+  content += '</div>';
+  return content;
+}
+
+function generatePictureContent(exercise) {
+  let content = '<div class="space-y-6">';
+
+  // Display all 6 images in a responsive grid
+  content += `
+    <div class="border rounded-xl p-6 bg-purple-50">
+      <h3 class="text-xl font-bold text-purple-800 mb-6 text-center">🖼️ Picture Description Exercises</h3>
+      <p class="text-purple-700 text-center mb-8">Choose any picture below and describe what you see in detail. Practice your descriptive language skills!</p>
+
+      <!-- Picture Grid - 2 images per row -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  `;
+
+  exercise.exercises.forEach((ex, index) => {
+    content += `
+      <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+        <img src="${ex.image}" alt="Picture description exercise ${index + 1}"
+             class="w-full h-48 object-cover rounded-lg mb-3">
+        <h4 class="font-semibold text-purple-800 mb-2">Picture ${index + 1}</h4>
+        <p class="text-purple-700 text-sm mb-3">${ex.prompt}</p>
+        <button onclick="startDescription(${ex.id}, this)"
+                class="w-full bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 text-sm transition-colors">
+          🎤 Describe This Picture
+        </button>
+      </div>
+    `;
+  });
+
+  content += `
+      </div>
+
+      <!-- Helpful Vocabulary Section -->
+      <div class="mt-8 pt-6 border-t border-purple-200">
+        <div class="text-center mb-4">
+          <button onclick="showVocabulary()" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors">
+            📚 Helpful Vocabulary for All Pictures
+          </button>
+        </div>
+        <div class="bg-blue-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-blue-800 mb-2">💡 Description Tips:</h4>
+          <p class="text-blue-700 text-sm">Describe people, places, actions, emotions, and atmosphere. Use descriptive adjectives and vary your sentence structures!</p>
+        </div>
+      </div>
+    </div>
+  `;
+
+  content += '</div>';
+  return content;
+}
+
+function generateStoryContent(exercise) {
+  let content = '<div class="space-y-6">';
+
+  exercise.exercises.forEach((ex, index) => {
+    content += `
+      <div class="border rounded-xl p-6 bg-orange-50">
+        <h3 class="text-xl font-bold text-orange-800 mb-4">📖 ${ex.title}</h3>
+
+        <div class="bg-white p-4 rounded-lg mb-4">
+          <h4 class="font-semibold text-orange-800 mb-2">Story Beginning:</h4>
+          <p class="text-gray-800 leading-relaxed">${ex.beginning}</p>
+        </div>
+
+        <div class="bg-orange-100 p-4 rounded-lg mb-4">
+          <h4 class="font-semibold text-orange-800 mb-2">Story Development:</h4>
+          <p class="text-orange-700 leading-relaxed">${ex.content}</p>
+        </div>
+
+        <div class="bg-yellow-50 p-4 rounded-lg mb-4">
+          <h4 class="font-semibold text-yellow-800 mb-2">🎯 Your Task:</h4>
+          <p class="text-yellow-700 leading-relaxed">${ex.prompt}</p>
+        </div>
+
+        <div class="space-y-3">
+          <button onclick="startStoryRecording(${ex.id}, this)" class="w-full bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600">
+            📖 Continue This Story
+          </button>
+          <button onclick="showStoryTips(${ex.id})" class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+            💡 Story Writing Tips
+          </button>
+        </div>
+      </div>
+    `;
+  });
+
+  content += '</div>';
+  return content;
+}
+
+function generateConversationContent(exercise) {
+  let content = '<div class="space-y-6">';
+  
+  exercise.exercises.forEach((ex, index) => {
+    content += `
+      <div class="border rounded-xl p-6 bg-teal-50">
+        <h3 class="text-lg font-semibold text-teal-800 mb-4">Topic: ${ex.topic}</h3>
+        <div class="space-y-3 mb-4">
+          ${ex.questions.map((q, qIndex) => `
+            <div class="bg-white p-3 rounded-lg">
+              <p class="text-teal-700">${qIndex + 1}. ${q}</p>
+            </div>
+          `).join('')}
+        </div>
+        <div class="space-y-3">
+          <button onclick="startConversation(${ex.id}, this)" class="w-full bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-600">
+            💬 Start Conversation
+          </button>
+          <button onclick="showConversationTips(${ex.id})" class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+            🗣️ Conversation Tips
+          </button>
+        </div>
+      </div>
+    `;
+  });
+  
+  content += '</div>';
+  return content;
+}
+
+function generateDebateContent(exercise) {
+  let content = '<div class="space-y-6">';
+  
+  exercise.exercises.forEach((ex, index) => {
+    content += `
+      <div class="border rounded-xl p-6 bg-red-50">
+        <h3 class="text-lg font-semibold text-red-800 mb-4">Debate Topic: ${ex.topic}</h3>
+        <div class="grid grid-cols-2 gap-4 mb-4">
+          <div class="bg-white p-4 rounded-lg border-l-4 border-red-500">
+            <h4 class="font-semibold text-red-800 mb-2">Side A:</h4>
+            <p class="text-red-700">${ex.sides[0]}</p>
+            <button onclick="selectSide('A', ${ex.id})" class="mt-2 bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+              Argue For
+            </button>
+          </div>
+          <div class="bg-white p-4 rounded-lg border-l-4 border-blue-500">
+            <h4 class="font-semibold text-blue-800 mb-2">Side B:</h4>
+            <p class="text-blue-700">${ex.sides[1]}</p>
+            <button onclick="selectSide('B', ${ex.id})" class="mt-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
+              Argue For
+            </button>
+          </div>
+        </div>
+        <div class="bg-red-100 p-4 rounded-lg mb-4">
+          <h4 class="font-semibold text-red-800 mb-2">Instructions:</h4>
+          <p class="text-red-700">${ex.prompt}</p>
+        </div>
+        <div class="space-y-3">
+          <button onclick="startDebate(${ex.id}, this)" class="w-full bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+            ⚖️ Start Debate
+          </button>
+          <button onclick="showDebateStructure(${ex.id})" class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+            📋 Debate Structure
+          </button>
+        </div>
+      </div>
+    `;
+  });
+  
+  content += '</div>';
+  return content;
+}
+
+// Utility functions
+function closeModal() {
+  document.getElementById('exerciseModal').classList.add('hidden');
+}
+
+// Global variables for recording
+let mediaRecorder;
+let recordedChunks = [];
+let isRecording = false;
+let currentExerciseId = null;
+let recordingStartTime = null;
+let recordingTimerInterval = null;
+let onRecordingComplete = null; // callback to render UI after stop
+
+// Initialize audio recording
+async function initializeRecording() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    mediaRecorder = new MediaRecorder(stream);
+    
+    mediaRecorder.ondataavailable = function(event) {
+      if (event.data.size > 0) {
+        recordedChunks.push(event.data);
+      }
+    };
+    
+    mediaRecorder.onstop = function() {
+      const blob = new Blob(recordedChunks, { type: 'audio/webm' });
+      const audioUrl = URL.createObjectURL(blob);
+      window.lastRecording = { url: audioUrl, blob: blob, durationMs: getCurrentDurationMs() };
+      if (typeof onRecordingComplete === 'function') {
+        const cb = onRecordingComplete;
+        onRecordingComplete = null;
+        cb(window.lastRecording);
+      }
+      showMessage('Recording completed successfully!', 'success');
+    };
+    
+    return true;
+  } catch (error) {
+    console.error('Error accessing microphone:', error);
+    showMessage('Microphone access denied. Please allow microphone access to use recording features.', 'error');
+    return false;
+  }
+}
+
+// Show message to user
+function showMessage(message, type) {
+  const messageDiv = document.createElement('div');
+  messageDiv.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 ${
+    type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+  }`;
+  messageDiv.textContent = message;
+  document.body.appendChild(messageDiv);
+  
+  setTimeout(() => {
+    messageDiv.remove();
+  }, 3000);
+}
+
+// Exercise action functions
+async function playAudio(exerciseId) {
+  try {
+    // For demo purposes, we'll use text-to-speech
+    const exercise = findExerciseById(exerciseId);
+    if (exercise && exercise.text) {
+      const utterance = new SpeechSynthesisUtterance(exercise.text);
+      utterance.rate = 0.8;
+      utterance.pitch = 1;
+      speechSynthesis.speak(utterance);
+      showMessage('Playing audio...', 'success');
+    } else {
+      showMessage('Audio not available for this exercise', 'error');
+    }
+  } catch (error) {
+    showMessage('Error playing audio', 'error');
+  }
+}
+
+async function startRecording(exerciseId, btnEl) {
+  currentExerciseId = exerciseId;
+  if (isRecording) return;
+  const initialized = await initializeRecording();
+  if (!initialized) return;
+
+  // Reset and start
+  recordedChunks = [];
+  mediaRecorder.start();
+  isRecording = true;
+  recordingStartTime = Date.now();
+
+  // Render/attach a live timer near the clicked button
+  const container = getOrCreateControlsContainer(btnEl);
+  container.innerHTML = `
+    <div class="flex items-center space-x-3 mt-2">
+      <span class="inline-flex items-center text-sm text-red-600 font-semibold">
+        ⏺️ Recording <span id="timer-${exerciseId}" class="ml-2">00:00</span>
+      </span>
+      <button id="stop-btn-${exerciseId}" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 text-sm">Stop</button>
+    </div>
+  `;
+  const stopBtn = container.querySelector(`#stop-btn-${exerciseId}`);
+  if (stopBtn) stopBtn.onclick = () => stopRecording(exerciseId, btnEl);
+  startTimer(`timer-${exerciseId}`);
+
+  // Update button appearance to indicate active state
+  if (btnEl) {
+    btnEl.textContent = '⏹️ Stop Recording';
+    btnEl.onclick = () => stopRecording(exerciseId, btnEl);
+    btnEl.className = 'bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600';
+  }
+
+  showMessage('Recording started... Speak now!', 'success');
+}
+
+function stopRecording(exerciseId, btnEl) {
+  if (!(isRecording && mediaRecorder)) return;
+  // Immediate stop
+  mediaRecorder.stop();
+  isRecording = false;
+  stopTimer();
+
+  // Restore main button
+  if (btnEl) {
+    btnEl.textContent = '🎤 Record';
+    btnEl.onclick = () => startRecording(exerciseId, btnEl);
+    btnEl.className = 'bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600';
+  }
+
+  // When data is ready, render preview + save/discard
+  const container = getOrCreateControlsContainer(btnEl);
+  container.innerHTML = `<div class="text-sm text-gray-600">Processing recording...</div>`;
+  const durationMs = getCurrentDurationMs();
+  onRecordingComplete = (rec) => {
+    renderPostRecordingUI(container, rec, durationMs, exerciseId, btnEl);
+  };
+
+  showMessage('Recording stopped', 'success');
+}
+
+function playRecording(exerciseId) {
+  if (window.lastRecording) {
+    const audio = new Audio(window.lastRecording.url);
+    audio.play();
+    showMessage('Playing your recording...', 'success');
+  } else {
+    showMessage('No recording available. Please record something first.', 'error');
+  }
+}
+
+function submitExercise(exerciseId) {
+  if (window.lastRecording) {
+    // In a real application, you would upload the recording to a server
+    showMessage('Exercise submitted successfully! Your recording has been saved.', 'success');
+    
+    // Reset the recording
+    delete window.lastRecording;
+  } else {
+    showMessage('Please record your response before submitting.', 'error');
+  }
+}
+
+// Timer helpers
+function startTimer(timerElementId) {
+  const el = document.getElementById(timerElementId);
+  if (!el) return;
+  updateTimerElement(el, 0);
+  recordingTimerInterval = setInterval(() => {
+    const elapsed = Date.now() - recordingStartTime;
+    updateTimerElement(el, elapsed);
+  }, 200);
+}
+
+function stopTimer() {
+  if (recordingTimerInterval) {
+    clearInterval(recordingTimerInterval);
+    recordingTimerInterval = null;
+  }
+}
+
+function getCurrentDurationMs() {
+  return recordingStartTime ? (Date.now() - recordingStartTime) : 0;
+}
+
+function updateTimerElement(el, ms) {
+  el.textContent = formatTime(ms);
+}
+
+function formatTime(ms) {
+  const totalSeconds = Math.floor(ms / 1000);
+  const m = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+  const s = String(totalSeconds % 60).padStart(2, '0');
+  return `${m}:${s}`;
+}
+
+function getOrCreateControlsContainer(btnEl) {
+  if (!btnEl) return document.body; // fallback
+  let container = btnEl.parentElement.querySelector('.recording-controls');
+  if (!container) {
+    container = document.createElement('div');
+    container.className = 'recording-controls';
+    btnEl.parentElement.appendChild(container);
+  }
+  return container;
+}
+
+function renderPostRecordingUI(container, rec, durationMs, exerciseId, btnEl) {
+  const durationText = formatTime(durationMs || rec.durationMs || 0);
+  container.innerHTML = `
+    <div class="mt-3 p-3 bg-gray-50 rounded border">
+      <div class="flex items-center gap-4">
+        <!-- Audio Player with Controls -->
+        <div class="flex-1">
+          <audio controls src="${rec.url}" class="w-full" id="audio-${exerciseId}">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+
+        <!-- Duration Display -->
+        <div class="text-sm text-gray-700">
+          Duration: <strong>${durationText}</strong>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex gap-2">
+          <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-sm" id="download-${exerciseId}">
+            ⬇️ Download
+          </button>
+          <button class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 text-sm" id="discard-${exerciseId}">
+            🗑️ Discard
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Set up event listeners
+  const downloadBtn = container.querySelector(`#download-${exerciseId}`);
+  const discardBtn = container.querySelector(`#discard-${exerciseId}`);
+
+  if (downloadBtn) downloadBtn.onclick = () => downloadRecording(rec, exerciseId);
+  if (discardBtn) discardBtn.onclick = () => discardRecording(exerciseId, container, btnEl);
+}
+
+window.savedRecordings = window.savedRecordings || {};
+function saveRecording(exerciseId, rec, container, btnEl) {
+  window.savedRecordings[exerciseId] = rec;
+  showMessage('Recording saved!', 'success');
+
+  // Show saved status
+  container.innerHTML = `
+    <div class="mt-3 p-3 bg-green-50 rounded border border-green-200">
+      <div class="flex items-center gap-3">
+        <span class="text-green-700 font-medium">✅ Saved (${formatTime(rec.durationMs || 0)})</span>
+        <div class="flex gap-2 ml-auto">
+          <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 text-sm" onclick="playSavedRecording(${exerciseId})">
+            ▶️ Play
+          </button>
+          <button class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 text-sm" onclick="clearSavedRecording(${exerciseId}, this)">
+            Clear
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function downloadRecording(rec, exerciseId) {
+  // Create a download link
+  const link = document.createElement('a');
+  link.href = rec.url;
+  link.download = `speaking-exercise-${exerciseId}-${Date.now()}.webm`;
+  link.style.display = 'none';
+
+  // Append to body, click, and remove
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  showMessage('Recording downloaded!', 'success');
+}
+
+function discardRecording(exerciseId, container, btnEl) {
+  if (window.savedRecordings[exerciseId]) delete window.savedRecordings[exerciseId];
+  if (window.lastRecording) delete window.lastRecording;
+  container.innerHTML = '';
+  showMessage('Recording discarded.', 'success');
+}
+
+function playSavedRecording(exerciseId) {
+  const savedRec = window.savedRecordings[exerciseId];
+  if (savedRec) {
+    const audio = new Audio(savedRec.url);
+    audio.play();
+    showMessage('Playing saved recording...', 'success');
+  } else {
+    showMessage('No saved recording found.', 'error');
+  }
+}
+
+function clearSavedRecording(exerciseId, clearBtn) {
+  if (window.savedRecordings[exerciseId]) {
+    delete window.savedRecordings[exerciseId];
+    // Find the container and clear it
+    const container = clearBtn.closest('.recording-controls');
+    if (container) {
+      container.innerHTML = '';
+    }
+    showMessage('Saved recording cleared.', 'success');
+  }
+}
+
+function playSavedRecording(exerciseId) {
+  const savedRec = window.savedRecordings[exerciseId];
+  if (savedRec) {
+    const audio = new Audio(savedRec.url);
+    audio.play();
+    showMessage('Playing saved recording...', 'success');
+  } else {
+    showMessage('No saved recording found.', 'error');
+  }
+}
+
+function clearSavedRecording(exerciseId, clearBtn) {
+  if (window.savedRecordings[exerciseId]) {
+    delete window.savedRecordings[exerciseId];
+    // Find the container and clear it
+    const container = clearBtn.closest('.recording-controls');
+    if (container) {
+      container.innerHTML = '';
+    }
+    showMessage('Saved recording cleared.', 'success');
+  }
+}
+
+function showScript(exerciseId) {
+  const exercise = findRoleplayExerciseById(exerciseId);
+  if (exercise) {
+    const scriptModal = document.createElement('div');
+    scriptModal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
+    scriptModal.innerHTML = `
+      <div class="bg-white rounded-2xl max-w-4xl w-full p-6 max-h-[90vh] overflow-y-auto">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-2xl font-bold text-green-800">${exercise.scenario} - Complete Guide</h3>
+          <button onclick="this.parentElement.parentElement.parentElement.remove()" class="text-gray-500 hover:text-gray-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Scenario Overview -->
+          <div class="bg-green-50 p-6 rounded-lg">
+            <h4 class="font-bold text-green-800 mb-3 text-lg">🎭 Scenario Overview</h4>
+            <p class="text-green-700 mb-4">${exercise.description}</p>
+
+            <div class="bg-white p-4 rounded-lg">
+              <h5 class="font-semibold text-gray-800 mb-2">📍 Detailed Situation:</h5>
+              <p class="text-gray-700">${exercise.situation}</p>
+            </div>
+          </div>
+
+          <!-- Key Phrases -->
+          <div class="bg-blue-50 p-6 rounded-lg">
+            <h4 class="font-bold text-blue-800 mb-4 text-lg">💬 Essential Phrases</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              ${exercise.key_phrases.map((phrase, index) => `
+                <div class="bg-white p-3 rounded-lg">
+                  <span class="font-semibold text-blue-700">${index + 1}.</span>
+                  <span class="text-blue-600 ml-2">${phrase}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Role-specific Guidance -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-4 rounded-lg border-l-4 border-green-500">
+              <h4 class="font-bold text-green-800 mb-3">${exercise.roles[0]} Guidelines</h4>
+              <div class="space-y-2 text-sm">
+                <p class="text-green-700">• Start with a polite greeting</p>
+                <p class="text-green-700">• Listen carefully to responses</p>
+                <p class="text-green-700">• Ask clarifying questions when needed</p>
+                <p class="text-green-700">• Maintain friendly and professional tone</p>
+              </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-lg border-l-4 border-blue-500">
+              <h4 class="font-bold text-blue-800 mb-3">${exercise.roles[1]} Guidelines</h4>
+              <div class="space-y-2 text-sm">
+                <p class="text-blue-700">• Provide clear, helpful responses</p>
+                <p class="text-blue-700">• Use appropriate vocabulary for the context</p>
+                <p class="text-blue-700">• Show patience and understanding</p>
+                <p class="text-blue-700">• Keep responses natural and conversational</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Practice Tips -->
+          <div class="bg-purple-50 p-6 rounded-lg">
+            <h4 class="font-bold text-purple-800 mb-4 text-lg">🎯 Practice Tips</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="bg-white p-3 rounded-lg">
+                <h5 class="font-semibold text-purple-700 mb-2">🎤 Pronunciation</h5>
+                <p class="text-purple-600 text-sm">Speak clearly and at a natural pace</p>
+              </div>
+              <div class="bg-white p-3 rounded-lg">
+                <h5 class="font-semibold text-purple-700 mb-2">🗣️ Fluency</h5>
+                <p class="text-purple-600 text-sm">Take your time and think before speaking</p>
+              </div>
+              <div class="bg-white p-3 rounded-lg">
+                <h5 class="font-semibold text-purple-700 mb-2">😊 Confidence</h5>
+                <p class="text-purple-600 text-sm">Speak with confidence and enthusiasm</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Difficulty Level -->
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <div class="flex items-center justify-between">
+              <span class="text-gray-700">Difficulty Level:</span>
+              <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm font-semibold">${exercise.difficulty}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(scriptModal);
+  }
+}
+
+async function startDescription(exerciseId, btnEl) {
+  showMessage('Start describing the image. Speak clearly and describe what you see!', 'success');
+  await startRecording(exerciseId, btnEl);
+}
+
+function showVocabulary(exerciseId) {
+  const vocabModal = document.createElement('div');
+  vocabModal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
+  vocabModal.innerHTML = `
+    <div class="bg-white rounded-2xl max-w-2xl w-full p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold">Helpful Vocabulary</h3>
+        <button onclick="this.parentElement.parentElement.parentElement.remove()" class="text-gray-500 hover:text-gray-700">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="space-y-2">
+          <h4 class="font-semibold text-blue-800">People:</h4>
+          <p class="text-gray-700">man, woman, child, group, crowd, family</p>
+          <h4 class="font-semibold text-blue-800 mt-3">Actions:</h4>
+          <p class="text-gray-700">sitting, standing, walking, talking, laughing</p>
+        </div>
+        <div class="space-y-2">
+          <h4 class="font-semibold text-green-800">Objects:</h4>
+          <p class="text-gray-700">table, chair, book, phone, computer</p>
+          <h4 class="font-semibold text-green-800 mt-3">Emotions:</h4>
+          <p class="text-gray-700">happy, sad, excited, surprised, focused</p>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(vocabModal);
+}
+
+async function startStoryRecording(exerciseId, btnEl) {
+  showMessage('Continue the story. Be creative and use your imagination!', 'success');
+  await startRecording(exerciseId, btnEl);
+}
+
+function showStoryTips(exerciseId) {
+  const tipsModal = document.createElement('div');
+  tipsModal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
+  tipsModal.innerHTML = `
+    <div class="bg-white rounded-2xl max-w-2xl w-full p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold">Story Writing Tips</h3>
+        <button onclick="this.parentElement.parentElement.parentElement.remove()" class="text-gray-500 hover:text-gray-700">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="space-y-4">
+        <div class="bg-orange-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-orange-800">Structure:</h4>
+          <p class="text-orange-700">Beginning → Middle → End</p>
+        </div>
+        <div class="bg-blue-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-blue-800">Characters:</h4>
+          <p class="text-blue-700">Give your characters names and personalities</p>
+        </div>
+        <div class="bg-green-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-green-800">Setting:</h4>
+          <p class="text-green-700">Describe where and when the story takes place</p>
+        </div>
+        <div class="bg-purple-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-purple-800">Dialogue:</h4>
+          <p class="text-purple-700">Use conversations to make your story interesting</p>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(tipsModal);
+}
+
+async function startConversation(exerciseId, btnEl) {
+  showMessage('Start the conversation! Ask questions and share your thoughts.', 'success');
+  await startRecording(exerciseId, btnEl);
+}
+
+function showConversationTips(exerciseId) {
+  const tipsModal = document.createElement('div');
+  tipsModal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
+  tipsModal.innerHTML = `
+    <div class="bg-white rounded-2xl max-w-2xl w-full p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold">Conversation Tips</h3>
+        <button onclick="this.parentElement.parentElement.parentElement.remove()" class="text-gray-500 hover:text-gray-700">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="space-y-4">
+        <div class="bg-teal-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-teal-800">Starters:</h4>
+          <p class="text-teal-700">"What do you think about...", "Have you ever...", "I was wondering..."</p>
+        </div>
+        <div class="bg-blue-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-blue-800">Keep it going:</h4>
+          <p class="text-blue-700">Ask follow-up questions, share personal experiences</p>
+        </div>
+        <div class="bg-green-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-green-800">Listen actively:</h4>
+          <p class="text-green-700">Respond to what the other person says</p>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(tipsModal);
+}
+
+function selectSide(side, exerciseId) {
+  showMessage(`Selected side ${side}. Prepare your arguments!`, 'success');
+  
+  // Highlight selected side
+  const sideButtons = document.querySelectorAll(`button[onclick*="${exerciseId}"]`);
+  sideButtons.forEach(btn => {
+    if (btn.textContent.includes(side)) {
+      btn.className = `mt-2 bg-${side === 'A' ? 'red' : 'blue'}-700 text-white px-3 py-1 rounded hover:bg-${side === 'A' ? 'red' : 'blue'}-800`;
+      btn.textContent = `✓ Side ${side}`;
+    } else {
+      btn.className = `mt-2 bg-${side === 'A' ? 'red' : 'blue'}-500 text-white px-3 py-1 rounded hover:bg-${side === 'A' ? 'red' : 'blue'}-600`;
+      btn.textContent = 'Argue For';
+    }
+  });
+}
+
+async function startDebate(exerciseId, btnEl) {
+  showMessage('Start your debate! Present your arguments clearly and persuasively.', 'success');
+  await startRecording(exerciseId, btnEl);
+}
+
+function showDebateStructure(exerciseId) {
+  const structureModal = document.createElement('div');
+  structureModal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
+  structureModal.innerHTML = `
+    <div class="bg-white rounded-2xl max-w-2xl w-full p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold">Debate Structure</h3>
+        <button onclick="this.parentElement.parentElement.parentElement.remove()" class="text-gray-500 hover:text-gray-700">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="space-y-4">
+        <div class="bg-red-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-red-800">1. Introduction:</h4>
+          <p class="text-red-700">State your position clearly</p>
+        </div>
+        <div class="bg-orange-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-orange-800">2. Arguments:</h4>
+          <p class="text-orange-700">Present 2-3 strong points with examples</p>
+        </div>
+        <div class="bg-blue-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-blue-800">3. Counter-arguments:</h4>
+          <p class="text-blue-700">Address opposing views</p>
+        </div>
+        <div class="bg-green-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-green-800">4. Conclusion:</h4>
+          <p class="text-green-700">Summarize and reinforce your position</p>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(structureModal);
+}
+
+// Helper functions
+function findRoleplayExerciseById(exerciseId) {
+  return exerciseData.roleplay.exercises.find(ex => ex.id === exerciseId);
+}
+
+async function startRoleplay(exerciseId, btnEl) {
+  // Check if a role has been selected
+  const selectedRole = window.selectedRole && window.selectedRole[exerciseId];
+
+  if (!selectedRole) {
+    showMessage('Please select a role first before starting the role-play!', 'error');
+    return;
+  }
+
+  const exercise = findRoleplayExerciseById(exerciseId);
+  if (exercise) {
+    const roleMessage = `Starting role-play: ${exercise.scenario}. You are the ${selectedRole}. Begin speaking!`;
+    showMessage(roleMessage, 'success');
+    await startRecording(exerciseId, btnEl);
+  }
+}
+
+function selectRole(role, exerciseId) {
+  // Store the selected role
+  window.selectedRole = window.selectedRole || {};
+  window.selectedRole[exerciseId] = role;
+
+  showMessage(`Selected role: ${role}. You can now start the role-play!`, 'success');
+
+  // Update all role buttons for this exercise
+  const roleButtons = document.querySelectorAll(`button[onclick*="${exerciseId}"]`);
+  roleButtons.forEach(btn => {
+    if (btn.onclick && btn.onclick.toString().includes(`'${role}'`)) {
+      // This is the selected role button
+      btn.className = 'w-full bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors font-semibold';
+      btn.textContent = `✅ ${role} Selected`;
+    } else {
+      // This is a different role button - keep it available for selection
+      btn.className = 'w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors';
+      // Don't change the text content, let it remain as is
+    }
+  });
+
+  // Enable the start roleplay button
+  const startBtn = document.querySelector(`button[onclick="startRoleplay(${exerciseId}, this)"]`);
+  if (startBtn) {
+    startBtn.className = 'bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold';
+    startBtn.disabled = false;
+  }
+}
+</script>
+
 </html>
