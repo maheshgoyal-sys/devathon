@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div class="min-h-screen bg-gradient-to-br from-teal-50 to-cyan-50 flex">
+    <!-- Left Side - Image/Branding -->
+    <div class="hidden lg:flex lg:w-1/2 bg-white items-center justify-center p-12">
+      <div class="max-w-lg text-center">
+        <div class="mb-8">
+          <img
+            src="https://images.pexels.com/photos/5905709/pexels-photo-5905709.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Education"
+            class="w-full h-auto rounded-2xl shadow-2xl"
+          />
+        </div>
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">
+          Welcome to English Learning Platform
+        </h1>
+        <p class="text-gray-600 text-lg">
+          Secure, reliable, and efficient online learning platform for students
+        </p>
+      </div>
+    </div>
+
+    <!-- Right Side - Login Form -->
+    <div class="w-full lg:w-1/2 flex items-center justify-center p-8">
+      <div class="w-full max-w-md">
+        <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+          <!-- Logo -->
+          <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold mb-2">
+              <span class="text-green-700">GLA</span>
+              <span class="text-orange-600">University</span>
+            </h2>
+            <p class="text-gray-600 text-sm">English Learning Platform</p>
+          </div>
+
+          <!-- Security Notice -->
+          <div class="bg-teal-50 border border-teal-200 rounded-lg p-3 mb-6">
+            <p class="text-sm text-center text-teal-800">
+              <strong>Please!</strong> don't share your credentials with anyone
+            </p>
+          </div>
+
+          <!-- Error Message -->
+          <% if (error) { %>
+          <div class="bg-red-50 border border-red-200 rounded-lg p-3 mb-6">
+            <p class="text-sm text-center text-red-800">
+              <%= error %>
+            </p>
+          </div>
+          <% } %>
+
+          <!-- User Type Selector -->
+          <div class="mb-6">
+            <select
+              name="userType"
+              id="userType"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition duration-200"
+            >
+              <option value="Old">Regular Student</option>
+              <option value="New">New Admission</option>
+              <option value="Oth">Other User</option>
+            </select>
+          </div>
+
+          <!-- Login Form -->
+          <form action="/login" method="POST" class="space-y-4">
+            <!-- User ID -->
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+              <input
+                type="text"
+                name="userId"
+                id="userId"
+                placeholder="User ID"
+                maxlength="20"
+                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition duration-200"
+                required
+              />
+            </div>
+
+            <!-- Password -->
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Password"
+                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition duration-200"
+                required
+              />
+            </div>
+
+            <!-- Captcha -->
+            <div class="relative">
+              <input
+                type="text"
+                name="captcha"
+                id="captcha"
+                placeholder="Enter Captcha"
+                maxlength="4"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition duration-200"
+                required
+              />
+              <div class="absolute inset-y-0 right-0 flex items-center">
+                <div class="h-full px-3 bg-gray-100 border-l border-gray-300 flex items-center">
+                  <span id="captchaText" class="text-lg font-bold text-gray-700 select-none">
+                    <%= captcha %>
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onclick="refreshCaptcha()"
+                  class="h-full px-3 bg-teal-500 hover:bg-teal-600 rounded-r-lg transition duration-200"
+                  title="Refresh Captcha"
+                >
+                  <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Hidden field for userType -->
+            <input type="hidden" name="userType" id="userTypeHidden" value="Old">
+
+            <!-- Login Button -->
+            <button
+              type="submit"
+              class="w-full bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold py-3 rounded-lg hover:from-teal-600 hover:to-cyan-600 transform hover:scale-105 transition duration-200 shadow-lg"
+            >
+              Login
+            </button>
+
+            <!-- Additional Links -->
+            <div class="grid grid-cols-2 gap-4 mt-6">
+              <!-- <a
+                href="#"
+                class="text-center text-sm text-teal-600 hover:text-teal-700 font-medium"
+              >
+                Center Login
+              </a> -->
+              <a
+                href="#"
+                class="text-center text-sm text-teal-600 hover:text-teal-700 font-medium"
+              >
+                Forgot Password?
+              </a>
+            </div>
+          </form>
+
+          <!-- Download Link -->
+          <div class="mt-6 pt-6 border-t border-gray-200 text-center">
+            <!-- <a
+              href="#"
+              class="text-sm text-gray-600 hover:text-teal-600 font-medium inline-flex items-center gap-2"
+            >
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+              </svg>
+              Download Launcher
+            </a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Sync userType dropdown with hidden field
+    document.getElementById('userType').addEventListener('change', function() {
+      document.getElementById('userTypeHidden').value = this.value;
+    });
+
+    // Refresh captcha function
+    async function refreshCaptcha() {
+      try {
+        const response = await fetch('/refresh-captcha');
+        const data = await response.json();
+        document.getElementById('captchaText').textContent = data.captcha;
+        document.getElementById('captcha').value = '';
+      } catch (error) {
+        console.error('Error refreshing captcha:', error);
+      }
+    }
+  </script>
+</body>
+</html>

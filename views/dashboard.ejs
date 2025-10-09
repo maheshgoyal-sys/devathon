@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title><%= title %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg,#ecfdf5,#e0f2fe); }
+    /* notification */
+    .notify { position: fixed; right: 20px; bottom: 20px; z-index: 60; }
+  </style>
+</head>
+<body class="min-h-screen flex">
+
+  <!-- Sidebar (collapsible) -->
+  <aside id="sidebar" class="bg-white w-64 p-6 border-r border-gray-100 hidden md:flex flex-col">
+    <div class="mb-6">
+      <h1 class="text-2xl font-bold text-teal-600">GLA English</h1>
+      <p class="text-sm text-gray-500 mt-1">Welcome, <%= userName %></p>
+    </div>
+
+    <nav class="flex-1 space-y-2">
+      <a href="/dashboard" class="block px-4 py-2 rounded-lg bg-teal-50 text-teal-700 font-medium">🏠 Dashboard</a>
+      <a href="/lessons" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">📘 Lessons</a>
+      <a href="#" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">🧠 Vocabulary</a>
+      <a href="#" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">📝 Tests</a>
+    </nav>
+
+    <div class="mt-6">
+      <a href="/logout" class="block text-center text-red-600 py-2 rounded-lg hover:bg-red-50">Logout</a>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <div class="flex-1 p-6 md:p-10">
+    <!-- Top bar -->
+    <header class="flex items-center justify-between mb-6">
+      <div class="flex items-center gap-4">
+        <!-- Mobile menu toggle -->
+        <button id="menuBtn" class="md:hidden p-2 bg-white rounded-lg shadow">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+          </svg>
+        </button>
+
+        <div>
+          <h2 class="text-2xl font-semibold text-gray-800">Welcome back, <span class="text-teal-600"><%= userName %></span></h2>
+          <p class="text-sm text-gray-500">Keep going — your progress looks great ✨</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <button id="notifBtn" class="p-2 bg-white rounded-lg shadow">🔔</button>
+        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400 flex items-center justify-center text-white font-bold">
+          <%= userName.charAt(0).toUpperCase() %>
+        </div>
+      </div>
+    </header>
+
+    <!-- Overview -->
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+      <!-- Progress card with Chart -->
+      <div class="col-span-2 bg-white p-6 rounded-2xl shadow">
+        <div class="flex justify-between mb-4 items-center">
+          <h3 class="text-lg font-semibold text-gray-800">Learning Progress</h3>
+          <div class="text-sm text-gray-500">Last updated: <span id="lastUpdated">--</span></div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-6 items-center">
+          <div class="w-full lg:w-2/3">
+            <canvas id="progressChart" height="140"></canvas>
+          </div>
+
+          <div class="w-full lg:w-1/3 space-y-4">
+            <div>
+              <p class="text-sm text-gray-500">Completed Lessons</p>
+              <div class="w-full bg-gray-100 h-4 rounded-full mt-2 overflow-hidden">
+                <div id="lessonsBar" class="h-4 rounded-full bg-gradient-to-r from-teal-500 to-cyan-500 transition-all"></div>
+              </div>
+              <div class="text-sm text-gray-600 mt-1"><span id="completedLessons">0</span> / <span id="totalLessons">0</span> lessons</div>
+            </div>
+
+            <div>
+              <p class="text-sm text-gray-500">Vocabulary Learned</p>
+              <div class="text-xl font-bold text-cyan-600" id="vocabCount">0</div>
+            </div>
+
+            <div>
+              <p class="text-sm text-gray-500">Tests Taken</p>
+              <div class="text-xl font-bold text-green-600" id="testsCount">0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick actions / modules -->
+      <div class="bg-white p-6 rounded-2xl shadow">
+        <h4 class="text-lg font-semibold mb-3">Quick Actions</h4>
+        <div class="space-y-3">
+          <a href="/lessons" class="block px-4 py-2 rounded-lg bg-teal-500 text-white text-center">Continue Lessons →</a>
+          <button id="practiceBtn" class="w-full px-4 py-2 rounded-lg border border-gray-200 hover:bg-gray-50">Start Speaking Practice</button>
+          <button id="vocabBtn" class="w-full px-4 py-2 rounded-lg border border-gray-200 hover:bg-gray-50">Daily Vocabulary</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent activity -->
+    <section class="bg-white p-6 rounded-2xl shadow">
+      <h4 class="text-lg font-semibold mb-4">Recent Activity</h4>
+      <ul id="recentList" class="space-y-2 text-sm text-gray-700">
+        <li>— No recent activity yet. Start a lesson to see updates.</li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- Notification container -->
+  <div id="notify" class="notify hidden">
+    <div id="notifyBox" class="bg-white p-4 rounded-lg shadow-lg border border-gray-100">
+      <div class="font-semibold text-gray-800" id="notifyTitle">Notification</div>
+      <div class="text-sm text-gray-600 mt-1" id="notifyBody">You have new progress updates.</div>
+    </div>
+  </div>
+
+  <!-- Client JS -->
+  <script>
+    // Sidebar toggle for mobile
+    const menuBtn = document.getElementById('menuBtn');
+    const sidebar = document.getElementById('sidebar');
+    menuBtn?.addEventListener('click', () => {
+      sidebar.classList.toggle('hidden');
+    });
+
+    // Notification
+    const notifyEl = document.getElementById('notify');
+    const notifyBtn = document.getElementById('notifBtn');
+    const showNotification = (title, body) => {
+      document.getElementById('notifyTitle').textContent = title;
+      document.getElementById('notifyBody').textContent = body;
+      notifyEl.classList.remove('hidden');
+      setTimeout(() => notifyEl.classList.add('hidden'), 5000);
+    };
+    notifyBtn?.addEventListener('click', () => showNotification('Reminder', 'Complete one lesson today to keep your streak!'));
+
+    // Fetch stats and render
+    async function fetchStats() {
+      try {
+        const res = await fetch('/api/stats');
+        if (!res.ok) throw new Error('Not authenticated or server error');
+        const data = await res.json();
+
+        // Update numbers
+        document.getElementById('completedLessons').textContent = data.completedLessons;
+        document.getElementById('totalLessons').textContent = data.totalLessons;
+        document.getElementById('vocabCount').textContent = data.vocabLearned;
+        document.getElementById('testsCount').textContent = data.testsTaken;
+        document.getElementById('lastUpdated').textContent = new Date().toLocaleString();
+
+        // progress bar width percentage
+        const pct = data.totalLessons ? Math.round((data.completedLessons / data.totalLessons) * 100) : 0;
+        document.getElementById('lessonsBar').style.width = pct + '%';
+
+        // Chart: show completed vs remaining
+        renderChart(data.completedLessons, data.totalLessons - data.completedLessons);
+
+        // recent activity sample (replace with real data later)
+        const recentList = document.getElementById('recentList');
+        recentList.innerHTML = '';
+        recentList.innerHTML += `<li>Completed ${data.completedLessons} lessons</li>`;
+        recentList.innerHTML += `<li>Learned ${data.vocabLearned} words</li>`;
+        recentList.innerHTML += `<li>Taken ${data.testsTaken} tests</li>`;
+
+        // small notify if progress low
+        if (pct < 10) {
+          showNotification('Keep going!', 'You have started — try to finish one lesson today.');
+        }
+      } catch (err) {
+        console.error('fetchStats error', err);
+        showNotification('Error', 'Could not load stats. Please refresh.');
+      }
+    }
+
+    // Chart.js render
+    let progressChart = null;
+    function renderChart(done, remaining) {
+      const ctx = document.getElementById('progressChart').getContext('2d');
+      const data = {
+        labels: ['Completed', 'Remaining'],
+        datasets: [{
+          label: 'Lessons',
+          data: [done, Math.max(0, remaining)],
+          backgroundColor: ['rgba(14,165,233,0.9)', 'rgba(203,213,225,0.6)']
+        }]
+      };
+      if (progressChart) progressChart.destroy();
+      progressChart = new Chart(ctx, {
+        type: 'doughnut',
+        data,
+        options: {
+          cutout: '60%',
+          plugins: { legend: { position: 'bottom' } }
+        }
+      });
+    }
+
+    // init
+    fetchStats();
+
+    // optional: refresh stats every 30s
+    setInterval(fetchStats, 30000);
+  </script>
+
+</body>
+</html>
