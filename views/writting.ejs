@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Writing Practice</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;600&family=Nunito:wght@400;600;700&display=swap');
+      :root {
+        --bg: #0f172a;
+        --card: #111827;
+        --muted: #94a3b8;
+        --text: #e5e7eb;
+        --accent: #22c55e;
+        --accent-2: #60a5fa;
+        --warn: #f59e0b;
+        --border: #1f2937;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        background: linear-gradient(135deg, #ecfdf5, #e0f2fe);
+        color: #1f2937; /* gray-800 */
+      }
+      a { color: inherit; }
+      .container {
+        max-width: 1100px;
+        margin: 24px auto 80px;
+        padding: 0 16px;
+        position: relative;
+      }
+      .header {
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        gap: 8px; margin-bottom: 12px; text-align: center;
+      }
+      .title {
+        font-size: 40px; font-weight: 900; letter-spacing: 0.1px; display:flex; gap:12px; align-items:center; justify-content:center;
+      }
+      .gradient-title { 
+        background: linear-gradient(90deg,#22c55e 0%, #10b981 30%, #60a5fa 70%, #6366f1 100%);
+        -webkit-background-clip: text; background-clip: text; color: transparent; 
+        filter: drop-shadow(0 2px 6px rgba(15, 23, 42, 0.12));
+      }
+      .sparkle-left { color:#22c55e; filter: drop-shadow(0 2px 6px rgba(34,197,94,.25)); font-size: 0.95em; }
+      .sparkle-right { color:#6366f1; filter: drop-shadow(0 2px 6px rgba(99,102,241,.25)); font-size: 0.95em; }
+      .subtitle { color: #6b7280; font-size: 14px; } /* gray-500 */
+      .tools { display:flex; gap:10px; align-items:center; justify-content:center; flex-wrap: wrap; margin-top: 6px; }
+      .timer-box { background:#ffffff; border:1px solid #eef2f7; padding:10px 12px; border-radius:14px; box-shadow: 0 10px 24px rgba(2,6,23,.06); display:flex; gap:10px; align-items:center; }
+      .grid {
+        display: grid; grid-template-columns: 1.6fr 1fr; gap: 16px;
+      }
+      @media (max-width: 980px) { .grid { grid-template-columns: 1fr; } }
+      .card {
+        background: #ffffff; /* white */
+        border: 1px solid #f3f4f6; /* gray-100 */
+        border-radius: 18px;
+        box-shadow: 0 8px 20px rgba(2, 6, 23, 0.06); /* light shadow */
+        overflow: hidden;
+        animation: fadeInUp 480ms cubic-bezier(.2,.8,.2,1) both;
+      }
+      .card-header { padding: 14px 16px; border-bottom: 1px solid #f3f4f6; display:flex; align-items:center; justify-content:space-between; gap:10px; border-top-left-radius:18px; border-top-right-radius:18px; }
+      .card-title { font-weight: 600; }
+      .card-body { padding: 14px 16px; }
+
+      /* Gradient variants for card headers */
+      .card-teal .card-header { background: linear-gradient(90deg,#059669,#06b6d4); color:#eafff7; border-bottom: none; }
+      .card-purple .card-header { background: linear-gradient(90deg,#8b5cf6,#6366f1); color:#eef2ff; border-bottom: none; }
+      .card-teal .card-title, .card-purple .card-title { font-weight:700; }
+
+      /* Prompt card */
+      .prompt-line { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+      .prompt-text {
+        padding: 10px 12px; background: #f8fafc; /* slate-50 */ border: 1px dashed #cbd5e1; /* slate-300 */ color: #0f172a; /* slate-900 */
+        border-radius: 10px; flex: 1 1 280px; min-height: 44px; display:flex; align-items:center;
+      }
+      .btn {
+        background: #ffffff; color: #111827; border: 1px solid #e5e7eb; /* gray-200 */
+        padding: 10px 14px; border-radius: 10px; cursor: pointer; transition: .15s ease;
+      }
+      .btn:hover { transform: translateY(-2px); border-color: #d1d5db; background: #f9fafb; box-shadow: 0 6px 14px rgba(2,6,23,.07); }
+      .btn:active { transform: translateY(0); filter: brightness(.98); }
+      .btn-accent { background: linear-gradient(180deg, #34d399, #10b981); color: #052014; border: none; font-weight: 600; box-shadow: 0 8px 18px rgba(16,185,129,.25); }
+      .btn-ghost { background: #f8fafc; border-color: #e5e7eb; color: #374151; }
+      .btn-primary { background: linear-gradient(180deg,#22c55e,#16a34a); color:#fff; border:none; border-radius: 999px; padding:8px 14px; font-weight:700; box-shadow: 0 8px 16px rgba(16,185,129,.25); }
+      .btn-info { background: linear-gradient(180deg,#60a5fa,#3b82f6); color:#fff; border:none; font-weight:700; }
+      /* Keep gradient on hover for primary/info buttons */
+      .btn-primary:hover { background: linear-gradient(180deg,#22c55e,#16a34a); color:#fff; border:none; transform: translateY(-2px); filter: brightness(1.05); box-shadow: 0 10px 20px rgba(16,185,129,.28); }
+      .btn-primary:active { background: linear-gradient(180deg,#22c55e,#16a34a); color:#fff; border:none; transform: translateY(0); filter: brightness(.98); }
+      .btn-info:hover { background: linear-gradient(180deg,#60a5fa,#3b82f6); color:#fff; border:none; transform: translateY(-2px); filter: brightness(1.05); box-shadow: 0 10px 20px rgba(59,130,246,.28); }
+      .btn-info:active { background: linear-gradient(180deg,#60a5fa,#3b82f6); color:#fff; border:none; transform: translateY(0); filter: brightness(.98); }
+
+      /* Editor */
+      .editor {
+        width: 100%; min-height: 260px; resize: vertical; font: 500 15px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+        background: #ffffff; color: #111827; border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px;
+      }
+      .editor:focus { outline: none; border-color: #a7f3d0; box-shadow: 0 0 0 4px rgba(16,185,129,.15); }
+      .meta-row { display:flex; align-items:center; justify-content: space-between; gap: 10px; margin-top: 10px; color: var(--muted); font-size: 13px; }
+      .pill { background: #f1f5f9; border: 1px solid #e2e8f0; padding: 6px 10px; border-radius: 999px; display:inline-flex; gap:8px; align-items:center; color:#334155; }
+      .dot { width: 8px; height: 8px; border-radius: 999px; background: #94a3b8; display:inline-block; }
+      .dot.ok { background: var(--accent); }
+      .dot.warn { background: var(--warn); }
+      .pill.highlight { animation: pulseGlow 1.1s ease-out 1; }
+      .pill .sep { width:1px; height:18px; background:#e2e8f0; margin: 0 8px; display:inline-block; }
+      .timer-select { background: transparent; border: 1px solid #e2e8f0; border-radius: 8px; padding: 4px 8px; color:#334155; }
+      .timer-btn { background:#fff; border:1px solid #e5e7eb; padding:4px 10px; border-radius:8px; cursor:pointer; transition: all .15s ease; color:#374151; }
+      .timer-btn:hover { background:#f3f4f6; }
+      .countdown { font-variant-numeric: tabular-nums; font-weight: 700; color:#111827; }
+      .bar { height: 6px; background:#e5e7eb; border-radius:999px; overflow:hidden; }
+      .bar > span { display:block; height:100%; width:0%; background: linear-gradient(90deg,#34d399,#10b981); transition: width .3s ease; }
+      .editor.disabled { opacity:.7; filter: grayscale(.2); pointer-events: none; }
+
+      /* Side panel */
+      .side {
+        display: grid; gap: 16px;
+      }
+      .stat { display:flex; align-items:center; justify-content: space-between; padding: 10px 12px; border-radius: 10px; background: #f8fafc; border: 1px solid #e5e7eb; }
+      .stat .val { font-weight: 700; }
+
+      /* Tips */
+      .tip { background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; color: #1f2937; }
+      .tip small { color: #6b7280; display:block; margin-top: 6px; }
+
+      /* Tabs for samples */
+      .tabs { position:relative; display:flex; flex-wrap:wrap; gap: 8px; padding: 8px 8px 14px; border-bottom: 1px solid #e5e7eb; }
+      .tab { position: relative; padding: 8px 12px; border-radius: 10px; background:#f8fafc; border:1px solid #e5e7eb; cursor:pointer; color:#374151; overflow:hidden; display:flex; align-items:center; gap:8px; letter-spacing: .2px; }
+      .tab::after { content:""; position:absolute; left:8px; right:100%; bottom:4px; height:3px; background: linear-gradient(90deg,#60a5fa,#3b82f6); border-radius:6px; transition: right .3s ease; }
+      .tab:hover::after { right:8px; }
+      .tab.active { background: linear-gradient(180deg, #60a5fa, #3b82f6); color: #05182f; border: none; font-weight: 700; }
+      .tab-indicator { position:absolute; height:3px; background: linear-gradient(90deg,#34d399,#10b981); border-radius:8px; bottom: -2px; left:0; width:0; transition: all .35s cubic-bezier(.2,.8,.2,1); }
+      .sample-wrap { display:grid; gap: 16px; padding: 12px; grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .sample-wrap.swap { animation: fadeSwitch .35s ease 1; }
+      @media (max-width: 860px) { .sample-wrap { grid-template-columns: 1fr; } }
+      .sample { background:#ffffff; border:1px solid #e5e7eb; border-radius: 14px; padding: 14px; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+      .sample.appear { animation: fadeInUp 320ms cubic-bezier(.2,.8,.2,1) both; }
+      .sample:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(2,6,23,.08); border-color:#dbeafe; }
+      .sample h4 { margin: 0 0 6px; color:#0f172a; font-family: 'Poppins', 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; letter-spacing: .3px; }
+      .sample pre { white-space: pre-wrap; margin: 0; color: #1f2937; font-family: 'Nunito', 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; letter-spacing: .2px; line-height: 1.65; }
+      .sample .actions { margin-top: 12px; display:flex; justify-content: flex-end; }
+      .sample .actions .btn { font-weight:600; }
+
+      /* Toast for saves */
+      .toast { position: fixed; right: 18px; bottom: 18px; background: #111827; color: #e5e7eb; border: 1px solid #1f2937; padding: 10px 14px; border-radius: 10px; opacity: 0; transform: translateY(8px); pointer-events: none; transition: all .25s ease; box-shadow: 0 10px 20px rgba(2,6,23,.3); }
+      .toast.show { opacity: 1; transform: translateY(0); }
+
+      /* Confetti */
+      .confetti { position:absolute; width:8px; height:8px; border-radius:2px; opacity:.9; pointer-events:none; animation: confettiFall 900ms ease-out forwards; }
+      @keyframes confettiFall { from { transform: translateY(0) rotate(0deg); opacity:1; } to { transform: translateY(60px) rotate(320deg); opacity:0; } }
+
+      /* Background floating blobs */
+      .bg-blob { position:absolute; filter: blur(40px); opacity:.35; pointer-events:none; border-radius: 999px; }
+      .blob1 { width: 220px; height: 220px; left: -60px; top: -40px; background: #a7f3d0; animation: floatY 8s ease-in-out infinite; }
+      .blob2 { width: 260px; height: 260px; right: -70px; top: 120px; background: #bfdbfe; animation: floatY 9.5s ease-in-out infinite reverse; }
+
+      /* Prompt/tip animations */
+      .prompt-text.pulse { animation: pulseCard .7s ease-in-out 1; }
+      #tipBox.fade { animation: fadeSwitch .45s ease 1; }
+
+      /* Keyframes */
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translate3d(0, 10px, 0); }
+        to { opacity: 1; transform: translate3d(0, 0, 0); }
+      }
+      @keyframes pulseGlow {
+        0% { box-shadow: 0 0 0 0 rgba(16,185,129,.0); }
+        40% { box-shadow: 0 0 0 8px rgba(16,185,129,.18); }
+        100% { box-shadow: 0 0 0 0 rgba(16,185,129,.0); }
+      }
+      @keyframes floatY {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(18px); }
+      }
+      @keyframes pulseCard {
+        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16,185,129,.0); }
+        50% { transform: scale(1.015); box-shadow: 0 8px 18px rgba(16,185,129,.18); }
+        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16,185,129,.0); }
+      }
+      @keyframes fadeSwitch {
+        from { opacity: .35; transform: translateY(4px); }
+        to { opacity: 1; transform: translateY(0px); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="bg-blob blob1"></div>
+      <div class="bg-blob blob2"></div>
+      <div class="header">
+        <div class="title">🧭 Writing Prompts & Practice</div>
+        <div class="subtitle">Practice essays with live counters, rotating tips, and sample references.</div>
+        <div class="tools">
+          <div class="pill" title="Timed writing">
+            
+            <select id="timerSelect" class="timer-select">
+              <option value="300">5 min</option>
+              <option value="600">10 min</option>
+              <option value="900" selected>15 min</option>
+              <option value="1200">20 min</option>
+            </select>
+            <span class="sep"></span>
+            <span class="countdown" id="countdown">15:00</span>
+            <span class="sep"></span>
+            <button class="timer-btn" id="btnTimerStart">Start</button>
+            <button class="timer-btn" id="btnTimerPause">Pause</button>
+            <button class="timer-btn" id="btnTimerReset">Reset</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <!-- Left: Prompt + Editor -->
+        <section class="card card-teal">
+          <div class="card-header">
+            <div class="card-title">💡 Today’s Writing Prompt</div>
+            <div>
+              <button class="btn btn-info" id="btnNewPrompt" title="Get another random prompt">Shuffle</button>
+              <button class="btn" id="btnClear" title="Clear editor">Clear</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="prompt-line">
+              <div class="prompt-text" id="promptText">Loading prompt…</div>
+              <button class="btn btn-primary" id="btnUsePrompt">Use This Prompt</button>
+            </div>
+
+            <div style="height:10px"></div>
+
+            <label for="editor" class="subtitle">✍️ Your writing</label>
+            <textarea id="editor" class="editor" placeholder="Start writing here…"></textarea>
+
+            <div class="bar" aria-hidden="true" style="margin-top:10px;">
+              <span id="timerBar"></span>
+            </div>
+
+            <div class="meta-row">
+              <div class="pill" title="Words written"><span class="dot"></span><span>Words:</span> <strong id="wordCount">0</strong></div>
+              <div class="pill" title="Sentences written"><span class="dot"></span><span>Sentences:</span> <strong id="sentenceCount">0</strong></div>
+              <div class="pill" title="Recommended max words"><span class="dot warn"></span><span>Limit:</span> <strong id="wordLimit">150</strong> <span class="subtitle">(rec.)</span></div>
+              <div class="pill" title="Last saved time"><span class="dot"></span><span id="lastSaved">Not saved yet</span></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Right: Side utilities -->
+        <aside class="side">
+          <section class="card">
+            <div class="card-header">
+              <div class="card-title">🧮 Word & Sentence Counter</div>
+            </div>
+            <div class="card-body">
+              <div class="stat"><span>Words</span><span class="val" id="statWords">0</span></div>
+              <div class="stat"><span>Sentences</span><span class="val" id="statSentences">0</span></div>
+              <div class="stat"><span>Recommended Limit</span><span class="val" id="statLimit">150</span></div>
+            </div>
+          </section>
+
+          <section class="card card-purple">
+            <div class="card-header">
+              <div class="card-title">📝 Writing Tips</div>
+              <button class="btn btn-ghost" id="btnNextTip">Next</button>
+            </div>
+            <div class="card-body">
+              <div class="tip" id="tipBox">Loading tip…</div>
+              <small>One helpful tip is shown each time you open the page. Use Next to browse.</small>
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <div style="height:18px"></div>
+
+      <!-- Sample essays / references -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-title">📚 Sample Essays / Reference</div>
+        </div>
+        <div class="tabs" id="tabs"></div>
+        <div class="sample-wrap" id="samples"></div>
+      </section>
+    </div>
+
+    <!-- Save Toast -->
+    <div id="saveToast" class="toast">Saved locally</div>
+
+    <script>
+      // --- Static data (frontend-only) ---
+      const PROMPTS = [
+        "Describe your favorite season.",
+        "Write a letter to your future self.",
+        "Narrate a day when you learned something new.",
+        "What would you change at your school and why?",
+        "A place that inspires you—describe it vividly.",
+        "Should homework be optional? Explain your view.",
+        "Write about a person who motivates you.",
+        "If you could time-travel, where would you go?",
+        "Describe a challenge you overcame.",
+        "What does kindness mean to you?"
+      ];
+
+      const TIPS = [
+        "Structure your paragraphs with a clear topic sentence, supporting details, and a closing line.",
+        "Avoid repetition—use synonyms and vary your sentence structure.",
+        "Use transition words (However, Moreover, Therefore) to guide the reader.",
+        "Keep subject–verb agreement consistent across your sentences.",
+        "Show, don't just tell—use sensory details and examples.",
+        "Revise and proofread—read your writing aloud to catch errors.",
+        "Stick to the point—remove sentences that don't support your main idea.",
+        "Use active voice where possible for clarity and impact.",
+        "Balance sentence lengths to improve rhythm and readability.",
+        "Define your audience and write with their perspective in mind."
+      ];
+
+      const SAMPLES = {
+        "Descriptive Writing": [
+          {
+            title: "A Rainy Evening",
+            content: "The sky folded into a velvet gray as the first drops tapped the window. Streets blurred into ribbons of silver, and the scent of petrichor drifted through the open door. Inside, the kettle sang its soft whistle while the city slowed to a gentle hush."
+          },
+          {
+            title: "Winter Morning",
+            content: "Frost stitched delicate lace across the glass. Each breath hung in the air like a soft cloud. The sun rose slowly, unspooling gold through the branches until the world glittered like a field of diamonds."
+          }
+        ],
+        "Narrative Writing": [
+          {
+            title: "The Lost Key",
+            content: "I found the key under a loose brick on the garden path. It was small, bronze, and cold, as if it had been waiting. That night, the old cabinet creaked open, and with it, the secret my grandmother had promised to reveal."
+          },
+          {
+            title: "First Debate",
+            content: "My hands trembled behind the podium, but the argument I had practiced finally found its way to my voice. By the end, I wasn’t just speaking—I was convincing, and for the first time, I believed it too."
+          }
+        ],
+        "Formal Letters": [
+          {
+            title: "Requesting Library Access",
+            content: "Respected Librarian,\nI am writing to request extended access to the library during examination week. Additional hours would benefit many students who rely on the library’s resources. Thank you for your consideration.\nSincerely,\n[Your Name]"
+          },
+          {
+            title: "Leave Application",
+            content: "To, The Class Teacher,\nSubject: Application for Leave\nI kindly request leave for two days due to a family function. I will complete any missed work promptly.\nThank you.\nSincerely,\n[Your Name]"
+          }
+        ],
+        "Reports & Articles": [
+          {
+            title: "School Cleanliness Drive",
+            content: "Our school conducted a cleanliness drive on Saturday. Students from all grades participated enthusiastically. The campaign focused on waste segregation, cleanliness of classrooms, and awareness talks on hygiene and recycling."
+          },
+          {
+            title: "Benefits of Reading",
+            content: "Reading enhances vocabulary, improves focus, and fuels imagination. Students who read regularly often perform better in language subjects and develop stronger critical thinking skills."
+          }
+        ]
+      };
+
+      // --- Utilities ---
+      const byId = (id) => document.getElementById(id);
+      const storage = window.localStorage;
+      const STORAGE_KEYS = {
+        editor: "writing.editor.text",
+        lastSaved: "writing.editor.lastSaved",
+        tipIndex: "writing.tip.index",
+        promptIndex: "writing.prompt.index",
+        timerDuration: "writing.timer.duration",
+        timerRemaining: "writing.timer.remaining",
+        timerRunning: "writing.timer.running"
+      };
+
+      function countWords(text) {
+        return (text.trim().match(/\b\w+[\w'-]*\b/g) || []).length;
+      }
+      function countSentences(text) {
+        // Rough sentence split: periods, exclamations, question marks
+        const matches = text.replace(/\s+/g, ' ').match(/[^.!?\n]+[.!?]+(\s|$)/g);
+        return matches ? matches.length : (text.trim() ? 1 : 0);
+      }
+
+      function nowTime() {
+        const d = new Date();
+        return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      }
+
+      // --- Prompt logic ---
+      function randomIndex(len, exclude) {
+        if (len <= 1) return 0;
+        let idx = Math.floor(Math.random() * len);
+        if (exclude != null && len > 1) {
+          while (idx === exclude) idx = Math.floor(Math.random() * len);
+        }
+        return idx;
+      }
+
+      function setPromptByIndex(idx) {
+        const text = PROMPTS[idx] || PROMPTS[0];
+        byId('promptText').textContent = text;
+        storage.setItem(STORAGE_KEYS.promptIndex, String(idx));
+        animatePrompt();
+      }
+
+      function newRandomPrompt() {
+        const cur = parseInt(storage.getItem(STORAGE_KEYS.promptIndex) || "-1", 10);
+        const idx = randomIndex(PROMPTS.length, isNaN(cur) ? null : cur);
+        setPromptByIndex(idx);
+      }
+
+      // --- Tips logic (rotate per visit) ---
+      function showTip(index) {
+        const tip = TIPS[index % TIPS.length];
+        const el = byId('tipBox');
+        el.classList.remove('fade');
+        // Force reflow to restart animation
+        void el.offsetWidth;
+        el.classList.add('fade');
+        el.innerText = `💡 ${tip}`;
+      }
+      function nextTip() {
+        const cur = parseInt(storage.getItem(STORAGE_KEYS.tipIndex) || "-1", 10);
+        const next = isNaN(cur) ? 0 : (cur + 1) % TIPS.length;
+        storage.setItem(STORAGE_KEYS.tipIndex, String(next));
+        showTip(next);
+      }
+
+      // --- Editor + Autosave ---
+      let saveTimer = null;
+      const SAVE_DEBOUNCE = 600; // ms
+      const WORD_LIMIT = 150;
+      let prevWords = 0;
+      let prevSentences = 0;
+      let celebrated = false;
+      // Timer state
+      let timerId = null;
+      let timerDuration = 900; // default 15m
+      let timerRemaining = 900;
+      let timerRunning = false;
+
+      function refreshCounts(text) {
+        const words = countWords(text);
+        const sentences = countSentences(text);
+        tweenNumber(byId('wordCount'), prevWords, words);
+        tweenNumber(byId('sentenceCount'), prevSentences, sentences);
+        tweenNumber(byId('statWords'), prevWords, words);
+        tweenNumber(byId('statSentences'), prevSentences, sentences);
+        prevWords = words; prevSentences = sentences;
+        const dot = byId('autosaveDot');
+        dot.classList.toggle('warn', words > WORD_LIMIT);
+        dot.classList.toggle('ok', words <= WORD_LIMIT);
+        // Confetti when crossing goal threshold
+        if (!celebrated && words >= WORD_LIMIT) {
+          celebrated = true;
+          launchConfetti();
+        }
+        if (celebrated && words < WORD_LIMIT) {
+          celebrated = false; // reset if user goes back below
+        }
+      }
+
+      function tweenNumber(el, from, to) {
+        if (!el) return; if (from === to) { el.textContent = to; return; }
+        const dur = 220; const start = performance.now();
+        function step(t) {
+          const p = Math.min(1, (t - start) / dur);
+          const val = Math.round(from + (to - from) * p);
+          el.textContent = val;
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+
+      function saveNow() {
+        const text = byId('editor').value;
+        storage.setItem(STORAGE_KEYS.editor, text);
+        const t = nowTime();
+        storage.setItem(STORAGE_KEYS.lastSaved, t);
+        byId('lastSaved').textContent = `Saved at ${t}`;
+        byId('autosaveStatus').textContent = 'Autosave on';
+        // Brief highlight to confirm save
+        const lastSavedPill = byId('lastSaved').parentElement;
+        if (lastSavedPill) {
+          lastSavedPill.classList.remove('highlight');
+          void lastSavedPill.offsetWidth; // reflow
+          lastSavedPill.classList.add('highlight');
+        }
+        // Toast
+        const toast = byId('saveToast');
+        if (toast) {
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 1200);
+        }
+      }
+
+      function scheduleSave() {
+        byId('autosaveStatus').textContent = 'Saving…';
+        if (saveTimer) clearTimeout(saveTimer);
+        saveTimer = setTimeout(saveNow, SAVE_DEBOUNCE);
+      }
+
+      function clearEditor() {
+        byId('editor').value = '';
+        refreshCounts('');
+        scheduleSave();
+      }
+
+      // --- Timer helpers ---
+      function formatTime(sec) {
+        const m = Math.floor(sec / 60).toString().padStart(2,'0');
+        const s = Math.floor(sec % 60).toString().padStart(2,'0');
+        return `${m}:${s}`;
+      }
+      function updateTimerUI() {
+        const cd = byId('countdown');
+        if (cd) cd.textContent = formatTime(timerRemaining);
+        const pct = Math.max(0, Math.min(1, (timerDuration - timerRemaining) / Math.max(1, timerDuration)));
+        const bar = byId('timerBar');
+        if (bar) bar.style.width = `${pct*100}%`;
+        storage.setItem(STORAGE_KEYS.timerRemaining, String(Math.max(0, Math.floor(timerRemaining))));
+        storage.setItem(STORAGE_KEYS.timerRunning, String(timerRunning ? 1 : 0));
+      }
+      function startTimer() {
+        if (timerRunning) return;
+        timerRunning = true;
+        let last = performance.now();
+        if (!timerId) {
+          timerId = setInterval(() => {
+            const now = performance.now();
+            const dt = (now - last) / 1000;
+            last = now;
+            timerRemaining -= dt;
+            if (timerRemaining <= 0) {
+              timerRemaining = 0;
+              pauseTimer();
+              onTimerEnd();
+            }
+            updateTimerUI();
+          }, 250);
+        }
+        updateTimerUI();
+      }
+      function pauseTimer() {
+        timerRunning = false;
+        if (timerId) { clearInterval(timerId); timerId = null; }
+        updateTimerUI();
+      }
+      function resetTimer() {
+        pauseTimer();
+        timerRemaining = timerDuration;
+        updateTimerUI();
+        // re-enable editor if it was disabled
+        byId('editor').classList.remove('disabled');
+        byId('editor').disabled = false;
+      }
+      function onTimerEnd() {
+        // Lock editor and save
+        byId('editor').classList.add('disabled');
+        byId('editor').disabled = true;
+        saveNow();
+        const toast = byId('saveToast');
+        if (toast) { toast.textContent = 'Time up! Saved.'; toast.classList.add('show'); setTimeout(()=>{ toast.classList.remove('show'); toast.textContent='Saved locally'; }, 1600); }
+      }
+
+      // --- Samples / Tabs ---
+      function renderTabs() {
+        const tabsEl = byId('tabs');
+        tabsEl.innerHTML = '';
+        const categories = Object.keys(SAMPLES);
+        const current = tabsEl.getAttribute('data-active') || categories[0];
+        const ICONS = {
+          'Descriptive Writing': '🖌️',
+          'Narrative Writing': '📖',
+          'Formal Letters': '✉️',
+          'Reports & Articles': '📰'
+        };
+        categories.forEach(cat => {
+          const btn = document.createElement('button');
+          btn.className = 'tab' + (cat === current ? ' active' : '');
+          const icon = ICONS[cat] || '📄';
+          btn.innerHTML = `<span>${icon}</span><span>${cat}</span>`;
+          btn.addEventListener('click', () => {
+            tabsEl.setAttribute('data-active', cat);
+            renderTabs();
+            renderSamples(cat);
+            moveTabIndicator();
+          });
+          tabsEl.appendChild(btn);
+        });
+        if (!tabsEl.getAttribute('data-active')) tabsEl.setAttribute('data-active', categories[0]);
+        // Ensure indicator exists
+        let ind = tabsEl.querySelector('.tab-indicator');
+        if (!ind) {
+          ind = document.createElement('div');
+          ind.className = 'tab-indicator';
+          tabsEl.appendChild(ind);
+        }
+        moveTabIndicator();
+      }
+
+      function renderSamples(category) {
+        const samplesEl = byId('samples');
+        // trigger container transition
+        samplesEl.classList.remove('swap');
+        void samplesEl.offsetWidth; // reflow to restart animation
+        samplesEl.innerHTML = '';
+        const items = SAMPLES[category] || [];
+        items.forEach((s, i) => {
+          const wrap = document.createElement('div');
+          wrap.className = 'sample appear';
+          wrap.style.animationDelay = `${i * 60}ms`;
+          wrap.innerHTML = `
+            <h4>${s.title}</h4>
+            <pre>${s.content}</pre>
+            <div class="actions">
+              <button class="btn btn-ghost" data-action="insert" data-category="${category}" data-index="${i}">Use this as reference</button>
+            </div>
+          `;
+          samplesEl.appendChild(wrap);
+        });
+
+        samplesEl.querySelectorAll('button[data-action="insert"]')
+          .forEach(btn => btn.addEventListener('click', () => {
+            const cat = btn.getAttribute('data-category');
+            const idx = parseInt(btn.getAttribute('data-index'), 10);
+            const sample = (SAMPLES[cat] || [])[idx];
+            if (!sample) return;
+            const ed = byId('editor');
+            const sep = ed.value.trim() ? "\n\n" : "";
+            ed.value = ed.value + sep + `Reference — ${sample.title}:\n` + sample.content + "\n";
+            ed.focus();
+            refreshCounts(ed.value);
+            scheduleSave();
+          }));
+
+        // apply animation after content is injected
+        samplesEl.classList.add('swap');
+      }
+
+      // Move active tab indicator to the active tab
+      function moveTabIndicator() {
+        const tabsEl = byId('tabs');
+        const active = tabsEl.querySelector('.tab.active');
+        const ind = tabsEl.querySelector('.tab-indicator');
+        if (!active || !ind) return;
+        const rect = active.getBoundingClientRect();
+        const parentRect = tabsEl.getBoundingClientRect();
+        const left = rect.left - parentRect.left + 8; // padding adjust
+        const width = rect.width - 16;
+        ind.style.left = left + 'px';
+        ind.style.width = Math.max(0, width) + 'px';
+      }
+
+      // --- Init ---
+      document.addEventListener('DOMContentLoaded', () => {
+        // Counters and limit
+        byId('wordLimit').textContent = WORD_LIMIT;
+        byId('statLimit').textContent = WORD_LIMIT;
+
+        // Load tip (rotate once per visit)
+        const tipIdx = parseInt(storage.getItem(STORAGE_KEYS.tipIndex) || "-1", 10);
+        if (isNaN(tipIdx) || tipIdx < 0) {
+          storage.setItem(STORAGE_KEYS.tipIndex, "0");
+          showTip(0);
+        } else {
+          const next = (tipIdx + 1) % TIPS.length; // rotate on open
+          storage.setItem(STORAGE_KEYS.tipIndex, String(next));
+          showTip(next);
+        }
+
+        // Load editor content
+        const saved = storage.getItem(STORAGE_KEYS.editor) || '';
+        byId('editor').value = saved;
+        prevWords = countWords(saved); prevSentences = countSentences(saved);
+        byId('wordCount').textContent = prevWords;
+        byId('sentenceCount').textContent = prevSentences;
+        byId('statWords').textContent = prevWords;
+        byId('statSentences').textContent = prevSentences;
+        const ls = storage.getItem(STORAGE_KEYS.lastSaved);
+        byId('lastSaved').textContent = ls ? `Saved at ${ls}` : 'Not saved yet';
+
+        // Prompt
+        const pIdx = parseInt(storage.getItem(STORAGE_KEYS.promptIndex) || "-1", 10);
+        if (!isNaN(pIdx) && pIdx >= 0) setPromptByIndex(pIdx); else newRandomPrompt();
+
+        // Events
+        byId('editor').addEventListener('input', (e) => {
+          refreshCounts(e.target.value);
+          scheduleSave();
+        });
+        const saveBtn = byId('btnSave');
+        if (saveBtn) saveBtn.addEventListener('click', saveNow);
+        byId('btnClear').addEventListener('click', clearEditor);
+        byId('btnUsePrompt').addEventListener('click', () => {
+          const ed = byId('editor');
+          const t = byId('promptText').textContent;
+          const sep = ed.value.trim() ? "\n\n" : "";
+          ed.value = ed.value + sep + t + "\n\n";
+          ed.focus();
+          refreshCounts(ed.value);
+          scheduleSave();
+        });
+        byId('btnNewPrompt').addEventListener('click', newRandomPrompt);
+        byId('btnNextTip').addEventListener('click', nextTip);
+
+        // Samples
+        renderTabs();
+        const first = Object.keys(SAMPLES)[0];
+        renderSamples(first);
+        moveTabIndicator();
+        window.addEventListener('resize', moveTabIndicator);
+
+        // Timer: load persisted state
+        const persistedDur = parseInt(storage.getItem(STORAGE_KEYS.timerDuration) || '900', 10);
+        const persistedRem = parseInt(storage.getItem(STORAGE_KEYS.timerRemaining) || String(persistedDur), 10);
+        const persistedRun = storage.getItem(STORAGE_KEYS.timerRunning) === '1';
+        const sel = byId('timerSelect');
+        if ([300,600,900,1200].includes(persistedDur)) sel.value = String(persistedDur);
+        timerDuration = [300,600,900,1200].includes(persistedDur) ? persistedDur : 900;
+        timerRemaining = Math.min(timerDuration, Math.max(0, isNaN(persistedRem) ? timerDuration : persistedRem));
+        updateTimerUI();
+        if (persistedRun && timerRemaining > 0) startTimer();
+
+        // Timer controls
+        sel.addEventListener('change', () => {
+          timerDuration = parseInt(sel.value, 10) || 900;
+          storage.setItem(STORAGE_KEYS.timerDuration, String(timerDuration));
+          resetTimer();
+        });
+        byId('btnTimerStart').addEventListener('click', startTimer);
+        byId('btnTimerPause').addEventListener('click', pauseTimer);
+        byId('btnTimerReset').addEventListener('click', resetTimer);
+      });
+
+      // Simple confetti burst around header area
+      function launchConfetti() {
+        const container = document.querySelector('.container');
+        if (!container) return;
+        const colors = ['#34d399','#10b981','#60a5fa','#3b82f6','#f59e0b','#ef4444'];
+        for (let i = 0; i < 24; i++) {
+          const c = document.createElement('div');
+          c.className = 'confetti';
+          c.style.background = colors[Math.floor(Math.random()*colors.length)];
+          c.style.left = (window.innerWidth/2 + (Math.random()*240-120)) + 'px';
+          c.style.top = (120 + Math.random()*40) + 'px';
+          c.style.transform = `translateY(0) rotate(${Math.random()*180}deg)`;
+          c.style.animationDelay = (Math.random()*120) + 'ms';
+          container.appendChild(c);
+          setTimeout(() => c.remove(), 1200);
+        }
+      }
+
+      // Helper to animate the prompt chip
+      function animatePrompt() {
+        const el = byId('promptText');
+        el.classList.remove('pulse');
+        void el.offsetWidth;
+        el.classList.add('pulse');
+      }
+    </script>
+  </body>
+  </html>
+

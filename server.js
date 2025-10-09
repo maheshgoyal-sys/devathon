@@ -34,13 +34,10 @@ app.use(session({
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// MongoDB connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/gla_exam_system', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('✅ MongoDB connected successfully'))
-.catch(err => console.error('❌ MongoDB connection error:', err));
+// MongoDB connection (driver v4+ doesn't need deprecated options)
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/gla_exam_system')
+  .then(() => console.log('✅ MongoDB connected successfully'))
+  .catch(err => console.error('❌ MongoDB connection error:', err));
 
 // Routes
 app.use('/', authRoutes);        // Login, Register, Logout
@@ -64,8 +61,21 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+// Start server with simple port fallback if in use
+const basePort = parseInt(process.env.PORT || '3000', 10);
+function start(port) {
+  const server = app.listen(port, () => {
+    console.log(`🚀 Server running on http://localhost:${port}`);
+  });
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      const next = port + 1;
+      console.warn(`⚠️  Port ${port} in use. Trying ${next}...`);
+      start(next);
+    } else {
+      console.error('❌ Server failed to start:', err);
+      process.exit(1);
+    }
+  });
+}
+start(basePort);
