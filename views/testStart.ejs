@@ -1,21 +1,195 @@
-<h1 class="text-2xl font-bold mb-4"><%= test.title %></h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= test.title %> - Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-<form action="/dashboard/test/submit" method="POST">
-  <input type="hidden" name="testId" value="<%= test._id %>">
+        .question-animate {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
 
-  <% test.questions.forEach((q, idx) => { %>
-    <div class="mb-4 p-3 border rounded">
-      <p><%= idx + 1 %>. <%= q.question %></p>
-      <% q.options.forEach(opt => { %>
-        <label class="block">
-          <input type="radio" name="answers[<%= idx %>]" value="<%= opt %>" required>
-          <%= opt %>
-        </label>
-      <% }) %>
+        .option-hover {
+            transition: all 0.2s ease;
+        }
+
+        .option-hover:hover {
+            transform: translateX(4px);
+        }
+
+        input[type="radio"]:checked + .option-label {
+            background: linear-gradient(to right, #10b981, #14b8a6);
+            color: white;
+            border-color: #10b981;
+        }
+
+        .progress-bar {
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-emerald-50 via-white to-teal-50 min-h-screen py-8 px-4">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 mb-6 border border-gray-100">
+            <div class="flex items-start justify-between mb-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2"><%= test.title %></h1>
+                    <div class="flex items-center space-x-4 text-sm text-gray-600">
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <span><%= test.questions.length %> Questions</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                            <span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-medium"><%= test.level %></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="text-sm text-gray-500 mb-1">Progress</div>
+                    <div class="text-2xl font-bold text-emerald-600" id="progress-text">0%</div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                <div id="progress-bar" class="progress-bar h-full bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Test Form -->
+        <form action="/dashboard/test/submit" method="POST" id="test-form">
+            <input type="hidden" name="testId" value="<%= test._id %>">
+
+            <!-- Questions -->
+            <div class="space-y-6">
+                <% test.questions.forEach((q, idx) => { %>
+                    <div class="question-animate bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 p-6 border border-gray-100" style="animation-delay: <%= idx * 0.05 %>s">
+                        <!-- Question Header -->
+                        <div class="flex items-start mb-4">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center text-white font-bold mr-4 shadow-md">
+                                <%= idx + 1 %>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-lg font-semibold text-gray-900 leading-relaxed"><%= q.question %></p>
+                            </div>
+                        </div>
+
+                        <!-- Options -->
+                        <div class="ml-14 space-y-3">
+                            <% q.options.forEach((opt, optIdx) => { %>
+                                <label class="option-hover block cursor-pointer">
+                                    <div class="flex items-center">
+                                        <input
+                                            type="radio"
+                                            name="answers[<%= idx %>]"
+                                            value="<%= opt %>"
+                                            required
+                                            class="hidden peer question-radio"
+                                            data-question="<%= idx %>"
+                                        >
+                                        <div class="option-label flex-1 px-4 py-3 border-2 border-gray-200 rounded-xl peer-checked:border-emerald-500 peer-checked:bg-gradient-to-r peer-checked:from-emerald-500 peer-checked:to-teal-600 peer-checked:text-white transition-all duration-200 hover:border-emerald-300 hover:bg-emerald-50">
+                                            <div class="flex items-center">
+                                                <span class="w-6 h-6 rounded-full border-2 border-current flex items-center justify-center mr-3 flex-shrink-0">
+                                                    <span class="w-2 h-2 rounded-full bg-current opacity-0 peer-checked:opacity-100"></span>
+                                                </span>
+                                                <span class="font-medium"><%= opt %></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                            <% }); %>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mt-8 bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="text-center sm:text-left">
+                        <p class="text-sm text-gray-600 mb-1">Make sure you've answered all questions</p>
+                        <p class="text-xs text-gray-500">You cannot change your answers after submission</p>
+                    </div>
+                    <button
+                        type="submit"
+                        class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold rounded-xl hover:from-emerald-600 hover:to-teal-700 transform hover:scale-[1.02] transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center group">
+                        Submit Test
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Back Link -->
+        <div class="mt-6 text-center">
+            <a href="/dashboard/test" class="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-medium transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Back to Tests
+            </a>
+        </div>
     </div>
-  <% }) %>
 
-  <button type="submit" class="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600">
-    Submit Test
-  </button>
-</form>
+    <script>
+        // Progress tracking
+        const totalQuestions = <%= test.questions.length %>;
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const radios = document.querySelectorAll('.question-radio');
+
+        function updateProgress() {
+            const answeredQuestions = new Set();
+            radios.forEach(radio => {
+                if (radio.checked) {
+                    answeredQuestions.add(radio.dataset.question);
+                }
+            });
+
+            const progress = (answeredQuestions.size / totalQuestions) * 100;
+            progressBar.style.width = progress + '%';
+            progressText.textContent = Math.round(progress) + '%';
+        }
+
+        radios.forEach(radio => {
+            radio.addEventListener('change', updateProgress);
+        });
+
+        // Form submission confirmation
+        document.getElementById('test-form').addEventListener('submit', function(e) {
+            const answeredQuestions = new Set();
+            radios.forEach(radio => {
+                if (radio.checked) {
+                    answeredQuestions.add(radio.dataset.question);
+                }
+            });
+
+            if (answeredQuestions.size < totalQuestions) {
+                if (!confirm('You have not answered all questions. Do you want to submit anyway?')) {
+                    e.preventDefault();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
