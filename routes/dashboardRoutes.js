@@ -62,7 +62,7 @@ router.get('/dashboard/resume', isAuthenticated, (req, res) => {
   });
 });
 router.get('/dashboard/vocabulary', isAuthenticated, (req, res) => {
-  res.render('vocabulary.ejs', {
+  res.render('vocabulary', {
     title: 'English Learning Dashboard',
     
   });
