@@ -14,96 +14,37 @@
     @media (max-width: 768px) { #sidebar.mobile-hidden { transform: translateX(-100%); } }
   </style>
 </head>
-<body class="min-h-screen flex">
+<body class="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
 
-  <!-- Sidebar -->
-  <aside id="sidebar" class="bg-white w-72 p-6 border-r border-gray-100 flex flex-col fixed h-full z-50 md:relative sidebar-transition">
-    <div class="mb-8">
-      <h1 class="text-2xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">GLA English</h1>
-      <p class="text-sm text-gray-500 mt-1">Welcome, <%= userName %></p>
-    </div>
 
-    <nav class="flex-1 space-y-2 overflow-y-auto">
-      <a href="/dashboard" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-teal-50 to-cyan-50 text-teal-700 font-medium">
-        <i class="fas fa-home w-5"></i><span>Dashboard</span>
-      </a>
-      <a href="/dashboard/resume" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-purple-50 to-purple-100 text-purple-700 font-medium">
-        <i class="fas fa-file-alt w-5"></i><span>Resume & Writing Lab</span>
-      </a>
-      <a href="/dashboard/profile" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-gray-50 font-medium">
-        <i class="fas fa-user w-5"></i><span>My Profile</span>
-      </a>
-      <a href="/logout" class="flex items-center gap-3 px-4 py-3 rounded-xl text-red-600 hover:bg-red-50 font-medium">
-        <i class="fas fa-sign-out-alt"></i><span>Logout</span>
-      </a>
-    </nav>
-  </aside>
-
-  <!-- Overlay for mobile -->
-  <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden" onclick="toggleSidebar()"></div>
-
-  <!-- Main content -->
-  <div class="flex-1 md:ml-72">
-    <div class="p-6 md:p-10">
-
+  
       <!-- Header -->
-      <header class="flex items-center justify-between mb-8">
-        <div class="flex items-center gap-4">
-          <button id="menuBtn" class="md:hidden p-2 bg-white rounded-xl shadow-md hover:shadow-lg transition">
-            <i class="fas fa-bars text-gray-700 text-xl"></i>
-          </button>
-          <div>
-            <h2 class="text-3xl font-bold text-gray-800">
+      <header class="text-center mb-12">
+        <div class="inline-flex items-center justify-center gap-4 mb-4">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
+            <i class="fas fa-file-alt text-white text-2xl"></i>
+          </div>
+          <div class="text-left">
+            <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
               Resume & Writing Lab
             </h2>
-            <p class="text-sm text-gray-500 mt-1">Create, improve, and download your professional documents.</p>
+            <p class="text-lg text-gray-600 max-w-2xl">Create, improve, and download your professional documents with our comprehensive writing tools.</p>
           </div>
         </div>
-        <div class="flex items-center gap-3">
-          <a href="/dashboard/profile" class="w-11 h-11 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 flex items-center justify-center text-white font-bold hover:scale-105 transition shadow-md">
+        <div class="flex items-center justify-center gap-3 mt-6">
+          <a href="/dashboard/profile" class="w-12 h-12 rounded-full bg-gradient-to-r from-teal-500 to-cyan-500 flex items-center justify-center text-white font-bold text-lg hover:scale-105 transition-all shadow-lg">
             <%= userName.charAt(0).toUpperCase() %>
           </a>
+          <span class="text-gray-600 font-medium">Welcome back, <%= userName %>!</span>
         </div>
       </header>
 
       <!-- Cards Grid -->
-      <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-        <!-- Resume Builder -->
-        <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition">
-          <h3 class="text-xl font-bold text-teal-600 mb-3"><i class="fas fa-file-alt mr-2"></i>Resume Builder</h3>
-          <p class="text-gray-500 mb-4">Step-by-step wizard to create a professional resume.</p>
-          <a href="/dashboard/resume/builder" class="inline-block px-6 py-3 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-xl font-medium hover:scale-105 transition">
-            Start Building
-          </a>
-        </div>
 
-        <!-- Cover Letter Generator -->
-        <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition">
-          <h3 class="text-xl font-bold text-purple-600 mb-3"><i class="fas fa-envelope-open-text mr-2"></i>Cover Letter Generator</h3>
-          <p class="text-gray-500 mb-4">Automatically generate a tailored cover letter for any job.</p>
-          <a href="/dashboard/resume/coverletter" class="inline-block px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium hover:scale-105 transition">
-            Generate Cover Letter
-          </a>
-        </div>
 
-        <!-- Writing Exercises -->
-        <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition">
-          <h3 class="text-xl font-bold text-orange-600 mb-3"><i class="fas fa-pen-nib mr-2"></i>Writing Exercises</h3>
-          <p class="text-gray-500 mb-4">Practice emails, essays, and professional writing with instant feedback.</p>
-          <a href="/dashboard/test" class="inline-block px-6 py-3 bg-gradient-to-r from-orange-500 to-yellow-500 text-white rounded-xl font-medium hover:scale-105 transition">
-            Start Practicing
-          </a>
-        </div>
 
-        <!-- Templates & Tips -->
-        <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition">
-          <h3 class="text-xl font-bold text-green-600 mb-3"><i class="fas fa-lightbulb mr-2"></i>Templates & Tips</h3>
-          <p class="text-gray-500 mb-4">Access pre-made resume templates, cover letters, and pro writing tips.</p>
-          <a href="/dashboard/resume/template" class="inline-block px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl font-medium hover:scale-105 transition">
-            Explore Templates
-          </a>
-        </div>
 
       </section>
 
@@ -115,19 +56,6 @@
     </div>
   </div>
 
-  <!-- Client JS -->
-  <script>
-    const menuBtn = document.getElementById('menuBtn');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
-
-    function toggleSidebar() {
-      sidebar.classList.toggle('mobile-hidden');
-      overlay.classList.toggle('hidden');
-    }
-
-    menuBtn?.addEventListener('click', toggleSidebar);
-  </script>
 
 </body>
 </html>
