@@ -136,7 +136,9 @@ router.get('/dashboard/resume/template', isAuthenticated, (req, res) => {
 router.get('/dashboard/vocabulary', isAuthenticated, (req, res) => {
   res.render('vocabulary.ejs', { title: 'English Learning Dashboard' });
 });
-
+router.get('/dashboard/settings', isAuthenticated, (req, res) => {
+  res.render('settings.ejs', { title: 'English Learning Dashboard' });
+});
 router.get('/dashboard/placement', isAuthenticated, (req, res) => {
   res.render('placement.ejs', { title: 'English Learning Dashboard' });
 });
