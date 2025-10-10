@@ -7,7 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-gradient-to-br from-blue-50 via-white to-green-50 min-h-screen relative">
+<body class="bg-gradient-to-br from-blue-50 via-white to-green-50 min-h-screen">
   <div class="container mx-auto px-4 py-8 max-w-6xl">
 
     <!-- Header Section -->
@@ -16,23 +16,23 @@
         <!-- Avatar -->
         <div class="relative">
           <div class="w-32 h-32 rounded-full bg-gradient-to-r from-blue-500 to-green-500 flex items-center justify-center text-white text-4xl font-bold shadow-xl">
-            <%= user.name.charAt(0).toUpperCase() %>
+            <%= (user && user.name ? user.name.charAt(0) : '?').toUpperCase() %>
           </div>
           <div class="absolute -bottom-2 -right-2 bg-yellow-400 rounded-full px-3 py-1 shadow-lg">
-            <span class="text-sm font-bold text-gray-800">Lvl <%= user.level || 5 %></span>
+            <span class="text-sm font-bold text-gray-800">Lvl <%= Number.isFinite(user.level) ? user.level : '—' %></span>
           </div>
         </div>
 
         <!-- User Info -->
         <div class="flex-1 text-center md:text-left">
-          <h1 class="text-3xl font-bold text-gray-800 mb-2"><%= user.name %></h1>
-          <p class="text-gray-600 mb-3"><%= user.email %></p>
+          <h1 class="text-3xl font-bold text-gray-800 mb-2"><%= user && user.name ? user.name : '—' %></h1>
+          <p class="text-gray-600 mb-3"><%= user && user.email ? user.email : '—' %></p>
           <div class="flex flex-wrap gap-2 justify-center md:justify-start">
             <span class="px-4 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-              <%= user.proficiencyLevel || 'Intermediate' %>
+              <%= user && user.proficiencyLevel ? user.proficiencyLevel : '—' %>
             </span>
             <span class="px-4 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
-              <i class="fas fa-fire"></i> <%= user.currentStreak || 7 %> Day Streak
+              <i class="fas fa-fire"></i> <%= Number.isFinite(user && user.currentStreak) ? user.currentStreak : '—' %> Day Streak
             </span>
           </div>
         </div>
@@ -40,11 +40,11 @@
         <!-- Quick Stats -->
         <div class="grid grid-cols-2 gap-4 text-center">
           <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-xl">
-            <div class="text-2xl font-bold text-blue-600"><%= user.totalWords || 450 %></div>
+            <div class="text-2xl font-bold text-blue-600"><%= Number.isFinite(user && user.totalWords) ? user.totalWords : '—' %></div>
             <div class="text-xs text-gray-600">Words Learned</div>
           </div>
           <div class="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-xl">
-            <div class="text-2xl font-bold text-green-600"><%= user.totalLessons || 32 %></div>
+            <div class="text-2xl font-bold text-green-600"><%= Number.isFinite(user && user.totalLessons) ? user.totalLessons : '—' %></div>
             <div class="text-xs text-gray-600">Lessons Done</div>
           </div>
         </div>
@@ -67,10 +67,10 @@
             <div>
               <div class="flex justify-between text-sm mb-2">
                 <span class="text-gray-700 font-medium">Vocabulary</span>
-                <span class="text-gray-600"><%= user.vocabularyProgress || 75 %>%</span>
+                <span class="text-gray-600"><%= Number.isFinite(user && user.vocabularyProgress) ? user.vocabularyProgress : '—' %>%</span>
               </div>
               <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-full rounded-full transition-all duration-500" style="width: <%= user.vocabularyProgress || 75 %>%"></div>
+                <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-full rounded-full transition-all duration-500 w-[<%= Number.isFinite(user && user.vocabularyProgress) ? user.vocabularyProgress : 0 %>%]"></div>
               </div>
             </div>
 
@@ -78,10 +78,10 @@
             <div>
               <div class="flex justify-between text-sm mb-2">
                 <span class="text-gray-700 font-medium">Grammar</span>
-                <span class="text-gray-600"><%= user.grammarProgress || 60 %>%</span>
+                <span class="text-gray-600"><%= Number.isFinite(user && user.grammarProgress) ? user.grammarProgress : '—' %>%</span>
               </div>
               <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                <div class="bg-gradient-to-r from-green-500 to-green-600 h-full rounded-full transition-all duration-500" style="width: <%= user.grammarProgress || 60 %>%"></div>
+                <div class="bg-gradient-to-r from-green-500 to-green-600 h-full rounded-full transition-all duration-500 w-[<%= Number.isFinite(user && user.grammarProgress) ? user.grammarProgress : 0 %>%]"></div>
               </div>
             </div>
 
@@ -89,10 +89,10 @@
             <div>
               <div class="flex justify-between text-sm mb-2">
                 <span class="text-gray-700 font-medium">Reading</span>
-                <span class="text-gray-600"><%= user.readingProgress || 82 %>%</span>
+                <span class="text-gray-600"><%= Number.isFinite(user && user.readingProgress) ? user.readingProgress : '—' %>%</span>
               </div>
               <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                <div class="bg-gradient-to-r from-purple-500 to-purple-600 h-full rounded-full transition-all duration-500" style="width: <%= user.readingProgress || 82 %>%"></div>
+                <div class="bg-gradient-to-r from-purple-500 to-purple-600 h-full rounded-full transition-all duration-500 w-[<%= Number.isFinite(user && user.readingProgress) ? user.readingProgress : 0 %>%]"></div>
               </div>
             </div>
 
@@ -100,10 +100,10 @@
             <div>
               <div class="flex justify-between text-sm mb-2">
                 <span class="text-gray-700 font-medium">Listening</span>
-                <span class="text-gray-600"><%= user.listeningProgress || 55 %>%</span>
+                <span class="text-gray-600"><%= Number.isFinite(user && user.listeningProgress) ? user.listeningProgress : '—' %>%</span>
               </div>
               <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                <div class="bg-gradient-to-r from-orange-500 to-orange-600 h-full rounded-full transition-all duration-500" style="width: <%= user.listeningProgress || 55 %>%"></div>
+                <div class="bg-gradient-to-r from-orange-500 to-orange-600 h-full rounded-full transition-all duration-500 w-[<%= Number.isFinite(user && user.listeningProgress) ? user.listeningProgress : 0 %>%]"></div>
               </div>
             </div>
           </div>
@@ -116,24 +116,18 @@
             Achievements
           </h2>
 
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div class="text-center p-4 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl hover:scale-105 transition-transform">
-              <div class="text-3xl mb-2">🔥</div>
-              <div class="text-xs font-semibold text-gray-700">7 Day Streak</div>
+          <% if (user && Array.isArray(user.achievements) && user.achievements.length) { %>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <% user.achievements.forEach(function(a){ %>
+                <div class="text-center p-4 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl hover:scale-105 transition-transform">
+                  <div class="text-3xl mb-2"><%= a.emoji || '🏆' %></div>
+                  <div class="text-xs font-semibold text-gray-700"><%= a.title || 'Achievement' %></div>
+                </div>
+              <% }) %>
             </div>
-            <div class="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl hover:scale-105 transition-transform">
-              <div class="text-3xl mb-2">📚</div>
-              <div class="text-xs font-semibold text-gray-700">Book Worm</div>
-            </div>
-            <div class="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-xl hover:scale-105 transition-transform">
-              <div class="text-3xl mb-2">⭐</div>
-              <div class="text-xs font-semibold text-gray-700">500 Words</div>
-            </div>
-            <div class="text-center p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl hover:scale-105 transition-transform opacity-50">
-              <div class="text-3xl mb-2">🎯</div>
-              <div class="text-xs font-semibold text-gray-700">Perfectionist</div>
-            </div>
-          </div>
+          <% } else { %>
+            <div class="text-sm text-gray-500">No achievements yet.</div>
+          <% } %>
         </div>
 
         <!-- Recent Activity -->
@@ -144,38 +138,24 @@
           </h2>
 
           <div class="space-y-3">
-            <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-              <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                <i class="fas fa-book text-blue-600"></i>
-              </div>
-              <div class="flex-1">
-                <div class="font-medium text-gray-800">Completed "Present Perfect Tense"</div>
-                <div class="text-sm text-gray-500">2 hours ago</div>
-              </div>
-              <div class="text-green-600 font-bold">+50 XP</div>
-            </div>
-
-            <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-              <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                <i class="fas fa-spell-check text-green-600"></i>
-              </div>
-              <div class="flex-1">
-                <div class="font-medium text-gray-800">Learned 15 new words</div>
-                <div class="text-sm text-gray-500">5 hours ago</div>
-              </div>
-              <div class="text-green-600 font-bold">+30 XP</div>
-            </div>
-
-            <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-              <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                <i class="fas fa-headphones text-purple-600"></i>
-              </div>
-              <div class="flex-1">
-                <div class="font-medium text-gray-800">Finished listening exercise</div>
-                <div class="text-sm text-gray-500">Yesterday</div>
-              </div>
-              <div class="text-green-600 font-bold">+40 XP</div>
-            </div>
+            <% if (user && Array.isArray(user.recentActivity) && user.recentActivity.length) { %>
+              <% user.recentActivity.forEach(function(it){ %>
+                <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                  <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background-color: rgba(59,130,246,0.12)">
+                    <i class="fas <%= it.icon || 'fa-circle' %> text-blue-600"></i>
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-medium text-gray-800"><%= it.title || 'Activity' %></div>
+                    <div class="text-sm text-gray-500"><%= it.timeAgo || '' %></div>
+                  </div>
+                  <% if (Number.isFinite(it.xp)) { %>
+                    <div class="text-green-600 font-bold">+<%= it.xp %> XP</div>
+                  <% } %>
+                </div>
+              <% }) %>
+            <% } else { %>
+              <div class="text-sm text-gray-500">No recent activity.</div>
+            <% } %>
           </div>
         </div>
       </div>
@@ -193,19 +173,19 @@
           <div class="space-y-4">
             <div class="flex justify-between items-center">
               <span class="text-gray-600">Total Study Time</span>
-              <span class="font-bold text-gray-800"><%= user.totalStudyHours || 48 %>h</span>
+              <span class="font-bold text-gray-800"><%= Number.isFinite(user && user.totalStudyHours) ? user.totalStudyHours + 'h' : '—' %></span>
             </div>
             <div class="flex justify-between items-center">
               <span class="text-gray-600">This Week</span>
-              <span class="font-bold text-gray-800"><%= user.weeklyStudyHours || 8 %>h</span>
+              <span class="font-bold text-gray-800"><%= Number.isFinite(user && user.weeklyStudyHours) ? user.weeklyStudyHours + 'h' : '—' %></span>
             </div>
             <div class="flex justify-between items-center">
               <span class="text-gray-600">Longest Streak</span>
-              <span class="font-bold text-gray-800"><%= user.longestStreak || 14 %> days</span>
+              <span class="font-bold text-gray-800"><%= Number.isFinite(user && user.longestStreak) ? user.longestStreak + ' days' : '—' %></span>
             </div>
             <div class="flex justify-between items-center">
               <span class="text-gray-600">Accuracy Rate</span>
-              <span class="font-bold text-green-600"><%= user.accuracyRate || 87 %>%</span>
+              <span class="font-bold text-green-600"><%= Number.isFinite(user && user.accuracyRate) ? user.accuracyRate + '%' : '—' %></span>
             </div>
           </div>
         </div>
@@ -221,20 +201,20 @@
             <div>
               <div class="flex justify-between text-sm mb-2">
                 <span class="text-gray-700">Lessons Completed</span>
-                <span class="text-gray-600"><%= user.weeklyLessons || 5 %>/10</span>
+                <span class="text-gray-600"><%= Number.isFinite(user && user.weeklyLessons) ? user.weeklyLessons : '—' %>/10</span>
               </div>
               <div class="w-full bg-gray-200 rounded-full h-2">
-                <div class="bg-blue-500 h-full rounded-full" style="width: <%= ((user.weeklyLessons || 5) / 10 * 100) %>%"></div>
+                <div class="bg-blue-500 h-full rounded-full w-[<%= Number.isFinite(user && user.weeklyLessons) ? (user.weeklyLessons/10*100) : 0 %>%]"></div>
               </div>
             </div>
 
             <div>
               <div class="flex justify-between text-sm mb-2">
                 <span class="text-gray-700">Study Hours</span>
-                <span class="text-gray-600"><%= user.weeklyStudyHours || 8 %>/15h</span>
+                <span class="text-gray-600"><%= Number.isFinite(user && user.weeklyStudyHours) ? user.weeklyStudyHours : '—' %>/15h</span>
               </div>
               <div class="w-full bg-gray-200 rounded-full h-2">
-                <div class="bg-green-500 h-full rounded-full" style="width: <%= ((user.weeklyStudyHours || 8) / 15 * 100) %>%"></div>
+                <div class="bg-green-500 h-full rounded-full w-[<%= Number.isFinite(user && user.weeklyStudyHours) ? (user.weeklyStudyHours/15*100) : 0 %>%]"></div>
               </div>
             </div>
           </div>
@@ -250,19 +230,19 @@
           <div class="space-y-3 text-sm">
             <div>
               <span class="text-gray-500">User ID:</span>
-              <div class="font-mono text-gray-700 mt-1"><%= user.userId %></div>
+              <div class="font-mono text-gray-700 mt-1"><%= user && user.userId ? user.userId : '—' %></div>
             </div>
             <div>
               <span class="text-gray-500">Member Since:</span>
-              <div class="text-gray-700 mt-1"><%= user.joinedDate || 'Jan 15, 2024' %></div>
+              <div class="text-gray-700 mt-1"><%= user && user.joinedDate ? user.joinedDate : '—' %></div>
             </div>
             <div>
               <span class="text-gray-500">Native Language:</span>
-              <div class="text-gray-700 mt-1"><%= user.nativeLanguage || 'Spanish' %></div>
+              <div class="text-gray-700 mt-1"><%= user && user.nativeLanguage ? user.nativeLanguage : '—' %></div>
             </div>
             <div>
               <span class="text-gray-500">Learning Goal:</span>
-              <div class="text-gray-700 mt-1"><%= user.learningGoal || 'Career Advancement' %></div>
+              <div class="text-gray-700 mt-1"><%= user && user.learningGoal ? user.learningGoal : '—' %></div>
             </div>
           </div>
 
@@ -271,135 +251,47 @@
           </button>
         </div>
 
+        <!-- About Me -->
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+          <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+            <i class="fas fa-id-card text-teal-500"></i>
+            About Me
+          </h2>
+          <% if (user && user.about) { %>
+            <p class="text-gray-700 leading-relaxed text-sm"><%= user.about %></p>
+          <% } else { %>
+            <p class="text-gray-500 text-sm">No bio added yet.</p>
+          <% } %>
+        </div>
+
+        <!-- Skills -->
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+          <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+            <i class="fas fa-lightbulb text-yellow-500"></i>
+            Skills
+          </h2>
+          <% if (user && Array.isArray(user.skills) && user.skills.length) { %>
+            <div class="flex flex-wrap gap-2">
+              <% user.skills.forEach(function(skill){ %>
+                <span class="px-3 py-1 text-sm rounded-full bg-gray-100 text-gray-700 border border-gray-200"><%= skill %></span>
+              <% }) %>
+            </div>
+          <% } else { %>
+            <div class="text-sm text-gray-500">No skills added yet.</div>
+          <% } %>
+        </div>
+
         <!-- Action Buttons -->
         <div class="space-y-3">
           <a href="/dashboard" class="block w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 transition shadow-lg text-center font-medium">
             <i class="fas fa-home"></i> Back to Dashboard
           </a>
-          <a href="/lessons" class="block w-full px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl hover:from-green-600 hover:to-green-700 transition shadow-lg text-center font-medium">
+          <!-- <a href="/lessons" class="block w-full px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl hover:from-green-600 hover:to-green-700 transition shadow-lg text-center font-medium">
             <i class="fas fa-play"></i> Continue Learning
-          </a>
+          </a> -->
         </div>
       </div>
     </div>
   </div>
-
-  <!-- Floating Calendar Button -->
-  <div class="fixed bottom-6 right-6 z-[100]">
-    <button onclick="openCalendar()" class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 flex items-center justify-center border-4 border-white pointer-events-auto">
-      <i class="fas fa-calendar-alt text-2xl"></i>
-    </button>
-  </div>
-
-  <script>
-    function openCalendar() {
-      console.log('Calendar button clicked!');
-
-      // Remove existing calendar if open
-      const existingCalendar = document.getElementById('calendar-popup');
-      if (existingCalendar) {
-        existingCalendar.remove();
-        return;
-      }
-
-      // Create calendar popup
-      const calendarHTML = `
-        <div id="calendar-popup" class="fixed bg-white rounded-xl shadow-2xl border border-gray-200 p-4 z-[200]" style="bottom: 100px; right: 24px; width: 280px;">
-          <div class="flex justify-between items-center mb-4">
-            <h3 class="font-bold text-gray-800">Study Calendar</h3>
-            <button onclick="closeCalendar()" class="text-gray-400 hover:text-gray-600">
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
-          <div id="calendar-content">
-            ${generateCalendarHTML()}
-          </div>
-        </div>
-      `;
-
-      document.body.insertAdjacentHTML('beforeend', calendarHTML);
-    }
-
-    function closeCalendar() {
-      const calendar = document.getElementById('calendar-popup');
-      if (calendar) {
-        calendar.remove();
-      }
-    }
-
-    function generateCalendarHTML() {
-      const today = new Date();
-      const currentMonth = today.getMonth();
-      const currentYear = today.getFullYear();
-      const todayDate = today.getDate();
-
-      const monthNames = [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
-      ];
-
-      const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-      const firstDay = new Date(currentYear, currentMonth, 1).getDay();
-
-      let calendarHTML = `
-        <div class="text-center mb-4">
-          <div class="font-semibold text-gray-800">${monthNames[currentMonth]} ${currentYear}</div>
-        </div>
-        <div class="grid grid-cols-7 gap-1 mb-2">
-          <div class="text-center text-xs font-medium text-gray-500 py-2">Su</div>
-          <div class="text-center text-xs font-medium text-gray-500 py-2">Mo</div>
-          <div class="text-center text-xs font-medium text-gray-500 py-2">Tu</div>
-          <div class="text-center text-xs font-medium text-gray-500 py-2">We</div>
-          <div class="text-center text-xs font-medium text-gray-500 py-2">Th</div>
-          <div class="text-center text-xs font-medium text-gray-500 py-2">Fr</div>
-          <div class="text-center text-xs font-medium text-gray-500 py-2">Sa</div>
-        </div>
-        <div class="grid grid-cols-7 gap-1">
-      `;
-
-      // Empty cells for days before month starts
-      for (let i = 0; i < firstDay; i++) {
-        calendarHTML += `<div class="h-8"></div>`;
-      }
-
-      // Days of the month
-      for (let day = 1; day <= daysInMonth; day++) {
-        const isToday = day === todayDate;
-        const isStreakDay = day >= todayDate - 6 && day < todayDate; // Last 7 days including today
-        const isPastStreakDay = day < todayDate - 6; // Older streak days (just for demo)
-
-        let bgColor = 'hover:bg-gray-100';
-        let borderColor = '';
-
-        if (isToday) {
-          bgColor = 'bg-blue-500 text-white';
-        } else if (isStreakDay) {
-          borderColor = 'ring-2 ring-red-400';
-        } else if (isPastStreakDay && Math.random() > 0.7) { // Random older streak days for demo
-          borderColor = 'ring-2 ring-red-300 ring-opacity-50';
-        }
-
-        calendarHTML += `
-          <div class="h-8 w-8 rounded-full flex items-center justify-center text-sm font-medium ${bgColor} ${borderColor} cursor-pointer transition-all relative">
-            ${day}
-            ${isStreakDay && !isToday ? '<div class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white"></div>' : ''}
-          </div>
-        `;
-      }
-
-      calendarHTML += `</div>`;
-      return calendarHTML;
-    }
-
-    // Debug: Check if button exists
-    document.addEventListener('DOMContentLoaded', function() {
-      const calendarButton = document.querySelector('.fixed.bottom-6.right-6 button');
-      if (calendarButton) {
-        console.log('Calendar button found and loaded successfully!');
-      } else {
-        console.log('Calendar button not found!');
-      }
-    });
-  </script>
 </body>
 </html>
