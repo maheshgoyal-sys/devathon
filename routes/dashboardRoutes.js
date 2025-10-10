@@ -105,6 +105,13 @@ router.get('/dashboard/lessons/Speaking', isAuthenticated, (req, res) => {
     userName: req.session.userName || 'Student'
   });
 });
+// Also support lowercase path used in some links
+router.get('/dashboard/lessons/speaking', isAuthenticated, (req, res) => {
+  res.render('speaking', {
+    title: 'Speaking Skills',
+    userName: req.session.userName || 'Student'
+  });
+});
 router.get('/dashboard/lessons/:slug', isAuthenticated, async (req, res) => {
   try {
     const { slug } = req.params;

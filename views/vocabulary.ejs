@@ -49,7 +49,7 @@ body {
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
   <!-- Header -->
   <div class="text-center mb-16">
-    <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-6">Let's learn English sounds!</h1>
+    <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 tracking-tight">Let's learn English sounds!</h1>
     <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">Train your ear and learn to pronounce English sounds with interactive phonetics</p>
     <div class="mt-8 flex justify-center">
       <button onclick="startLearning()" class="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:from-teal-600 hover:to-cyan-600 transition-all shadow-lg hover:shadow-xl transform hover:scale-105">
@@ -58,9 +58,6 @@ body {
     </div>
   </div>
 
-  <!-- Vowels Section -->
-  <div class="mb-20">
-    <div class="border-t-2 border-gray-200 mt-12 mb-8"></div>
     <div class="flex items-center justify-center -translate-y-6 mb-12">
       <span class="bg-white px-6 py-3 text-gray-700 text-lg font-bold tracking-wide border-2 border-gray-200 rounded-full shadow-md">Vowels</span>
     </div>
@@ -323,9 +320,6 @@ body {
     </div>
   </div>
 
-<!-- Practice Section: Minimal Pairs -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-  <div class="border-t-2 border-gray-200 mt-12 mb-8"></div>
   <div class="flex items-center justify-center -translate-y-6 mb-12">
     <span class="bg-white px-6 py-3 text-gray-700 text-lg font-bold tracking-wide border-2 border-gray-200 rounded-full shadow-md">Practice · Minimal Pairs</span>
   </div>
@@ -334,15 +328,13 @@ body {
     <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 shadow-lg border border-blue-200 hover:shadow-xl transition-all">
       <div class="text-center mb-4">
         <div class="text-2xl font-bold text-blue-600 mb-2">ɪ vs iː</div>
-        <p class="text-sm text-blue-500">Short vs Long Vowel</p>
       </div>
       <div class="space-y-4">
         <div class="bg-white rounded-xl p-4 border border-blue-100">
           <div class="flex items-center justify-between">
             <div>
               <div class="text-lg font-bold text-gray-800">ship</div>
-              <div class="text-sm text-blue-600">short ɪ</div>
-            </div>
+                          </div>
             <button onclick="playWord('ship', this)" class="play-btn w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-full flex items-center justify-center hover:from-blue-600 hover:to-indigo-600 shadow-md">
               <i class="fas fa-volume-up"></i>
             </button>
@@ -352,8 +344,7 @@ body {
           <div class="flex items-center justify-between">
             <div>
               <div class="text-lg font-bold text-gray-800">sheep</div>
-              <div class="text-sm text-blue-600">long iː</div>
-            </div>
+                          </div>
             <button onclick="playWord('sheep', this)" class="play-btn w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-full flex items-center justify-center hover:from-blue-600 hover:to-indigo-600 shadow-md">
               <i class="fas fa-volume-up"></i>
             </button>
@@ -365,15 +356,13 @@ body {
     <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 shadow-lg border border-green-200 hover:shadow-xl transition-all">
       <div class="text-center mb-4">
         <div class="text-2xl font-bold text-green-600 mb-2">ɛ vs eɪ</div>
-        <p class="text-sm text-green-500">Short vs Diphthong</p>
       </div>
       <div class="space-y-4">
         <div class="bg-white rounded-xl p-4 border border-green-100">
           <div class="flex items-center justify-between">
             <div>
               <div class="text-lg font-bold text-gray-800">bed</div>
-              <div class="text-sm text-green-600">short ɛ</div>
-            </div>
+                          </div>
             <button onclick="playWord('bed', this)" class="play-btn w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-full flex items-center justify-center hover:from-green-600 hover:to-emerald-600 shadow-md">
               <i class="fas fa-volume-up"></i>
             </button>
@@ -383,8 +372,7 @@ body {
           <div class="flex items-center justify-between">
             <div>
               <div class="text-lg font-bold text-gray-800">bade</div>
-              <div class="text-sm text-green-600">long eɪ</div>
-            </div>
+                          </div>
             <button onclick="playWord('bade', this)" class="play-btn w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-full flex items-center justify-center hover:from-green-600 hover:to-emerald-600 shadow-md">
               <i class="fas fa-volume-up"></i>
             </button>
@@ -396,15 +384,13 @@ body {
     <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 shadow-lg border border-purple-200 hover:shadow-xl transition-all">
       <div class="text-center mb-4">
         <div class="text-2xl font-bold text-purple-600 mb-2">ʊ vs uː</div>
-        <p class="text-sm text-purple-500">Short vs Long Rounded</p>
       </div>
       <div class="space-y-4">
         <div class="bg-white rounded-xl p-4 border border-purple-100">
           <div class="flex items-center justify-between">
             <div>
               <div class="text-lg font-bold text-gray-800">full</div>
-              <div class="text-sm text-purple-600">short ʊ</div>
-            </div>
+                          </div>
             <button onclick="playWord('full', this)" class="play-btn w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full flex items-center justify-center hover:from-purple-600 hover:to-pink-600 shadow-md">
               <i class="fas fa-volume-up"></i>
             </button>
@@ -414,8 +400,7 @@ body {
           <div class="flex items-center justify-between">
             <div>
               <div class="text-lg font-bold text-gray-800">fool</div>
-              <div class="text-sm text-purple-600">long uː</div>
-            </div>
+                          </div>
             <button onclick="playWord('fool', this)" class="play-btn w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full flex items-center justify-center hover:from-purple-600 hover:to-pink-600 shadow-md">
               <i class="fas fa-volume-up"></i>
             </button>
@@ -426,9 +411,6 @@ body {
   </div>
 </div>
 
-  <!-- Consonants Section -->
-  <div class="mb-16">
-    <div class="border-t border-gray-300 mt-8"></div>
     <div class="flex items-center justify-center -translate-y-4">
       <span class="bg-white px-4 py-2 text-gray-600 text-sm font-semibold tracking-wide border border-gray-200 rounded-lg">Consonants</span>
   </div>
