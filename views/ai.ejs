@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title><%= title %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom right, #e0f2fe, #fef9c3);
+    }
+    .fade-in {
+      animation: fadeIn 0.4s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-6">
+
+  <div class="w-full max-w-3xl bg-white shadow-lg rounded-2xl p-8 fade-in">
+    <h1 class="text-3xl font-bold text-center text-blue-600 mb-6">
+      🎙️ AI English Speaking Feedback
+    </h1>
+
+    <div class="flex justify-between items-center mb-6">
+      <button id="newTopicBtn" 
+        class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+        🎲 New Topic
+      </button>
+
+      <p class="text-gray-700 font-semibold">
+        Hello, <%= userName %> 👋
+      </p>
+    </div>
+
+    <div id="topicBox" class="p-4 bg-blue-50 border border-blue-200 rounded-lg text-gray-800 mb-4">
+      <strong>Topic:</strong> <span id="topic"><%= topic || "Click 'New Topic' to start speaking!" %></span>
+    </div>
+
+    <form action="/dashboard/ai" method="POST" id="aiForm" class="space-y-4">
+      <input type="hidden" name="topic" id="topicInput" value="<%= topic || '' %>">
+
+      <textarea 
+        id="studentAnswer"
+        name="studentAnswer"
+        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400"
+        rows="6"
+        placeholder="🎤 Click 'Start Speaking' and your words will appear here..."><%= studentAnswer || '' %></textarea>
+
+      <div class="flex items-center space-x-3">
+        <button 
+          type="button" 
+          id="startSpeech" 
+          class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">
+          🎙️ Start Speaking
+        </button>
+        <button 
+          type="submit"
+          class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          ✨ Get AI Feedback
+        </button>
+      </div>
+    </form>
+
+    <% if (feedback) { %>
+    <div class="mt-8 p-6 bg-green-50 border border-green-200 rounded-lg fade-in">
+      <h2 class="text-xl font-bold text-green-700 mb-3">AI Feedback:</h2>
+      <pre class="whitespace-pre-wrap text-gray-800"><%= feedback %></pre>
+    </div>
+    <% } %>
+  </div>
+
+  <script>
+    // 🎯 Fetch random topic
+    document.getElementById("newTopicBtn").addEventListener("click", async () => {
+      const res = await fetch("/dashboard/api/random-topic");
+      const data = await res.json();
+      document.getElementById("topic").textContent = data.topic;
+      document.getElementById("topicInput").value = data.topic;
+    });
+
+    // 🎤 Speech to Text feature
+    const startBtn = document.getElementById("startSpeech");
+    const textarea = document.getElementById("studentAnswer");
+    let recognition;
+
+    if ("webkitSpeechRecognition" in window) {
+      recognition = new webkitSpeechRecognition();
+      recognition.lang = "en-US";
+      recognition.continuous = true;
+      recognition.interimResults = false;
+
+      startBtn.addEventListener("click", () => {
+        if (startBtn.classList.contains("recording")) {
+          recognition.stop();
+          startBtn.classList.remove("recording");
+          startBtn.textContent = "🎙️ Start Speaking";
+          startBtn.classList.replace("bg-red-500", "bg-green-500");
+        } else {
+          recognition.start();
+          startBtn.classList.add("recording");
+          startBtn.textContent = "🛑 Stop Speaking";
+          startBtn.classList.replace("bg-green-500", "bg-red-500");
+        }
+      });
+
+      recognition.onresult = (event) => {
+        let transcript = "";
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          transcript += event.results[i][0].transcript + " ";
+        }
+        textarea.value += transcript;
+      };
+
+      recognition.onerror = (event) => {
+        alert("Speech recognition error: " + event.error);
+      };
+    } else {
+      startBtn.disabled = true;
+      alert("Speech recognition not supported in this browser.");
+    }
+  </script>
+
+</body>
+</html>

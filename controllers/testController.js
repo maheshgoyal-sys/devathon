@@ -35,6 +35,8 @@ exports.startTest = async (req, res) => {
 };
 
 // Submit test
+// controllers/testController.js
+
 exports.submitTest = async (req, res) => {
   try {
     const { testId, answers } = req.body;
@@ -42,15 +44,23 @@ exports.submitTest = async (req, res) => {
     if (!test) return res.status(404).send('Test not found');
 
     // Convert answers object to array
-    const ansArray = Object.values(answers);
+    const userAnswers = Object.values(answers);
 
-    // Calculate score
-    let score = 0;
+    // Track correct and wrong questions
+    let scoreCount = 0;
+    const correctAnswers = [];
+    const wrongAnswers = [];
+
     test.questions.forEach((q, idx) => {
-      if (ansArray[idx] === q.correct) score++;
+      if (userAnswers[idx] === q.correct) {
+        scoreCount++;
+        correctAnswers.push(idx);
+      } else {
+        wrongAnswers.push(idx);
+      }
     });
 
-    const percent = Math.round((score / test.questions.length) * 100);
+    const percent = Math.round((scoreCount / test.questions.length) * 100);
 
     // Update user stats
     const user = await User.findById(req.session.userId);
@@ -59,11 +69,16 @@ exports.submitTest = async (req, res) => {
     user.avgScore = Math.round(user.totalScore / user.testsTaken);
     await user.save();
 
+    // Render test result with detailed info
     res.render('testResult', {
       title: 'Test Result',
       userName: req.session.userName,
+      test,
       score: percent,
-      total: test.questions.length
+      total: test.questions.length,
+      userAnswers,
+      correctAnswers,
+      wrongAnswers
     });
 
   } catch (err) {
@@ -71,3 +86,4 @@ exports.submitTest = async (req, res) => {
     res.status(500).send('Something went wrong');
   }
 };
+
