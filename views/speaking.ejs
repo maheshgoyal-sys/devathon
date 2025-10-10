@@ -8,14 +8,11 @@
 </head>
 <body class="bg-gradient-to-r from-teal-50 to-cyan-50 min-h-screen p-8">
 
-<a href="/dashboard" class="text-blue-600 hover:underline mb-4 inline-block">← Back to Dashboard</a>
+<a href="/dashboard" class="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-lg bg-gradient-to-r from-teal-500 to-cyan-500 text-white shadow hover:from-teal-600 hover:to-cyan-600 focus:outline-none focus:ring-2 focus:ring-teal-300 transition">Back</a>
+
+<h1 class="text-4xl font-bold text-purple-900 mb-8 text-center">Choose a speaking lesson</h1>
 
 <div class="max-w-6xl mx-auto bg-white rounded-2xl shadow p-8">
-
-  <!-- Main Title -->
-  <div class="text-center mb-12">
-    <h1 class="text-4xl font-bold text-purple-900 mb-4">Choose a speaking lesson</h1>
-  </div>
 
   <!-- Interactive Speaking Exercises -->
   <div class="mb-12">
@@ -123,14 +120,14 @@
     <div class="flex flex-col md:flex-row items-center bg-gray-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
       <div class="md:w-1/3 mb-6 md:mb-0 md:pr-6">
         <div class="relative">
-          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-               alt="A1 Speaking - Group discussion" 
+          <img src="https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/430x261_4/public/RS8133_GettyImages-746026051-hig.jpg?itok=otipARkv"
+               alt="A1 Speaking - Elementary practice"
                class="w-full h-48 object-cover rounded-xl shadow-lg">
+          <!-- A1 Badge -->
           <div class="absolute top-3 left-3">
-            <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
-              <svg class="w-4 h-4 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
-              </svg>
+            <div class="px-3 py-1 rounded-full bg-white/90 shadow ring-2 ring-purple-200 flex items-center gap-2">
+              <span class="text-xs font-bold text-purple-700">A1</span>
+              <span class="hidden sm:inline text-[10px] text-purple-600">Elementary</span>
             </div>
           </div>
         </div>
@@ -148,7 +145,7 @@
     <div class="flex flex-col md:flex-row items-center bg-gray-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
       <div class="md:w-1/3 mb-6 md:mb-0 md:pr-6">
         <div class="relative">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+          <img src="https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/430x261_4/public/RS5884_186093891-hig.jpg?itok=WNtK7YuA" 
                alt="A2 Speaking - Conversation" 
                class="w-full h-48 object-cover rounded-xl shadow-lg">
           <div class="absolute top-3 left-3">
@@ -173,7 +170,7 @@
     <div class="flex flex-col md:flex-row items-center bg-gray-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
       <div class="md:w-1/3 mb-6 md:mb-0 md:pr-6">
         <div class="relative">
-          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+          <img src="https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/430x261_4/public/RS8307_GettyImages-1084168538-hig.jpg?itok=kuqzbf_m" 
                alt="B1 Speaking - Office discussion" 
                class="w-full h-48 object-cover rounded-xl shadow-lg">
           <div class="absolute top-3 left-3">
@@ -198,7 +195,7 @@
     <div class="flex flex-col md:flex-row items-center bg-gray-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
       <div class="md:w-1/3 mb-6 md:mb-0 md:pr-6">
         <div class="relative">
-          <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+          <img src="https://learnenglish.britishcouncil.org/sites/podcasts/files/styles/430x261_4/public/RS7897_ThinkstockPhotos-507959212-hig.jpg?itok=fwoEw6cc" 
                alt="B2 Speaking - Team discussion" 
                class="w-full h-48 object-cover rounded-xl shadow-lg">
           <div class="absolute top-3 left-3">
@@ -328,18 +325,18 @@ const exerciseData = {
     exercises: [
       {
         id: 1,
-        image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        prompt: "Describe what you see in this image. Talk about the people, setting, and activities."
+        image: "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        prompt: "Describe this busy city street scene. Talk about the people, activities, buildings, and atmosphere you can see."
       },
       {
         id: 2,
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        prompt: "What's happening in this scene? Describe the emotions and interactions."
+        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        prompt: "Describe what you see in this modern office environment. Focus on the technology, people working, and professional atmosphere."
       },
       {
         id: 3,
-        image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        prompt: "Describe this workplace scene. What are the people doing and how do they look?"
+        image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        prompt: "Describe this cozy kitchen scene. Talk about the cooking activities, ingredients, and warm family atmosphere."
       },
       {
         id: 4,
@@ -555,6 +552,9 @@ function generatePictureContent(exercise) {
           <button onclick="startDescription(${exercise.exercises[0].id}, this)" class="w-full bg-purple-500 text-white px-3 py-2 rounded-lg hover:bg-purple-600 text-sm">
             🎤 Describe This
           </button>
+          <button onclick="playRecording(${exercise.exercises[0].id})" class="w-full bg-gray-500 text-white px-3 py-2 rounded-lg hover:bg-gray-600 text-sm mt-2">
+            ▶️ Playback
+          </button>
         </div>
         
         <div class="bg-white p-4 rounded-lg shadow-sm">
@@ -563,6 +563,9 @@ function generatePictureContent(exercise) {
           <p class="text-purple-700 text-sm mb-3">${exercise.exercises[1].prompt}</p>
           <button onclick="startDescription(${exercise.exercises[1].id}, this)" class="w-full bg-purple-500 text-white px-3 py-2 rounded-lg hover:bg-purple-600 text-sm">
             🎤 Describe This
+          </button>
+          <button onclick="playRecording(${exercise.exercises[1].id})" class="w-full bg-gray-500 text-white px-3 py-2 rounded-lg hover:bg-gray-600 text-sm mt-2">
+            ▶️ Playback
           </button>
         </div>
       </div>
@@ -576,6 +579,9 @@ function generatePictureContent(exercise) {
           <button onclick="startDescription(${exercise.exercises[2].id}, this)" class="w-full bg-purple-500 text-white px-3 py-2 rounded-lg hover:bg-purple-600 text-sm">
             🎤 Describe This
           </button>
+          <button onclick="playRecording(${exercise.exercises[2].id})" class="w-full bg-gray-500 text-white px-3 py-2 rounded-lg hover:bg-gray-600 text-sm mt-2">
+            ▶️ Playback
+          </button>
         </div>
         
         <div class="bg-white p-4 rounded-lg shadow-sm">
@@ -584,6 +590,9 @@ function generatePictureContent(exercise) {
           <p class="text-purple-700 text-sm mb-3">${exercise.exercises[3].prompt}</p>
           <button onclick="startDescription(${exercise.exercises[3].id}, this)" class="w-full bg-purple-500 text-white px-3 py-2 rounded-lg hover:bg-purple-600 text-sm">
             🎤 Describe This
+          </button>
+          <button onclick="playRecording(${exercise.exercises[3].id})" class="w-full bg-gray-500 text-white px-3 py-2 rounded-lg hover:bg-gray-600 text-sm mt-2">
+            ▶️ Playback
           </button>
         </div>
       </div>
@@ -623,6 +632,9 @@ function generateStoryContent(exercise) {
           <button onclick="showStoryTips(${ex.id})" class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
             💡 Story Tips
           </button>
+          <button onclick="playRecording(${ex.id})" class="w-full bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
+            ▶️ Playback
+          </button>
         </div>
       </div>
     `;
@@ -652,6 +664,9 @@ function generateConversationContent(exercise) {
           </button>
           <button onclick="showConversationTips(${ex.id})" class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
             🗣️ Conversation Tips
+          </button>
+          <button onclick="playRecording(${ex.id})" class="w-full bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
+            ▶️ Playback
           </button>
         </div>
       </div>
@@ -695,6 +710,9 @@ function generateDebateContent(exercise) {
           </button>
           <button onclick="showDebateStructure(${ex.id})" class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
             📋 Debate Structure
+          </button>
+          <button onclick="playRecording(${ex.id})" class="w-full bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
+            ▶️ Playback
           </button>
         </div>
       </div>
@@ -765,21 +783,45 @@ function showMessage(message, type) {
   }, 3000);
 }
 
+// Helper: find exercise by ID (pronunciation set)
+function findExerciseById(exerciseId) {
+  try {
+    const list = (exerciseData && exerciseData.pronunciation && exerciseData.pronunciation.exercises) || [];
+    return list.find(x => String(x.id) === String(exerciseId)) || null;
+  } catch {
+    return null;
+  }
+}
+
 // Exercise action functions
 async function playAudio(exerciseId) {
   try {
     // For demo purposes, we'll use text-to-speech
     const exercise = findExerciseById(exerciseId);
     if (exercise && exercise.text) {
-      const utterance = new SpeechSynthesisUtterance(exercise.text);
-      utterance.rate = 0.8;
-      utterance.pitch = 1;
-      speechSynthesis.speak(utterance);
+      if ('speechSynthesis' in window && typeof SpeechSynthesisUtterance !== 'undefined') {
+        const utterance = new SpeechSynthesisUtterance(exercise.text);
+        utterance.rate = 0.9;
+        utterance.pitch = 1;
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utterance);
+      } else {
+        // Fallback: simple audio beep to avoid errors
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = 'sine'; o.frequency.setValueAtTime(880, ctx.currentTime);
+        g.gain.setValueAtTime(0.0001, ctx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.2, ctx.currentTime + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.25);
+        o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime + 0.26);
+      }
       showMessage('Playing audio...', 'success');
     } else {
       showMessage('Audio not available for this exercise', 'error');
     }
   } catch (error) {
+    console.error('playAudio error:', error);
     showMessage('Error playing audio', 'error');
   }
 }
