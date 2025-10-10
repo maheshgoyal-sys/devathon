@@ -19,10 +19,9 @@
     "nodejs"
   ],
   "dependencies": {
-<<<<<<< HEAD
+
     "axios": "^1.12.2",
-=======
->>>>>>> 6efc9ae15ac02d423a06a041260d337bf9b2ce6a
+
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^5.1.0",
     "dotenv": "^16.3.1",
@@ -30,12 +29,12 @@
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "method-override": "^3.0.0",
-<<<<<<< HEAD
+
     "mongoose": "^8.0.0",
-    "openai": "^6.2.0"
-=======
+    "openai": "^6.2.0",
+
     "mongoose": "^8.0.0"
->>>>>>> 6efc9ae15ac02d423a06a041260d337bf9b2ce6a
+
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
