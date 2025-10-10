@@ -8,10 +8,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #ecfdf5 0%, #e0f2fe 100%); }
+    body { font-family: 'Inter', sans-serif; }
     .lesson-card:hover { transform: scale(1.02); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
-    .sidebar-transition { transition: transform 0.3s ease-in-out; }
-    @media (max-width: 768px) { #sidebar.mobile-hidden { transform: translateX(-100%); } }
   </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
@@ -42,9 +40,81 @@
       <!-- Cards Grid -->
       <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
+        <!-- Resume Builder -->
+        <div class="group bg-gradient-to-br from-white to-slate-50 p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-teal-200">
+          <div class="flex items-center mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-r from-teal-500 to-cyan-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+              <i class="fas fa-file-alt text-white text-xl"></i>
+            </div>
+            <div class="ml-4">
+              <h3 class="text-2xl font-bold text-gray-800 group-hover:text-teal-600 transition-colors">Resume Builder</h3>
+              <div class="flex items-center text-sm text-gray-500 mt-1">
+                <i class="fas fa-clock mr-1"></i><span>5-10 min setup</span>
+              </div>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-6 leading-relaxed">Step-by-step wizard to create a professional resume with modern templates and expert guidance.</p>
+          <a href="/dashboard/resume/builder" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg hover:shadow-xl group-hover:shadow-teal-200">
+            <i class="fas fa-rocket mr-2"></i>Start Building
+          </a>
+        </div>
 
+        <!-- Cover Letter Generator -->
+        <div class="group bg-gradient-to-br from-white to-slate-50 p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-purple-200">
+          <div class="flex items-center mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+              <i class="fas fa-envelope-open-text text-white text-xl"></i>
+            </div>
+            <div class="ml-4">
+              <h3 class="text-2xl font-bold text-gray-800 group-hover:text-purple-600 transition-colors">Cover Letter Generator</h3>
+              <div class="flex items-center text-sm text-gray-500 mt-1">
+                <i class="fas fa-magic mr-1"></i><span>AI-powered</span>
+              </div>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-6 leading-relaxed">Automatically generate a tailored cover letter for any job using advanced AI technology.</p>
+          <a href="/dashboard/resume/coverletter" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg hover:shadow-xl group-hover:shadow-purple-200">
+            <i class="fas fa-wand-magic-sparkles mr-2"></i>Generate Cover Letter
+          </a>
+        </div>
 
+        <!-- Writing Exercises -->
+        <div class="group bg-gradient-to-br from-white to-slate-50 p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-orange-200">
+          <div class="flex items-center mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-r from-orange-500 to-yellow-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+              <i class="fas fa-pen-nib text-white text-xl"></i>
+            </div>
+            <div class="ml-4">
+              <h3 class="text-2xl font-bold text-gray-800 group-hover:text-orange-600 transition-colors">Writing Exercises</h3>
+              <div class="flex items-center text-sm text-gray-500 mt-1">
+                <i class="fas fa-brain mr-1"></i><span>Interactive learning</span>
+              </div>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-6 leading-relaxed">Practice emails, essays, and professional writing with instant AI-powered feedback and suggestions.</p>
+          <a href="/dashboard/test" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-orange-500 to-yellow-500 text-white rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg hover:shadow-xl group-hover:shadow-orange-200">
+            <i class="fas fa-play mr-2"></i>Start Practicing
+          </a>
+        </div>
 
+        <!-- Templates & Tips -->
+        <div class="group bg-gradient-to-br from-white to-slate-50 p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-green-200">
+          <div class="flex items-center mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+              <i class="fas fa-lightbulb text-white text-xl"></i>
+            </div>
+            <div class="ml-4">
+              <h3 class="text-2xl font-bold text-gray-800 group-hover:text-green-600 transition-colors">Templates & Tips</h3>
+              <div class="flex items-center text-sm text-gray-500 mt-1">
+                <i class="fas fa-download mr-1"></i><span>Free resources</span>
+              </div>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-6 leading-relaxed">Access pre-made resume templates, cover letters, and professional writing tips from industry experts.</p>
+          <a href="/dashboard/resume/template" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg hover:shadow-xl group-hover:shadow-green-200">
+            <i class="fas fa-folder-open mr-2"></i>Explore Templates
+          </a>
+        </div>
 
       </section>
 
