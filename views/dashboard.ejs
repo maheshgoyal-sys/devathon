@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title><%= title %> - GLA English</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -113,9 +112,9 @@
         <i class="fas fa-cog w-5"></i>
         <span>Settings</span>
       </a>
-       <!-- <a href="/dashboard/ai" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-gray-50 font-medium transition">
+       <a href="/dashboard/ai" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-gray-50 font-medium transition">
         <i class="fas fa-cog w-5"></i>
-        <span>Ai Feedback System</span> -->
+        <span>Ai Feedback System</span>
       </a>
     </nav>
 
@@ -127,8 +126,7 @@
     </div>
   </aside>
 
-  <!-- Overlay for mobile -->
-  <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden" onclick="toggleSidebar()"></div>
+  
 
   <!-- Main content -->
   <div class="flex-1 md:ml-0">
@@ -136,10 +134,7 @@
       <!-- Top bar -->
       <header class="flex items-center justify-between mb-8">
         <div class="flex items-center gap-4">
-          <!-- Mobile menu toggle -->
-          <button id="menuBtn" class="md:hidden p-2 bg-white rounded-xl shadow-md hover:shadow-lg transition">
-            <i class="fas fa-bars text-gray-700 text-xl"></i>
-          </button>
+          
 
           <div>
             <h2 class="text-3xl font-bold text-gray-800">
@@ -160,164 +155,76 @@
         </div>
       </header>
 
-      <!-- Stats Overview Cards -->
-      <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div class="stat-card bg-white p-6 rounded-2xl shadow-md">
-          <div class="flex items-center justify-between mb-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center">
-              <i class="fas fa-book text-blue-600 text-xl"></i>
+      <!-- Hero Banner -->
+      <section class="mb-8">
+        <div class="relative overflow-hidden rounded-2xl shadow-md">
+          <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1400&auto=format&fit=crop" alt="Study banner" class="w-full h-56 object-cover">
+          <div class="absolute inset-0 bg-gradient-to-r from-black/50 to-black/20"></div>
+          <div class="absolute inset-0 p-6 flex flex-col justify-end">
+            <h3 class="text-white text-2xl font-bold">Level up your English today</h3>
+            <p class="text-white/90 text-sm mt-1">Quick practice, smart tips, and bite‑sized lessons to keep you moving.</p>
+            <div class="mt-4 flex gap-3">
+              <a href="/dashboard/lessons/Grammar" class="px-4 py-2 rounded-xl bg-white text-gray-900 text-sm font-semibold hover:bg-gray-100">Start a lesson</a>
+              <a href="/dashboard/test" class="px-4 py-2 rounded-xl bg-teal-500 text-white text-sm font-semibold hover:bg-teal-600">Take a quick test</a>
             </div>
-            <span class="text-2xl font-bold text-gray-800" id="completedLessons">0</span>
-          </div>
-          <p class="text-sm text-gray-500">Lessons Completed</p>
-          <div class="mt-2 text-xs text-green-600 font-medium">
-            <i class="fas fa-arrow-up"></i> <span id="lessonIncrease">+2</span> this week
-          </div>
-        </div>
-
-        <div class="stat-card bg-white p-6 rounded-2xl shadow-md">
-          <div class="flex items-center justify-between mb-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-green-100 to-green-200 rounded-xl flex items-center justify-center">
-              <i class="fas fa-language text-green-600 text-xl"></i>
-            </div>
-            <span class="text-2xl font-bold text-gray-800" id="vocabCount">0</span>
-          </div>
-          <p class="text-sm text-gray-500">Words Mastered</p>
-          <div class="mt-2 text-xs text-green-600 font-medium">
-            <i class="fas fa-arrow-up"></i> <span id="vocabIncrease">+15</span> new words
-          </div>
-        </div>
-
-        <div class="stat-card bg-white p-6 rounded-2xl shadow-md">
-          <div class="flex items-center justify-between mb-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl flex items-center justify-center">
-              <i class="fas fa-fire text-orange-600 text-xl"></i>
-            </div>
-            <span class="text-2xl font-bold text-gray-800" id="streakCount">0</span>
-          </div>
-          <p class="text-sm text-gray-500">Day Streak</p>
-          <div class="mt-2 text-xs text-gray-600 font-medium">
-            Keep it going!
-          </div>
-        </div>
-
-        <div class="stat-card bg-white p-6 rounded-2xl shadow-md">
-          <div class="flex items-center justify-between mb-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl flex items-center justify-center">
-              <i class="fas fa-clipboard-check text-purple-600 text-xl"></i>
-            </div>
-            <span class="text-2xl font-bold text-gray-800" id="testsCount">0</span>
-          </div>
-          <p class="text-sm text-gray-500">Tests Taken</p>
-          <div class="mt-2 text-xs text-gray-600 font-medium">
-            Avg score: <span id="avgScore">0</span>%
           </div>
         </div>
       </section>
 
-      <!-- Main Content Grid -->
+      <!-- Spotlight & Tips (replaces static stats) -->
       <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-
-        <!-- Progress Chart Card -->
         <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-md">
-          <div class="flex justify-between items-center mb-6">
+          <div class="flex items-center justify-between mb-4">
             <h3 class="text-xl font-bold text-gray-800 flex items-center gap-2">
-              <i class="fas fa-chart-line text-teal-600"></i>
-              Learning Progress
+              <i class="fas fa-compass text-teal-600"></i>
+              Recommended for you
             </h3>
-            <div class="text-xs text-gray-500">Updated: <span id="lastUpdated">--</span></div>
           </div>
-
-          <div class="grid md:grid-cols-2 gap-6">
-            <div>
-              <canvas id="progressChart" class="max-h-64"></canvas>
-            </div>
-
-            <div class="space-y-4">
+          <div id="recommendations" class="grid sm:grid-cols-2 gap-4">
+            <a href="/dashboard/lessons/Grammar" class="lesson-card flex items-center gap-4 p-4 rounded-xl bg-white border border-gray-200 hover:border-teal-400">
+              <img src="https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?q=80&w=600&auto=format&fit=crop" alt="Grammar" class="w-20 h-20 object-cover rounded-lg">
               <div>
-                <div class="flex justify-between text-sm mb-2">
-                  <span class="text-gray-700 font-medium">Grammar</span>
-                  <span class="text-gray-600" id="grammarPercent">0%</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                  <div id="grammarBar" class="h-3 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-500" style="width: 0%"></div>
-                </div>
+                <div class="font-semibold text-gray-800">Revise a quick Grammar concept</div>
+                <div class="text-xs text-gray-500 mt-1">Tenses, articles, prepositions</div>
               </div>
-
+            </a>
+            <a href="/dashboard/lessons/speaking" class="lesson-card flex items-center gap-4 p-4 rounded-xl bg-white border border-gray-200 hover:border-teal-400">
+              <img src="https://images.unsplash.com/photo-1523245317828-629a697b4013?q=80&w=600&auto=format&fit=crop" alt="Speaking" class="w-20 h-20 object-cover rounded-lg">
               <div>
-                <div class="flex justify-between text-sm mb-2">
-                  <span class="text-gray-700 font-medium">Vocabulary</span>
-                  <span class="text-gray-600" id="vocabPercent">0%</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                  <div id="vocabBar" class="h-3 rounded-full bg-gradient-to-r from-green-500 to-green-600 transition-all duration-500" style="width: 0%"></div>
-                </div>
+                <div class="font-semibold text-gray-800">Do a 2‑minute speaking drill</div>
+                <div class="text-xs text-gray-500 mt-1">Pronunciation and fluency</div>
               </div>
-
+            </a>
+            <a href="/Vocabulary" class="lesson-card flex items-center gap-4 p-4 rounded-xl bg-white border border-gray-200 hover:border-teal-400">
+              <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=600&auto=format&fit=crop" alt="Vocabulary" class="w-20 h-20 object-cover rounded-lg">
               <div>
-                <div class="flex justify-between text-sm mb-2">
-                  <span class="text-gray-700 font-medium">Speaking</span>
-                  <span class="text-gray-600" id="speakingPercent">0%</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                  <div id="speakingBar" class="h-3 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 transition-all duration-500" style="width: 0%"></div>
-                </div>
+                <div class="font-semibold text-gray-800">Learn 5 new words today</div>
+                <div class="text-xs text-gray-500 mt-1">Synonyms, usage, examples</div>
               </div>
-
+            </a>
+            <a href="/dashboard/test" class="lesson-card flex items-center gap-4 p-4 rounded-xl bg-white border border-gray-200 hover:border-teal-400">
+              <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=600&auto=format&fit=crop" alt="Test" class="w-20 h-20 object-cover rounded-lg">
               <div>
-                <div class="flex justify-between text-sm mb-2">
-                  <span class="text-gray-700 font-medium">Writing</span>
-                  <span class="text-gray-600" id="writingPercent">0%</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                  <div id="writingBar" class="h-3 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 transition-all duration-500" style="width: 0%"></div>
-                </div>
+                <div class="font-semibold text-gray-800">Try a short practice test</div>
+                <div class="text-xs text-gray-500 mt-1">10 questions • 5 minutes</div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
 
-        <!-- Quick Actions Card -->
         <div class="bg-white p-6 rounded-2xl shadow-md">
           <h4 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <i class="fas fa-bolt text-yellow-500"></i>
-            Quick Actions
+            <i class="fas fa-lightbulb text-yellow-500"></i>
+            Daily tip
           </h4>
-          <div class="space-y-3">
-            <a href="/dashboard/lessons/Grammar" class="lesson-card block px-5 py-4 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 text-white text-center font-medium shadow-md hover:shadow-lg">
-              <i class="fas fa-play-circle mr-2"></i>Continue Lessons
-            </a>
-
-            <a href="/dashboard/lessons/speaking" class="lesson-card block px-5 py-4 rounded-xl border-2 border-gray-200 text-gray-700 text-center font-medium hover:border-teal-500 hover:bg-teal-50">
-              <i class="fas fa-microphone mr-2"></i>Speaking Practice
-            </a>
-
-            <a href="/Vocabulary" class="lesson-card block px-5 py-4 rounded-xl border-2 border-gray-200 text-gray-700 text-center font-medium hover:border-green-500 hover:bg-green-50">
-              <i class="fas fa-book-reader mr-2"></i>Daily Vocabulary
-            </a>
-
-            <a href="/dashboard/test" class="lesson-card block px-5 py-4 rounded-xl border-2 border-gray-200 text-gray-700 text-center font-medium hover:border-purple-500 hover:bg-purple-50">
-              <i class="fas fa-clipboard-list mr-2"></i>Take a Test
-            </a>
-          </div>
-
-          <!-- Study Streak Widget -->
-          <div class="mt-6 p-4 bg-gradient-to-br from-orange-50 to-yellow-50 rounded-xl border border-orange-100">
-            <div class="flex items-center gap-3 mb-2">
-              <i class="fas fa-fire text-orange-500 text-2xl"></i>
-              <div>
-                <div class="text-2xl font-bold text-gray-800" id="streakDisplay">0</div>
-                <div class="text-xs text-gray-600">Day Streak</div>
-              </div>
-            </div>
-            <p class="text-xs text-gray-600 mt-2">Complete a lesson today to keep your streak going!</p>
+          <div id="dailyTip" class="text-sm text-gray-700">
+            Loading tip...
           </div>
         </div>
       </section>
 
-      <!-- Recent Activity & Achievements -->
-      <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-
+      <!-- Recent Activity & Achievements (moved here, replacing Quick Actions) -->
+      <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <!-- Recent Activity -->
         <div class="bg-white p-6 rounded-2xl shadow-md">
           <h4 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
@@ -368,6 +275,8 @@
           </div>
         </div>
       </section>
+
+      
     </div>
   </div>
 
@@ -429,79 +338,30 @@
       showNotification('Daily Reminder', 'Complete one lesson today to maintain your streak!');
     });
 
-    // Fetch and display stats
-    let progressChart = null;
-
+    // Daily tip + recent activity loader (no static numbers)
     async function fetchStats() {
       try {
         const res = await fetch('/api/stats');
         if (!res.ok) throw new Error('Failed to fetch stats');
         const data = await res.json();
-
-        // Update stat cards
-        document.getElementById('completedLessons').textContent = data.completedLessons || 0;
-        document.getElementById('vocabCount').textContent = data.vocabLearned || 0;
-        document.getElementById('streakCount').textContent = data.currentStreak || 0;
-        document.getElementById('streakDisplay').textContent = data.currentStreak || 0;
-        document.getElementById('testsCount').textContent = data.testsTaken || 0;
-        document.getElementById('avgScore').textContent = data.avgScore || 0;
-
-        // Update skill progress bars
-        const skills = {
-          grammar: data.grammarProgress || 0,
-          vocab: data.vocabProgress || 0,
-          speaking: data.speakingProgress || 0,
-          writing: data.writingProgress || 0
-        };
-
-        Object.entries(skills).forEach(([skill, value]) => {
-          document.getElementById(`${skill}Bar`).style.width = `${value}%`;
-          document.getElementById(`${skill}Percent`).textContent = `${value}%`;
-        });
-
-        // Update timestamp
-        document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString();
-
-        // Render doughnut chart
-        renderChart(data.completedLessons || 0, Math.max(0, (data.totalLessons || 10) - (data.completedLessons || 0)));
+        // Daily tip
+        const tips = data.tips || [
+          'Read aloud for 5 minutes to improve pronunciation.',
+          'Learn new words in context, not in isolation.',
+          'Record yourself speaking and listen back critically.',
+          'Write a short paragraph daily on any topic.'
+        ];
+        const tip = tips[Math.floor(Math.random() * tips.length)];
+        const tipEl = document.getElementById('dailyTip');
+        if (tipEl) tipEl.textContent = tip;
 
         // Update recent activity
         updateRecentActivity(data.recentActivity || []);
-
-        // Show notification for low progress
-        const pct = data.totalLessons ? (data.completedLessons / data.totalLessons) * 100 : 0;
-        if (pct < 10 && pct > 0) {
-          showNotification('Keep Learning!', 'Start a lesson today to boost your progress.');
-        }
       } catch (err) {
         console.error('Error fetching stats:', err);
-        showNotification('Error', 'Could not load stats. Please refresh the page.');
+        const tipEl = document.getElementById('dailyTip');
+        if (tipEl) tipEl.textContent = 'Tip: Set a 10‑minute timer and practice one skill today.';
       }
-    }
-
-    function renderChart(completed, remaining) {
-      const ctx = document.getElementById('progressChart').getContext('2d');
-      const data = {
-        labels: ['Completed', 'Remaining'],
-        datasets: [{
-          data: [completed, Math.max(0, remaining)],
-          backgroundColor: ['rgba(20,184,166,0.9)', 'rgba(226,232,240,0.8)'],
-          borderWidth: 0
-        }]
-      };
-
-      if (progressChart) progressChart.destroy();
-
-      progressChart = new Chart(ctx, {
-        type: 'doughnut',
-        data,
-        options: {
-          cutout: '70%',
-          plugins: {
-            legend: { position: 'bottom', labels: { padding: 15, font: { size: 12 } } }
-          }
-        }
-      });
     }
 
     function updateRecentActivity(activities) {
@@ -539,7 +399,7 @@
               <div class="font-medium text-gray-800 text-sm truncate">${activity.title}</div>
               <div class="text-xs text-gray-500">${activity.timeAgo}</div>
             </div>
-            ${activity.xp ? `<div class="text-green-600 font-bold text-sm">+${activity.xp} XP</div>` : ''}
+            ${activity.xp ? <div class="text-green-600 font-bold text-sm">+${activity.xp} XP</div> : ''}
           </li>
         `;
       });
