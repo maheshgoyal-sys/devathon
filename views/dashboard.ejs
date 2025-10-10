@@ -219,7 +219,7 @@
       <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
 
         <!-- Progress Chart Card -->
-        <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-md">
+        <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300">
           <div class="flex justify-between items-center mb-6">
             <h3 class="text-xl font-bold text-gray-800 flex items-center gap-2">
               <i class="fas fa-chart-line text-teal-600"></i>
@@ -229,8 +229,14 @@
           </div>
 
           <div class="grid md:grid-cols-2 gap-6">
-            <div>
-              <canvas id="progressChart" class="max-h-64"></canvas>
+            <div class="relative">
+              <canvas id="progressChart" class="max-h-64 w-full cursor-pointer hover:scale-105 transition-transform duration-300"></canvas>
+              <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div class="text-center">
+                  <div id="chartValue" class="text-2xl font-bold text-gray-800 hidden">0%</div>
+                  <div class="text-xs text-gray-500 hidden" id="chartLabel">Progress</div>
+                </div>
+              </div>
             </div>
 
             <div class="space-y-4">
@@ -645,24 +651,150 @@
 
     function renderChart(completed, remaining) {
       const ctx = document.getElementById('progressChart').getContext('2d');
+      const total = completed + remaining;
+
       const data = {
         labels: ['Completed', 'Remaining'],
         datasets: [{
           data: [completed, Math.max(0, remaining)],
-          backgroundColor: ['rgba(20,184,166,0.9)', 'rgba(226,232,240,0.8)'],
-          borderWidth: 0
+          backgroundColor: [
+            'rgba(34,197,94,0.9)',
+            'rgba(156,163,175,0.8)'
+          ],
+          hoverBackgroundColor: [
+            'rgba(34,197,94,1)',
+            'rgba(156,163,175,1)'
+          ]
         }]
       };
 
       if (progressChart) progressChart.destroy();
-
       progressChart = new Chart(ctx, {
         type: 'doughnut',
         data,
         options: {
-          cutout: '70%',
+          cutout: '65%',
+          responsive: true,
+          maintainAspectRatio: false,
           plugins: {
-            legend: { position: 'bottom', labels: { padding: 15, font: { size: 12 } } }
+            legend: {
+              position: 'bottom',
+              labels: {
+                padding: 15,
+                font: { size: 12 },
+                usePointStyle: true,
+                generateLabels: function(chart) {
+                  const data = chart.data;
+                  if (data.labels.length && data.datasets.length) {
+                    return data.labels.map((label, i) => {
+                      const value = data.datasets[0].data[i];
+                      const percentage = total > 0 ? Math.round((value / total) * 100) : 0;
+                      return {
+                        text: `${label}: ${value} (${percentage}%)`,
+                        fillStyle: data.datasets[0].backgroundColor[i],
+                        strokeStyle: data.datasets[0].backgroundColor[i],
+                        lineWidth: 0,
+                        hidden: false,
+                        index: i
+                      };
+                    });
+                  }
+                  return [];
+                }
+              }
+            },
+            tooltip: {
+              enabled: true,
+              backgroundColor: 'rgba(0, 0, 0, 0.8)',
+              titleColor: '#fff',
+              bodyColor: '#fff',
+              borderColor: 'rgba(34, 197, 94, 1)',
+              borderWidth: 2,
+              cornerRadius: 8,
+              displayColors: true,
+              callbacks: {
+                label: function(context) {
+                  const label = context.label || '';
+                  const value = context.parsed;
+                  const percentage = total > 0 ? Math.round((value / total) * 100) : 0;
+                  return `${label}: ${value} lessons (${percentage}%)`;
+                },
+                afterLabel: function(context) {
+                  if (context.label === 'Completed') {
+                    return 'Great progress! Keep it up! 🎉';
+                  } else if (context.label === 'Remaining') {
+                    return 'Complete more lessons to progress! 📚';
+                  }
+                  return '';
+                }
+              }
+            },
+            centerText: {
+              afterDatasetDraw: function(chart, args, options) {
+                const { ctx, chartArea: { left, right, top, bottom, width, height } } = chart;
+                ctx.save();
+
+                const centerX = (left + right) / 2;
+                const centerY = (top + bottom) / 2;
+                const completedText = `${Math.round((completed / total) * 100)}%`;
+                const totalText = `of ${total}`;
+
+                // Draw percentage in center
+                ctx.font = `bold 28px Inter, sans-serif`;
+                ctx.fillStyle = '#22c55e';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(completedText, centerX, centerY - 8);
+
+                // Draw "Complete" text below
+                ctx.font = `14px Inter, sans-serif`;
+                ctx.fillStyle = '#6b7280';
+                ctx.fillText('Complete', centerX, centerY + 12);
+
+                ctx.restore();
+              }
+            }
+          },
+          onHover: function(event, elements) {
+            if (elements.length > 0) {
+              const segment = elements[0];
+
+              // Add visual feedback on hover
+              event.native.target.style.cursor = 'pointer';
+
+              // Show percentage on hover
+              const value = data.datasets[0].data[segment.index];
+              const percentage = total > 0 ? Math.round((value / total) * 100) : 0;
+              document.getElementById('chartValue').textContent = `${percentage}%`;
+              document.getElementById('chartLabel').textContent = data.labels[segment.index];
+              document.getElementById('chartValue').classList.remove('hidden');
+              document.getElementById('chartLabel').classList.remove('hidden');
+            }
+          },
+          onLeave: function(event, elements) {
+            // Hide center text when not hovering
+            document.getElementById('chartValue').classList.add('hidden');
+            document.getElementById('chartLabel').classList.add('hidden');
+          },
+          onClick: function(event, elements) {
+            if (elements.length > 0) {
+              const segment = elements[0];
+              const label = data.labels[segment.index];
+              const value = data.datasets[0].data[segment.index];
+
+              // Show detailed information
+              if (label === 'Completed') {
+                showNotification('Progress Update', `You've completed ${value} lessons! ${total - value} more to go!`);
+              } else if (label === 'Remaining') {
+                showNotification('Keep Learning!', `You have ${value} lessons remaining. Start learning now!`);
+              }
+            }
+          },
+          animation: {
+            animateScale: true,
+            animateRotate: true,
+            duration: 1500,
+            easing: 'easeInOutQuart'
           }
         }
       });
