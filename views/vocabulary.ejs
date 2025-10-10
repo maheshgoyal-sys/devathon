@@ -45,288 +45,292 @@ body {
 @keyframes popfade { from { opacity: 0; transform: translateY(-4px);} to { opacity: 1; transform: translateY(0);} }
 </style>
 </head>
-<body class="min-h-screen">
-<div class="max-w-6xl mx-auto px-4 py-10">
+<body class="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
   <!-- Header -->
-  <div class="text-center mb-12">
-    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Let's learn English sounds!</h1>
-    <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">Train your ear and learn to pronounce English sounds</p>
-    
+  <div class="text-center mb-16">
+    <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-6">Let's learn English sounds!</h1>
+    <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">Train your ear and learn to pronounce English sounds with interactive phonetics</p>
+    <div class="mt-8 flex justify-center">
+      <button onclick="startLearning()" class="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:from-teal-600 hover:to-cyan-600 transition-all shadow-lg hover:shadow-xl transform hover:scale-105">
+        🎯 Start Learning
+      </button>
+    </div>
   </div>
 
   <!-- Vowels Section -->
-  <div class="mb-16">
-    <div class="border-t border-gray-300 mt-8"></div>
-    <div class="flex items-center justify-center -translate-y-4">
-      <span class="bg-white px-4 py-2 text-gray-600 text-sm font-semibold tracking-wide border border-gray-200 rounded-lg">Vowels</span>
+  <div class="mb-20">
+    <div class="border-t-2 border-gray-200 mt-12 mb-8"></div>
+    <div class="flex items-center justify-center -translate-y-6 mb-12">
+      <span class="bg-white px-6 py-3 text-gray-700 text-lg font-bold tracking-wide border-2 border-gray-200 rounded-full shadow-md">Vowels</span>
     </div>
     
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mt-8">
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('ɑ', 'hot')" data-tip="Open back unrounded vowel. Tongue low and back; lips relaxed.">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300 transition-all duration-300" onclick="playSound('ɑ', 'hot')" data-tip="Open back unrounded vowel. Tongue low and back; lips relaxed.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
-          <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'ɑ')" aria-label="How to pronounce">
-            <i class="fas fa-circle-info"></i>
+          <button type="button" class="text-gray-400 hover:text-teal-600 transition-colors" onclick="event.stopPropagation(); showTip(this, 'ɑ')" aria-label="How to pronounce">
+            <i class="fas fa-circle-info text-lg"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">ɑ</div>
-        <div class="text-gray-600 text-sm mb-3">hot</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">ɑ</div>
+        <div class="text-gray-700 text-base font-medium mb-4">hot</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600 shadow-lg hover:shadow-xl transition-all duration-200">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="progress-fill h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="progress-fill h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full transition-all duration-1000" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('æ', 'cat')" data-tip="Near-open front unrounded vowel. Tongue low & front; lips spread.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300 transition-all duration-300" onclick="playSound('æ', 'cat')" data-tip="Near-open front unrounded vowel. Tongue low & front; lips spread.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
-          <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'æ')" aria-label="How to pronounce">
-            <i class="fas fa-circle-info"></i>
+          <button type="button" class="text-gray-400 hover:text-teal-600 transition-colors" onclick="event.stopPropagation(); showTip(this, 'æ')" aria-label="How to pronounce">
+            <i class="fas fa-circle-info text-lg"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">æ</div>
-        <div class="text-gray-600 text-sm mb-3">cat</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">æ</div>
+        <div class="text-gray-700 text-base font-medium mb-4">cat</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600 shadow-lg hover:shadow-xl transition-all duration-200">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="progress-fill h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="progress-fill h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full transition-all duration-1000" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('ʌ', 'but')" data-tip="Mid open central vowel. Tongue central; lips relaxed.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300 transition-all duration-300" onclick="playSound('ʌ', 'but')" data-tip="Mid open central vowel. Tongue central; lips relaxed.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
-          <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'ʌ')" aria-label="How to pronounce">
-            <i class="fas fa-circle-info"></i>
+          <button type="button" class="text-gray-400 hover:text-teal-600 transition-colors" onclick="event.stopPropagation(); showTip(this, 'ʌ')" aria-label="How to pronounce">
+            <i class="fas fa-circle-info text-lg"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">ʌ</div>
-        <div class="text-gray-600 text-sm mb-3">but</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">ʌ</div>
+        <div class="text-gray-700 text-base font-medium mb-4">but</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600 shadow-lg hover:shadow-xl transition-all duration-200">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="progress-fill h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full transition-all duration-1000" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('ɛ', 'bed')" data-tip="Open-mid front vowel. Tongue front & mid; lips spread lightly.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300 transition-all duration-300" onclick="playSound('ɛ', 'bed')" data-tip="Open-mid front vowel. Tongue front & mid; lips spread lightly.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
-          <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'ɛ')" aria-label="How to pronounce">
-            <i class="fas fa-circle-info"></i>
+          <button type="button" class="text-gray-400 hover:text-teal-600 transition-colors" onclick="event.stopPropagation(); showTip(this, 'ɛ')" aria-label="How to pronounce">
+            <i class="fas fa-circle-info text-lg"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">ɛ</div>
-        <div class="text-gray-600 text-sm mb-3">bed</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">ɛ</div>
+        <div class="text-gray-700 text-base font-medium mb-4">bed</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600 shadow-lg hover:shadow-xl transition-all duration-200">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="progress-fill h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full transition-all duration-1000" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('eɪ', 'say')" data-tip="Diphthong e→ɪ. Start mid-front, glide to high-front; lips spread.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300 transition-all duration-300" onclick="playSound('eɪ', 'say')" data-tip="Diphthong e→ɪ. Start mid-front, glide to high-front; lips spread.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
-          <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'eɪ')" aria-label="How to pronounce">
-            <i class="fas fa-circle-info"></i>
+          <button type="button" class="text-gray-400 hover:text-teal-600 transition-colors" onclick="event.stopPropagation(); showTip(this, 'eɪ')" aria-label="How to pronounce">
+            <i class="fas fa-circle-info text-lg"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">eɪ</div>
-        <div class="text-gray-600 text-sm mb-3">say</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">eɪ</div>
+        <div class="text-gray-700 text-base font-medium mb-4">say</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600 shadow-lg hover:shadow-xl transition-all duration-200">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="progress-fill h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full transition-all duration-1000" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('ɜː', 'bird')" data-tip="Mid-central long vowel. Tongue central; lips slightly rounded.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('ɜː', 'bird')" data-tip="Mid-central long vowel. Tongue central; lips slightly rounded.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'ɜː')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">ɜː</div>
-        <div class="text-gray-600 text-sm mb-3">bird</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">ɜː</div>
+        <div class="text-gray-700 text-base font-medium mb-4">bird</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('ɪ', 'ship')" data-tip="Near-high front lax vowel. Tongue high-front; lips spread.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('ɪ', 'ship')" data-tip="Near-high front lax vowel. Tongue high-front; lips spread.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'ɪ')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">ɪ</div>
-        <div class="text-gray-600 text-sm mb-3">ship</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">ɪ</div>
+        <div class="text-gray-700 text-base font-medium mb-4">ship</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('iː', 'sheep')" data-tip="High front tense vowel. Tongue high & front; lips spread.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('iː', 'sheep')" data-tip="High front tense vowel. Tongue high & front; lips spread.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'iː')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">iː</div>
-        <div class="text-gray-600 text-sm mb-3">sheep</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">iː</div>
+        <div class="text-gray-700 text-base font-medium mb-4">sheep</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('ə', 'about')" data-tip="Schwa. Relaxed central vowel; tongue neutral; very short.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('ə', 'about')" data-tip="Schwa. Relaxed central vowel; tongue neutral; very short.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'ə')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">ə</div>
-        <div class="text-gray-600 text-sm mb-3">about</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">ə</div>
+        <div class="text-gray-700 text-base font-medium mb-4">about</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('oʊ', 'boat')" data-tip="Diphthong o→ʊ. Start mid-back rounded; glide to high-back.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('oʊ', 'boat')" data-tip="Diphthong o→ʊ. Start mid-back rounded; glide to high-back.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'oʊ')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">oʊ</div>
-        <div class="text-gray-600 text-sm mb-3">boat</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">oʊ</div>
+        <div class="text-gray-700 text-base font-medium mb-4">boat</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('ʊ', 'foot')" data-tip="Near-high back rounded vowel. Tongue high-back; lips rounded.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('ʊ', 'foot')" data-tip="Near-high back rounded vowel. Tongue high-back; lips rounded.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'ʊ')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">ʊ</div>
-        <div class="text-gray-600 text-sm mb-3">foot</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">ʊ</div>
+        <div class="text-gray-700 text-base font-medium mb-4">foot</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('uː', 'food')" data-tip="High back tense rounded vowel. Tongue high-back; lips rounded.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('uː', 'food')" data-tip="High back tense rounded vowel. Tongue high-back; lips rounded.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'uː')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">uː</div>
-        <div class="text-gray-600 text-sm mb-3">food</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">uː</div>
+        <div class="text-gray-700 text-base font-medium mb-4">food</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('aʊ', 'cow')" data-tip="Diphthong a→ʊ. Start low front, glide to high back rounded.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('aʊ', 'cow')" data-tip="Diphthong a→ʊ. Start low front, glide to high back rounded.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'aʊ')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">aʊ</div>
-        <div class="text-gray-600 text-sm mb-3">cow</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">aʊ</div>
+        <div class="text-gray-700 text-base font-medium mb-4">cow</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('aɪ', 'time')" data-tip="Diphthong a→ɪ. Start low front, glide to high front.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('aɪ', 'time')" data-tip="Diphthong a→ɪ. Start low front, glide to high front.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'aɪ')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">aɪ</div>
-        <div class="text-gray-600 text-sm mb-3">time</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">aɪ</div>
+        <div class="text-gray-700 text-base font-medium mb-4">time</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('ɔɪ', 'boy')" data-tip="Diphthong ɔ→ɪ. Start mid-back rounded, glide to high-front.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('ɔɪ', 'boy')" data-tip="Diphthong ɔ→ɪ. Start mid-back rounded, glide to high-front.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'ɔɪ')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">ɔɪ</div>
-        <div class="text-gray-600 text-sm mb-3">boy</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">ɔɪ</div>
+        <div class="text-gray-700 text-base font-medium mb-4">boy</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
     </div>
   </div>
 
 <!-- Practice Section: Minimal Pairs -->
-<div class="max-w-6xl mx-auto px-4 pb-12">
-  <div class="border-t border-gray-300 mt-6"></div>
-  <div class="flex items-center justify-center -translate-y-4">
-    <span class="bg-white px-4 py-2 text-gray-600 text-sm font-semibold tracking-wide border border-gray-200 rounded-lg">Practice · Minimal Pairs</span>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+  <div class="border-t-2 border-gray-200 mt-12 mb-8"></div>
+  <div class="flex items-center justify-center -translate-y-6 mb-12">
+    <span class="bg-white px-6 py-3 text-gray-700 text-lg font-bold tracking-wide border-2 border-gray-200 rounded-full shadow-md">Practice · Minimal Pairs</span>
   </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 shadow-lg border border-blue-200 hover:shadow-xl transition-all">
       <div class="text-center mb-4">
         <div class="text-2xl font-bold text-blue-600 mb-2">ɪ vs iː</div>
@@ -430,258 +434,258 @@ body {
   </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mt-8">
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('b', 'book')" data-tip="Voiced bilabial stop. Close lips then release with voice.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('b', 'book')" data-tip="Voiced bilabial stop. Close lips then release with voice.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'b')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">b</div>
-        <div class="text-gray-600 text-sm mb-3">book</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">b</div>
+        <div class="text-gray-700 text-base font-medium mb-4">book</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('tʃ', 'chair')" data-tip="Voiceless postalveolar affricate. Tongue touches ridge then releases to ʃ.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('tʃ', 'chair')" data-tip="Voiceless postalveolar affricate. Tongue touches ridge then releases to ʃ.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'tʃ')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">tʃ</div>
-        <div class="text-gray-600 text-sm mb-3">chair</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">tʃ</div>
+        <div class="text-gray-700 text-base font-medium mb-4">chair</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('d', 'day')" data-tip="Voiced alveolar stop. Tongue on ridge; release with voice.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('d', 'day')" data-tip="Voiced alveolar stop. Tongue on ridge; release with voice.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'd')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">d</div>
-        <div class="text-gray-600 text-sm mb-3">day</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">d</div>
+        <div class="text-gray-700 text-base font-medium mb-4">day</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('f', 'fish')" data-tip="Voiceless labiodental fricative. Top teeth on lower lip; blow air.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('f', 'fish')" data-tip="Voiceless labiodental fricative. Top teeth on lower lip; blow air.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'f')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">f</div>
-        <div class="text-gray-600 text-sm mb-3">fish</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">f</div>
+        <div class="text-gray-700 text-base font-medium mb-4">fish</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('g', 'go')" data-tip="Voiced velar stop. Back of tongue to soft palate; release with voice.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('g', 'go')" data-tip="Voiced velar stop. Back of tongue to soft palate; release with voice.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'g')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">g</div>
-        <div class="text-gray-600 text-sm mb-3">go</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">g</div>
+        <div class="text-gray-700 text-base font-medium mb-4">go</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('h', 'home')" data-tip="Voiceless glottal fricative. Gentle breath; mouth relaxed.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('h', 'home')" data-tip="Voiceless glottal fricative. Gentle breath; mouth relaxed.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'h')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">h</div>
-        <div class="text-gray-600 text-sm mb-3">home</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">h</div>
+        <div class="text-gray-700 text-base font-medium mb-4">home</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('dʒ', 'job')" data-tip="Voiced postalveolar affricate. Like tʃ but voiced.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('dʒ', 'job')" data-tip="Voiced postalveolar affricate. Like tʃ but voiced.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'dʒ')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">dʒ</div>
-        <div class="text-gray-600 text-sm mb-3">job</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">dʒ</div>
+        <div class="text-gray-700 text-base font-medium mb-4">job</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('k', 'key')" data-tip="Voiceless velar stop. Back of tongue to soft palate; strong release.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('k', 'key')" data-tip="Voiceless velar stop. Back of tongue to soft palate; strong release.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'k')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">k</div>
-        <div class="text-gray-600 text-sm mb-3">key</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">k</div>
+        <div class="text-gray-700 text-base font-medium mb-4">key</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('l', 'lion')" data-tip="Voiced alveolar lateral. Tongue tip to ridge; airflow around sides.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('l', 'lion')" data-tip="Voiced alveolar lateral. Tongue tip to ridge; airflow around sides.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'l')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">l</div>
-        <div class="text-gray-600 text-sm mb-3">lion</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">l</div>
+        <div class="text-gray-700 text-base font-medium mb-4">lion</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('m', 'moon')" data-tip="Voiced bilabial nasal. Close lips; air through nose.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('m', 'moon')" data-tip="Voiced bilabial nasal. Close lips; air through nose.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'm')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">m</div>
-        <div class="text-gray-600 text-sm mb-3">moon</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">m</div>
+        <div class="text-gray-700 text-base font-medium mb-4">moon</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('n', 'nose')" data-tip="Voiced alveolar nasal. Tongue on ridge; air through nose.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('n', 'nose')" data-tip="Voiced alveolar nasal. Tongue on ridge; air through nose.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'n')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">n</div>
-        <div class="text-gray-600 text-sm mb-3">nose</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">n</div>
+        <div class="text-gray-700 text-base font-medium mb-4">nose</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('ŋ', 'sing')" data-tip="Voiced velar nasal. Back of tongue to soft palate; air through nose.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('ŋ', 'sing')" data-tip="Voiced velar nasal. Back of tongue to soft palate; air through nose.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'ŋ')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">ŋ</div>
-        <div class="text-gray-600 text-sm mb-3">sing</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">ŋ</div>
+        <div class="text-gray-700 text-base font-medium mb-4">sing</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('p', 'pig')" data-tip="Voiceless bilabial stop. Close lips; release puff of air.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('p', 'pig')" data-tip="Voiceless bilabial stop. Close lips; release puff of air.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'p')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">p</div>
-        <div class="text-gray-600 text-sm mb-3">pig</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">p</div>
+        <div class="text-gray-700 text-base font-medium mb-4">pig</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('r', 'red')" data-tip="American r (ɹ). Tongue slightly back/curled; lips rounded lightly.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('r', 'red')" data-tip="American r (ɹ). Tongue slightly back/curled; lips rounded lightly.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 'r')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">r</div>
-        <div class="text-gray-600 text-sm mb-3">red</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">r</div>
+        <div class="text-gray-700 text-base font-medium mb-4">red</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
 
-      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100" onclick="playSound('s', 'see')" data-tip="Voiceless alveolar fricative. Tongue near ridge; steady air.">
+      <div class="relative sound-card bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-200 hover:shadow-xl hover:border-teal-300" onclick="playSound('s', 'see')" data-tip="Voiceless alveolar fricative. Tongue near ridge; steady air.">
         <div class="flex items-start justify-between -mt-2 -mr-2">
           <span></span>
           <button type="button" class="text-gray-400 hover:text-teal-600" onclick="event.stopPropagation(); showTip(this, 's')" aria-label="How to pronounce">
             <i class="fas fa-circle-info"></i>
           </button>
         </div>
-        <div class="text-3xl font-bold text-teal-600 mb-2">s</div>
-        <div class="text-gray-600 text-sm mb-3">see</div>
-        <button class="play-btn w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
-          <i class="fas fa-play text-sm"></i>
+        <div class="text-4xl font-bold text-teal-600 mb-3">s</div>
+        <div class="text-gray-700 text-base font-medium mb-4">see</div>
+        <button class="play-btn w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto hover:from-teal-600 hover:to-cyan-600">
+          <i class="fas fa-play text-base"></i>
         </button>
-        <div class="h-1 bg-gray-200 rounded-full mt-3">
-          <div class="h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full" style="width: 0%"></div>
         </div>
       </div>
     </div>
