@@ -73,7 +73,50 @@ router.get('/dashboard', isAuthenticated, (req, res) => {
 });
 
 router.get('/dashboard/setting', isAuthenticated, (req, res) => {
+<<<<<<< HEAD
   res.render('setting.ejs', { title: 'English Learning Dashboard' });
+=======
+  res.render('setting.ejs', {
+    title: 'English Learning Dashboard',
+    
+  });
+});
+router.get('/dashboard/resume', isAuthenticated, (req, res) => {
+  res.render('resume.ejs', {
+    title: 'Resume & Writing Lab',
+    userName: req.session.userName || 'Student'
+  });
+});
+router.get('/dashboard/resume/builder', isAuthenticated, (req, res) => {
+  res.render('resumeBuilder.ejs', {
+    title: 'Resume Builder',
+    userName: req.session.userName || 'Student'
+  });
+});
+router.get('/dashboard/resume/coverletter', isAuthenticated, (req, res) => {
+  res.render('coverletter.ejs', {
+    title: 'Cover Letter ',
+    userName: req.session.userName || 'Student'
+  });
+});
+router.get('/dashboard/resume/template', isAuthenticated, (req, res) => {
+  res.render('template.ejs', {
+    title: 'Templates ',
+    userName: req.session.userName || 'Student'
+  });
+});
+router.get('/dashboard/vocabulary', isAuthenticated, (req, res) => {
+  res.render('vocabulary', {
+    title: 'English Learning Dashboard',
+    
+  });
+});
+router.get('/dashboard/placement', isAuthenticated, (req, res) => {
+  res.render('placement.ejs', {
+    title: 'English Learning Dashboard',
+    
+  });
+>>>>>>> 6efc9ae15ac02d423a06a041260d337bf9b2ce6a
 });
 
 router.get('/dashboard/resume', isAuthenticated, (req, res) => {
@@ -108,7 +151,17 @@ router.get('/dashboard/lessons/Writting', isAuthenticated, (req, res) => {
 router.get('/dashboard/lessons/Speaking', isAuthenticated, (req, res) => {
   res.render('speaking', { title: 'Speaking Skills', userName: req.session.userName || 'Student' });
 });
+<<<<<<< HEAD
 
+=======
+// Also support lowercase path used in some links
+router.get('/dashboard/lessons/speaking', isAuthenticated, (req, res) => {
+  res.render('speaking', {
+    title: 'Speaking Skills',
+    userName: req.session.userName || 'Student'
+  });
+});
+>>>>>>> 6efc9ae15ac02d423a06a041260d337bf9b2ce6a
 router.get('/dashboard/lessons/:slug', isAuthenticated, async (req, res) => {
   try {
     const { slug } = req.params;
