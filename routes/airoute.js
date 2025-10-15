@@ -14,6 +14,7 @@ const openai = new OpenAI({
   },
 });
 
+// ------------------ Topics ------------------
 const aiTopics = [
   "Describe your daily routine in English.",
   "Talk about your favorite movie.",
@@ -32,6 +33,7 @@ function isAuthenticated(req, res, next) {
 router.get("/dashboard/ai", isAuthenticated, async (req, res) => {
   const user = await User.findById(req.session.userId);
   const randomTopic = aiTopics[Math.floor(Math.random() * aiTopics.length)];
+
   res.render("ai", {
     title: "AI Feedback System",
     userName: req.session.userName,
@@ -39,6 +41,7 @@ router.get("/dashboard/ai", isAuthenticated, async (req, res) => {
     topic: randomTopic,
     studentAnswer: "",
     feedback: "",
+    showAlert: true, // GET pe alert ke liye
   });
 });
 
@@ -73,6 +76,7 @@ router.post("/dashboard/ai", isAuthenticated, async (req, res) => {
       topic,
       studentAnswer,
       feedback,
+      showAlert: false, // POST me alert nahi
     });
   } catch (error) {
     console.error("OpenRouter AI error:", error.response ? error.response.data : error);
@@ -84,6 +88,7 @@ router.post("/dashboard/ai", isAuthenticated, async (req, res) => {
       topic,
       studentAnswer,
       feedback: "Error evaluating your answer. Please try again later.",
+      showAlert: false,
     });
   }
 });

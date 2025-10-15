@@ -6,35 +6,25 @@
   <title><%= title %></title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(to bottom right, #e0f2fe, #fef9c3);
-    }
-    .fade-in {
-      animation: fadeIn 0.4s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    body { font-family: 'Inter', sans-serif; background: linear-gradient(to bottom right, #e0f2fe, #fef9c3); }
+    .fade-in { animation: fadeIn 0.4s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-6">
 
+  <% if (showAlert) { %>
+  <script>
+    alert("Feedback will be generated after submitting your answer!");
+  </script>
+  <% } %>
+
   <div class="w-full max-w-3xl bg-white shadow-lg rounded-2xl p-8 fade-in">
-    <h1 class="text-3xl font-bold text-center text-blue-600 mb-6">
-      🎙️ AI English Speaking Feedback
-    </h1>
+    <h1 class="text-3xl font-bold text-center text-blue-600 mb-6">🎙️ AI English Speaking Feedback</h1>
 
     <div class="flex justify-between items-center mb-6">
-      <button id="newTopicBtn" 
-        class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
-        🎲 New Topic
-      </button>
-
-      <p class="text-gray-700 font-semibold">
-        Hello, <%= userName %> 👋
-      </p>
+      <button id="newTopicBtn" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">🎲 New Topic</button>
+      <p class="text-gray-700 font-semibold">Hello, <%= userName %> 👋</p>
     </div>
 
     <div id="topicBox" class="p-4 bg-blue-50 border border-blue-200 rounded-lg text-gray-800 mb-4">
@@ -44,25 +34,11 @@
     <form action="/dashboard/ai" method="POST" id="aiForm" class="space-y-4">
       <input type="hidden" name="topic" id="topicInput" value="<%= topic || '' %>">
 
-      <textarea 
-        id="studentAnswer"
-        name="studentAnswer"
-        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400"
-        rows="6"
-        placeholder="🎤 Click 'Start Speaking' and your words will appear here..."><%= studentAnswer || '' %></textarea>
+      <textarea id="studentAnswer" name="studentAnswer" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400" rows="6" placeholder="🎤 Click 'Start Speaking' and your words will appear here..."><%= studentAnswer || '' %></textarea>
 
       <div class="flex items-center space-x-3">
-        <button 
-          type="button" 
-          id="startSpeech" 
-          class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">
-          🎙️ Start Speaking
-        </button>
-        <button 
-          type="submit"
-          class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-          ✨ Get AI Feedback
-        </button>
+        <button type="button" id="startSpeech" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">🎙️ Start Speaking</button>
+        <!-- <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">✨ Get AI Feedback</button> -->
       </div>
     </form>
 
