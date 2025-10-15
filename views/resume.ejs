@@ -38,89 +38,204 @@
       </header>
 
       <!-- Cards Grid -->
-      <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
 
         <!-- Resume Builder -->
-        <div class="group bg-gradient-to-br from-white to-slate-50 p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-teal-200">
-          <div class="flex items-center mb-6">
-            <div class="w-14 h-14 rounded-2xl bg-gradient-to-r from-teal-500 to-cyan-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-              <i class="fas fa-file-alt text-white text-xl"></i>
+        <div class="group bg-gradient-to-br from-white to-slate-50 p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-teal-200 hover:-translate-y-2">
+          <div class="flex items-start justify-between mb-6">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-r from-teal-500 to-cyan-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <i class="fas fa-file-alt text-white text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-800 group-hover:text-teal-600 transition-colors">Resume Builder</h3>
+                <div class="flex items-center gap-2 text-sm text-gray-500 mt-1">
+                  <i class="fas fa-clock"></i>
+                  <span>5-10 min setup</span>
+                  <div class="w-2 h-2 bg-teal-400 rounded-full"></div>
+                  <span class="text-teal-600 font-medium">Popular</span>
+                </div>
+              </div>
             </div>
-            <div class="ml-4">
-              <h3 class="text-2xl font-bold text-gray-800 group-hover:text-teal-600 transition-colors">Resume Builder</h3>
-              <div class="flex items-center text-sm text-gray-500 mt-1">
-                <i class="fas fa-clock mr-1"></i><span>5-10 min setup</span>
+            <div class="text-right">
+              <div class="text-xs text-gray-400 uppercase tracking-wide">Step-by-Step</div>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-6 leading-relaxed">Create a professional resume with our guided wizard. Choose from modern templates, get expert tips, and download a beautifully formatted PDF ready for job applications.</p>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4 text-sm text-gray-500">
+              <div class="flex items-center gap-1">
+                <i class="fas fa-check-circle text-green-500"></i>
+                <span>ATS-friendly</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <i class="fas fa-check-circle text-green-500"></i>
+                <span>Multiple formats</span>
               </div>
             </div>
           </div>
-          <p class="text-gray-600 mb-6 leading-relaxed">Step-by-step wizard to create a professional resume with modern templates and expert guidance.</p>
-          <a href="/dashboard/resume/builder" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg hover:shadow-xl group-hover:shadow-teal-200">
+          <a href="/dashboard/resume/builder" class="mt-6 inline-flex items-center justify-center w-full px-8 py-4 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg hover:shadow-xl group-hover:shadow-teal-200">
             <i class="fas fa-rocket mr-2"></i>Start Building
+            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
           </a>
         </div>
 
         <!-- Cover Letter Generator -->
-        <div class="group bg-gradient-to-br from-white to-slate-50 p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-purple-200">
-          <div class="flex items-center mb-6">
-            <div class="w-14 h-14 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-              <i class="fas fa-envelope-open-text text-white text-xl"></i>
+        <div class="group bg-gradient-to-br from-white to-slate-50 p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-purple-200 hover:-translate-y-2">
+          <div class="flex items-start justify-between mb-6">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <i class="fas fa-envelope-open-text text-white text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-800 group-hover:text-purple-600 transition-colors">Cover Letter Generator</h3>
+                <div class="flex items-center gap-2 text-sm text-gray-500 mt-1">
+                  <i class="fas fa-magic"></i>
+                  <span>AI-powered</span>
+                  <div class="w-2 h-2 bg-purple-400 rounded-full"></div>
+                  <span class="text-purple-600 font-medium">Smart</span>
+                </div>
+              </div>
             </div>
-            <div class="ml-4">
-              <h3 class="text-2xl font-bold text-gray-800 group-hover:text-purple-600 transition-colors">Cover Letter Generator</h3>
-              <div class="flex items-center text-sm text-gray-500 mt-1">
-                <i class="fas fa-magic mr-1"></i><span>AI-powered</span>
+            <div class="text-right">
+              <div class="text-xs text-gray-400 uppercase tracking-wide">AI Technology</div>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-6 leading-relaxed">Generate personalized cover letters using advanced AI. Simply provide job details and your experience, and get a professionally written letter tailored to the position.</p>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4 text-sm text-gray-500">
+              <div class="flex items-center gap-1">
+                <i class="fas fa-check-circle text-green-500"></i>
+                <span>Job-specific</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <i class="fas fa-check-circle text-green-500"></i>
+                <span>Professional tone</span>
               </div>
             </div>
           </div>
-          <p class="text-gray-600 mb-6 leading-relaxed">Automatically generate a tailored cover letter for any job using advanced AI technology.</p>
-          <a href="/dashboard/resume/coverletter" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg hover:shadow-xl group-hover:shadow-purple-200">
+          <a href="/dashboard/resume/coverletter" class="mt-6 inline-flex items-center justify-center w-full px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg hover:shadow-xl group-hover:shadow-purple-200">
             <i class="fas fa-wand-magic-sparkles mr-2"></i>Generate Cover Letter
+            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
           </a>
         </div>
 
         <!-- Writing Exercises -->
-        <div class="group bg-gradient-to-br from-white to-slate-50 p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-orange-200">
-          <div class="flex items-center mb-6">
-            <div class="w-14 h-14 rounded-2xl bg-gradient-to-r from-orange-500 to-yellow-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-              <i class="fas fa-pen-nib text-white text-xl"></i>
+        <div class="group bg-gradient-to-br from-white to-slate-50 p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-orange-200 hover:-translate-y-2">
+          <div class="flex items-start justify-between mb-6">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-r from-orange-500 to-yellow-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <i class="fas fa-pen-nib text-white text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-800 group-hover:text-orange-600 transition-colors">Writing Exercises</h3>
+                <div class="flex items-center gap-2 text-sm text-gray-500 mt-1">
+                  <i class="fas fa-brain"></i>
+                  <span>Interactive learning</span>
+                  <div class="w-2 h-2 bg-orange-400 rounded-full"></div>
+                  <span class="text-orange-600 font-medium">Practice</span>
+                </div>
+              </div>
             </div>
-            <div class="ml-4">
-              <h3 class="text-2xl font-bold text-gray-800 group-hover:text-orange-600 transition-colors">Writing Exercises</h3>
-              <div class="flex items-center text-sm text-gray-500 mt-1">
-                <i class="fas fa-brain mr-1"></i><span>Interactive learning</span>
+            <div class="text-right">
+              <div class="text-xs text-gray-400 uppercase tracking-wide">Skill Building</div>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-6 leading-relaxed">Practice professional writing skills with interactive exercises. Write emails, essays, and reports with real-time AI feedback to improve your communication skills.</p>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4 text-sm text-gray-500">
+              <div class="flex items-center gap-1">
+                <i class="fas fa-check-circle text-green-500"></i>
+                <span>AI feedback</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <i class="fas fa-check-circle text-green-500"></i>
+                <span>Progressive difficulty</span>
               </div>
             </div>
           </div>
-          <p class="text-gray-600 mb-6 leading-relaxed">Practice emails, essays, and professional writing with instant AI-powered feedback and suggestions.</p>
-          <a href="/dashboard/lessons/Writting" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-orange-500 to-yellow-500 text-white rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg hover:shadow-xl group-hover:shadow-orange-200">
+          <a href="/dashboard/lessons/Writting" class="mt-6 inline-flex items-center justify-center w-full px-8 py-4 bg-gradient-to-r from-orange-500 to-yellow-500 text-white rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg hover:shadow-xl group-hover:shadow-orange-200">
             <i class="fas fa-play mr-2"></i>Start Practicing
+            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
           </a>
         </div>
 
         <!-- Templates & Tips -->
-        <div class="group bg-gradient-to-br from-white to-slate-50 p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-green-200">
-          <div class="flex items-center mb-6">
-            <div class="w-14 h-14 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-              <i class="fas fa-lightbulb text-white text-xl"></i>
+        <div class="group bg-gradient-to-br from-white to-slate-50 p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-green-200 hover:-translate-y-2">
+          <div class="flex items-start justify-between mb-6">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <i class="fas fa-lightbulb text-white text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-800 group-hover:text-green-600 transition-colors">Templates & Tips</h3>
+                <div class="flex items-center gap-2 text-sm text-gray-500 mt-1">
+                  <i class="fas fa-download"></i>
+                  <span>Free resources</span>
+                  <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                  <span class="text-green-600 font-medium">Expert Guide</span>
+                </div>
+              </div>
             </div>
-            <div class="ml-4">
-              <h3 class="text-2xl font-bold text-gray-800 group-hover:text-green-600 transition-colors">Templates & Tips</h3>
-              <div class="flex items-center text-sm text-gray-500 mt-1">
-                <i class="fas fa-download mr-1"></i><span>Free resources</span>
+            <div class="text-right">
+              <div class="text-xs text-gray-400 uppercase tracking-wide">Resources</div>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-6 leading-relaxed">Access professionally designed templates and expert writing tips. Download resume formats, cover letter samples, and comprehensive guides for job applications.</p>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4 text-sm text-gray-500">
+              <div class="flex items-center gap-1">
+                <i class="fas fa-check-circle text-green-500"></i>
+                <span>Industry-specific</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <i class="fas fa-check-circle text-green-500"></i>
+                <span>Best practices</span>
               </div>
             </div>
           </div>
-          <p class="text-gray-600 mb-6 leading-relaxed">Access pre-made resume templates, cover letters, and professional writing tips from industry experts.</p>
-          <a href="/dashboard/resume/template" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg hover:shadow-xl group-hover:shadow-green-200">
+          <a href="/dashboard/resume/template" class="mt-6 inline-flex items-center justify-center w-full px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg hover:shadow-xl group-hover:shadow-green-200">
             <i class="fas fa-folder-open mr-2"></i>Explore Templates
+            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
           </a>
         </div>
 
       </section>
 
+      <!-- Quick Stats Section -->
+      <section class="mt-16 bg-white/50 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
+        <div class="text-center mb-8">
+          <h3 class="text-2xl font-bold text-gray-800 mb-2">Your Writing Journey</h3>
+          <p class="text-gray-600">Track your progress and see how you're improving</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="text-center p-4 bg-white/70 rounded-2xl">
+            <div class="text-3xl font-bold text-teal-600 mb-1" id="resumesCreated">0</div>
+            <div class="text-sm text-gray-600">Resumes Created</div>
+          </div>
+          <div class="text-center p-4 bg-white/70 rounded-2xl">
+            <div class="text-3xl font-bold text-purple-600 mb-1" id="lettersGenerated">0</div>
+            <div class="text-sm text-gray-600">Cover Letters</div>
+          </div>
+          <div class="text-center p-4 bg-white/70 rounded-2xl">
+            <div class="text-3xl font-bold text-orange-600 mb-1" id="exercisesCompleted">0</div>
+            <div class="text-sm text-gray-600">Exercises Done</div>
+          </div>
+          <div class="text-center p-4 bg-white/70 rounded-2xl">
+            <div class="text-3xl font-bold text-green-600 mb-1" id="templatesUsed">0</div>
+            <div class="text-sm text-gray-600">Templates Used</div>
+          </div>
+        </div>
+      </section>
+
       <!-- Footer -->
-      <footer class="mt-12 text-center text-gray-500 text-sm">
-        &copy; <%= new Date().getFullYear() %> GLA English. All rights reserved.
+      <footer class="mt-16 text-center text-gray-500 text-sm">
+        <div class="flex items-center justify-center gap-2 mb-2">
+          <i class="fas fa-heart text-red-500"></i>
+          <span>Built with passion for your career success</span>
+        </div>
+        <p>&copy; <%= new Date().getFullYear() %> GLA English. All rights reserved.</p>
       </footer>
 
     </div>
