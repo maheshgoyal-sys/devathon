@@ -362,7 +362,14 @@
     <!-- Centered Interactive Header with Profile Button in Right Corner -->
     <div class="text-center mb-6 relative">
       <div class="flex items-center justify-between">
-        <div class="flex-1"></div>
+        <div class="flex-1 flex justify-start">
+          <a href="/dashboard" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white shadow-md hover:shadow-lg transition-all duration-300 text-gray-700 hover:text-teal-600 group">
+            <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+            </svg>
+            <span class="font-medium text-sm">Back</span>
+          </a>
+        </div>
         <div class="flex-1 flex justify-center">
           <h1 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 bg-clip-text text-transparent hover:scale-105 transition-all duration-300 cursor-pointer drop-shadow-sm">
             📚 Grammar & Usage
@@ -386,7 +393,7 @@
 
     <!-- Tab Navigation for Sections -->
     <div class="mb-6">
-      <div class="flex space-x-1 bg-gray-100 p-1 rounded-lg">
+      <div class="grid grid-cols-3 gap-1 bg-gradient-to-r from-teal-100 via-cyan-100 to-blue-100 p-1 rounded-lg shadow-md">
         <button id="tab-level1" class="tab-button active px-4 py-2 rounded-md text-sm font-medium transition-colors" onclick="switchTab('level1')">Level 1</button>
         <button id="tab-level2" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors" onclick="switchTab('level2')">Level 2</button>
         <button id="tab-level3" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors" onclick="switchTab('level3')">Level 3</button>
@@ -762,7 +769,7 @@
   </div>
 
   <!-- Interactive Modal for Topic Content -->
-  <div id="topic-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 backdrop-blur-sm cursor-move">
+  <div id="topic-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 backdrop-blur-sm">
     <div class="bg-white rounded-xl p-6 w-full max-w-7xl mx-4 max-h-[90vh] overflow-y-auto">
       <div class="flex justify-between items-center mb-4">
         <h2 id="modal-title" class="text-2xl font-bold text-gray-800">Topic Content</h2>
@@ -770,69 +777,6 @@
       </div>
       <div id="modal-content" class="space-y-4">
         <!-- Content will be dynamically loaded here -->
-        <div class="bg-gray-50 p-4 rounded-lg">
-          <h3 class="font-semibold mb-2">📚 Short Notes</h3>
-          <p class="text-gray-700">Detailed notes about the topic will appear here.</p>
-        </div>
-        <div class="bg-gray-50 p-4 rounded-lg">
-          <h3 class="font-semibold mb-2">🎥 Video Content</h3>
-          <div class="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
-            <p class="text-gray-600">Video placeholder - Embed video here</p>
-          </div>
-        </div>
-        <div class="bg-gray-50 p-4 rounded-lg">
-          <h3 class="font-semibold mb-2">💡 Tips & Tricks</h3>
-          <ul class="list-disc list-inside text-gray-700 space-y-1">
-            <li>Tip 1: Practice daily for better retention</li>
-            <li>Tip 2: Use real-life examples</li>
-            <li>Tip 3: Review mistakes regularly</li>
-          </ul>
-        </div>
-        <div class="bg-gray-50 p-4 rounded-lg">
-          <h3 class="font-semibold mb-2">🧠 Quick Quiz</h3>
-          <p class="text-gray-700">Interactive quiz questions will appear here.</p>
-        </div>
-      </div>
-      <div class="mt-6 flex justify-end">
-        <button id="start-quiz" class="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700">Start Interactive Learning</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Interactive Modal for Topic Content -->
-  <div id="topic-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 backdrop-blur-sm cursor-move">
-    <div class="bg-white rounded-xl p-6 w-full max-w-7xl mx-4 max-h-[90vh] overflow-y-auto">
-      <div class="flex justify-between items-center mb-4">
-        <h2 id="modal-title" class="text-2xl font-bold text-gray-800">Topic Content</h2>
-        <button id="close-modal" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
-      </div>
-      <div id="modal-content" class="space-y-4">
-        <!-- Content will be dynamically loaded here -->
-        <div class="bg-gray-50 p-4 rounded-lg">
-          <h3 class="font-semibold mb-2">📚 Short Notes</h3>
-          <p class="text-gray-700">Detailed notes about the topic will appear here.</p>
-        </div>
-        <div class="bg-gray-50 p-4 rounded-lg">
-          <h3 class="font-semibold mb-2">🎥 Video Content</h3>
-          <div class="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
-            <p class="text-gray-600">Video placeholder - Embed video here</p>
-          </div>
-        </div>
-        <div class="bg-gray-50 p-4 rounded-lg">
-          <h3 class="font-semibold mb-2">💡 Tips & Tricks</h3>
-          <ul class="list-disc list-inside text-gray-700 space-y-1">
-            <li>Tip 1: Practice daily for better retention</li>
-            <li>Tip 2: Use real-life examples</li>
-            <li>Tip 3: Review mistakes regularly</li>
-          </ul>
-        </div>
-        <div class="bg-gray-50 p-4 rounded-lg">
-          <h3 class="font-semibold mb-2">🧠 Quick Quiz</h3>
-          <p class="text-gray-700">Interactive quiz questions will appear here.</p>
-        </div>
-      </div>
-      <div class="mt-6 flex justify-end">
-        <button id="start-quiz" class="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700">Start Interactive Learning</button>
       </div>
     </div>
   </div>
@@ -875,11 +819,37 @@
     const modalTitle = document.getElementById('modal-title');
     const modalContent = document.getElementById('modal-content');
 
-  
+    // Close modal functionality
+    closeModal?.addEventListener('click', () => {
+      modal.classList.add('hidden');
+    });
 
-   
-    
+    // Start Learning button functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const startButtons = document.querySelectorAll('.start-btn');
+      
+      startButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          const topic = e.target.getAttribute('data-topic');
+          openLearningModal(topic);
+        });
+      });
+    });
 
+    // Function to open learning modal with content
+    function openLearningModal(topic) {
+      const topicContent = getTopicContent(topic);
+      
+      modalTitle.innerHTML = topicContent.title;
+      modalContent.innerHTML = topicContent.html;
+      
+      modal.classList.remove('hidden');
+      
+      // Initialize any interactive features for the loaded content
+      if (topic === 'parts-of-speech') {
+        setTimeout(initializeInteractiveFeatures, 100);
+      }
+    }
  
     // Initialize interactive features for parts of speech
     function initializeInteractiveFeatures() {
@@ -1100,6 +1070,530 @@
 
       // Load first question
       loadQuestion();
+    }
+
+    // Function to get content for each topic
+    function getTopicContent(topic) {
+      const topicTitles = {
+        'parts-of-speech': '📚 Parts of Speech - Foundation',
+        'tenses-in-use': '⏰ Tenses in Use - Essential',
+        'articles-prepositions': '📝 Articles & Prepositions',
+        'subject-verb-agreement': '🎯 Subject-Verb Agreement',
+        'voice-active-passive': '🔄 Active & Passive Voice',
+        'conditionals-modals': '💬 Conditionals & Modals',
+        'reported-speech': '🗣️ Reported Speech',
+        'sentence-clarity': '✨ Sentence Clarity & Structure',
+        'parallelism-consistency': '⚖️ Parallelism & Consistency',
+        'common-errors': '⚠️ Common Grammar Errors',
+        'grammar-test-simulation': '📋 Grammar Test Simulation',
+        'email-correction': '📧 Email Correction Practice',
+        'interview-practice': '🎤 Interview Grammar Practice',
+        'spoken-grammar-quiz': '🗨️ Spoken Grammar Quiz'
+      };
+      
+      const title = topicTitles[topic] || 'Grammar Topic';
+      const html = getDefaultContent(topic, title);
+      
+      return { title, html };
+    }
+
+    // Generate default content for topics
+    function getDefaultContent(topic, title) {
+      const contentMap = {
+        'parts-of-speech': `
+          <div class="space-y-6">
+            <div class="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-xl border-l-4 border-blue-500">
+              <h3 class="text-xl font-bold text-blue-900 mb-3">What are Parts of Speech?</h3>
+              <p class="text-gray-700 leading-relaxed">Parts of speech are categories that describe the function of words in a sentence. Understanding them is fundamental to mastering English grammar.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                <h4 class="font-bold text-blue-800 mb-2">1. Noun</h4>
+                <p class="text-sm text-gray-700 mb-2">Names a person, place, thing, or idea</p>
+                <p class="text-xs text-blue-600"><strong>Examples:</strong> teacher, Mumbai, book, happiness</p>
+              </div>
+              
+              <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500">
+                <h4 class="font-bold text-yellow-800 mb-2">2. Pronoun</h4>
+                <p class="text-sm text-gray-700 mb-2">Replaces a noun</p>
+                <p class="text-xs text-yellow-600"><strong>Examples:</strong> he, she, it, they, we, you</p>
+              </div>
+              
+              <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                <h4 class="font-bold text-green-800 mb-2">3. Verb</h4>
+                <p class="text-sm text-gray-700 mb-2">Shows action or state of being</p>
+                <p class="text-xs text-green-600"><strong>Examples:</strong> run, write, is, seems, become</p>
+              </div>
+              
+              <div class="bg-pink-50 p-4 rounded-lg border-l-4 border-pink-500">
+                <h4 class="font-bold text-pink-800 mb-2">4. Adjective</h4>
+                <p class="text-sm text-gray-700 mb-2">Describes or modifies a noun</p>
+                <p class="text-xs text-pink-600"><strong>Examples:</strong> beautiful, quick, tall, five</p>
+              </div>
+              
+              <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
+                <h4 class="font-bold text-purple-800 mb-2">5. Adverb</h4>
+                <p class="text-sm text-gray-700 mb-2">Modifies verbs, adjectives, or other adverbs</p>
+                <p class="text-xs text-purple-600"><strong>Examples:</strong> quickly, very, well, often</p>
+              </div>
+              
+              <div class="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-500">
+                <h4 class="font-bold text-orange-800 mb-2">6. Preposition</h4>
+                <p class="text-sm text-gray-700 mb-2">Shows relationship between words</p>
+                <p class="text-xs text-orange-600"><strong>Examples:</strong> in, on, at, with, under, between</p>
+              </div>
+              
+              <div class="bg-teal-50 p-4 rounded-lg border-l-4 border-teal-500">
+                <h4 class="font-bold text-teal-800 mb-2">7. Conjunction</h4>
+                <p class="text-sm text-gray-700 mb-2">Connects words or clauses</p>
+                <p class="text-xs text-teal-600"><strong>Examples:</strong> and, but, or, because, although</p>
+              </div>
+              
+              <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                <h4 class="font-bold text-red-800 mb-2">8. Interjection</h4>
+                <p class="text-sm text-gray-700 mb-2">Expresses strong emotion</p>
+                <p class="text-xs text-red-600"><strong>Examples:</strong> Oh!, Wow!, Ouch!, Hurray!</p>
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-green-50 to-teal-50 p-6 rounded-xl border-l-4 border-green-500">
+              <h3 class="text-lg font-bold text-green-900 mb-3">💡 Key Tips</h3>
+              <ul class="space-y-2 text-sm text-gray-700">
+                <li>✓ A word can be different parts of speech depending on context</li>
+                <li>✓ Example: "light" can be a noun (the light), verb (light the candle), or adjective (light color)</li>
+                <li>✓ Practice identifying parts of speech in everyday sentences</li>
+                <li>✓ Understanding parts of speech helps in constructing grammatically correct sentences</li>
+              </ul>
+            </div>
+          </div>
+        `,
+        'tenses-in-use': `
+          <div class="space-y-6">
+            <div class="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl border-l-4 border-purple-500">
+              <h3 class="text-xl font-bold text-purple-900 mb-3">Understanding Tenses</h3>
+              <p class="text-gray-700 leading-relaxed">Tenses show when an action happens - in the past, present, or future. Mastering tenses is crucial for clear communication.</p>
+            </div>
+
+            <div class="space-y-4">
+              <div class="bg-green-50 p-5 rounded-xl border-l-4 border-green-500">
+                <h4 class="font-bold text-green-900 mb-3 text-lg">Present Tenses</h4>
+                <div class="grid md:grid-cols-2 gap-3">
+                  <div class="bg-white p-3 rounded-lg">
+                    <p class="font-semibold text-green-800">Simple Present</p>
+                    <p class="text-sm text-gray-600">I work / She works</p>
+                    <p class="text-xs text-gray-500 mt-1">Use: Habits, facts, general truths</p>
+                  </div>
+                  <div class="bg-white p-3 rounded-lg">
+                    <p class="font-semibold text-green-800">Present Continuous</p>
+                    <p class="text-sm text-gray-600">I am working / She is working</p>
+                    <p class="text-xs text-gray-500 mt-1">Use: Actions happening now</p>
+                  </div>
+                  <div class="bg-white p-3 rounded-lg">
+                    <p class="font-semibold text-green-800">Present Perfect</p>
+                    <p class="text-sm text-gray-600">I have worked / She has worked</p>
+                    <p class="text-xs text-gray-500 mt-1">Use: Completed actions with present relevance</p>
+                  </div>
+                  <div class="bg-white p-3 rounded-lg">
+                    <p class="font-semibold text-green-800">Present Perfect Continuous</p>
+                    <p class="text-sm text-gray-600">I have been working</p>
+                    <p class="text-xs text-gray-500 mt-1">Use: Actions started in past, continuing now</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-blue-50 p-5 rounded-xl border-l-4 border-blue-500">
+                <h4 class="font-bold text-blue-900 mb-3 text-lg">Past Tenses</h4>
+                <div class="grid md:grid-cols-2 gap-3">
+                  <div class="bg-white p-3 rounded-lg">
+                    <p class="font-semibold text-blue-800">Simple Past</p>
+                    <p class="text-sm text-gray-600">I worked / She worked</p>
+                    <p class="text-xs text-gray-500 mt-1">Use: Completed actions in the past</p>
+                  </div>
+                  <div class="bg-white p-3 rounded-lg">
+                    <p class="font-semibold text-blue-800">Past Continuous</p>
+                    <p class="text-sm text-gray-600">I was working / She was working</p>
+                    <p class="text-xs text-gray-500 mt-1">Use: Actions in progress in the past</p>
+                  </div>
+                  <div class="bg-white p-3 rounded-lg">
+                    <p class="font-semibold text-blue-800">Past Perfect</p>
+                    <p class="text-sm text-gray-600">I had worked / She had worked</p>
+                    <p class="text-xs text-gray-500 mt-1">Use: Action completed before another past action</p>
+                  </div>
+                  <div class="bg-white p-3 rounded-lg">
+                    <p class="font-semibold text-blue-800">Past Perfect Continuous</p>
+                    <p class="text-sm text-gray-600">I had been working</p>
+                    <p class="text-xs text-gray-500 mt-1">Use: Ongoing action before another past action</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-orange-50 p-5 rounded-xl border-l-4 border-orange-500">
+                <h4 class="font-bold text-orange-900 mb-3 text-lg">Future Tenses</h4>
+                <div class="grid md:grid-cols-2 gap-3">
+                  <div class="bg-white p-3 rounded-lg">
+                    <p class="font-semibold text-orange-800">Simple Future</p>
+                    <p class="text-sm text-gray-600">I will work / She will work</p>
+                    <p class="text-xs text-gray-500 mt-1">Use: Actions that will happen</p>
+                  </div>
+                  <div class="bg-white p-3 rounded-lg">
+                    <p class="font-semibold text-orange-800">Future Continuous</p>
+                    <p class="text-sm text-gray-600">I will be working</p>
+                    <p class="text-xs text-gray-500 mt-1">Use: Actions in progress in the future</p>
+                  </div>
+                  <div class="bg-white p-3 rounded-lg">
+                    <p class="font-semibold text-orange-800">Future Perfect</p>
+                    <p class="text-sm text-gray-600">I will have worked</p>
+                    <p class="text-xs text-gray-500 mt-1">Use: Action completed before future time</p>
+                  </div>
+                  <div class="bg-white p-3 rounded-lg">
+                    <p class="font-semibold text-orange-800">Future Perfect Continuous</p>
+                    <p class="text-sm text-gray-600">I will have been working</p>
+                    <p class="text-xs text-gray-500 mt-1">Use: Ongoing action before future time</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-yellow-50 to-orange-50 p-6 rounded-xl border-l-4 border-yellow-500">
+              <h3 class="text-lg font-bold text-yellow-900 mb-3">💼 Real-Life Job Examples</h3>
+              <ul class="space-y-2 text-sm text-gray-700">
+                <li><strong>Email:</strong> "I am working on the report" (Present Continuous)</li>
+                <li><strong>Meeting:</strong> "We have completed the project" (Present Perfect)</li>
+                <li><strong>Interview:</strong> "I worked at XYZ company for 3 years" (Simple Past)</li>
+                <li><strong>Planning:</strong> "I will finish this by Friday" (Simple Future)</li>
+              </ul>
+            </div>
+          </div>
+        `,
+        'articles-prepositions': `
+          <div class="space-y-6">
+            <div class="bg-gradient-to-r from-indigo-50 to-blue-50 p-6 rounded-xl border-l-4 border-indigo-500">
+              <h3 class="text-xl font-bold text-indigo-900 mb-3">Articles & Prepositions</h3>
+              <p class="text-gray-700">Master the correct usage of articles (a, an, the) and prepositions.</p>
+            </div>
+
+            <div class="bg-blue-50 p-5 rounded-xl">
+              <h4 class="font-bold text-blue-900 mb-3">Articles (a, an, the)</h4>
+              <div class="space-y-3">
+                <div class="bg-white p-4 rounded-lg">
+                  <p class="font-semibold text-blue-800">A / An (Indefinite Articles)</p>
+                  <p class="text-sm text-gray-600 mt-2">• Use 'a' before consonant sounds: a book, a university</p>
+                  <p class="text-sm text-gray-600">• Use 'an' before vowel sounds: an apple, an hour</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg">
+                  <p class="font-semibold text-blue-800">The (Definite Article)</p>
+                  <p class="text-sm text-gray-600 mt-2">• Use when referring to specific things: the book I bought</p>
+                  <p class="text-sm text-gray-600">• Use with superlatives: the best, the tallest</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-green-50 p-5 rounded-xl">
+              <h4 class="font-bold text-green-900 mb-3">Common Prepositions</h4>
+              <div class="grid md:grid-cols-3 gap-3">
+                <div class="bg-white p-3 rounded-lg">
+                  <p class="font-semibold text-green-800">Time</p>
+                  <p class="text-xs text-gray-600">at 5 PM, on Monday, in January</p>
+                </div>
+                <div class="bg-white p-3 rounded-lg">
+                  <p class="font-semibold text-green-800">Place</p>
+                  <p class="text-xs text-gray-600">at home, on the table, in the room</p>
+                </div>
+                <div class="bg-white p-3 rounded-lg">
+                  <p class="font-semibold text-green-800">Direction</p>
+                  <p class="text-xs text-gray-600">to school, from office, towards</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-red-50 to-pink-50 p-6 rounded-xl border-l-4 border-red-500">
+              <h3 class="text-lg font-bold text-red-900 mb-3">⚠️ Common Mistakes</h3>
+              <ul class="space-y-2 text-sm text-gray-700">
+                <li>✗ "I am going to home" → ✓ "I am going home"</li>
+                <li>✗ "She is good in English" → ✓ "She is good at English"</li>
+                <li>✗ "I am agree" → ✓ "I agree"</li>
+              </ul>
+            </div>
+          </div>
+        `,
+        'subject-verb-agreement': `
+          <div class="space-y-6">
+            <div class="bg-gradient-to-r from-teal-50 to-cyan-50 p-6 rounded-xl border-l-4 border-teal-500">
+              <h3 class="text-xl font-bold text-teal-900 mb-3">Subject-Verb Agreement</h3>
+              <p class="text-gray-700">The verb must agree with the subject in number (singular/plural).</p>
+            </div>
+
+            <div class="space-y-3">
+              <div class="bg-white p-4 rounded-lg border-l-4 border-green-500">
+                <p class="font-semibold text-green-800">Rule 1: Singular subject = Singular verb</p>
+                <p class="text-sm text-gray-600 mt-1">Example: She <strong>works</strong> hard. / He <strong>is</strong> a doctor.</p>
+              </div>
+              <div class="bg-white p-4 rounded-lg border-l-4 border-blue-500">
+                <p class="font-semibold text-blue-800">Rule 2: Plural subject = Plural verb</p>
+                <p class="text-sm text-gray-600 mt-1">Example: They <strong>work</strong> hard. / We <strong>are</strong> students.</p>
+              </div>
+              <div class="bg-white p-4 rounded-lg border-l-4 border-purple-500">
+                <p class="font-semibold text-purple-800">Rule 3: Compound subjects with 'and' = Plural verb</p>
+                <p class="text-sm text-gray-600 mt-1">Example: Ram and Shyam <strong>are</strong> friends.</p>
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-yellow-50 to-amber-50 p-6 rounded-xl border-l-4 border-yellow-500">
+              <h3 class="text-lg font-bold text-yellow-900 mb-3">💡 Pro Tips</h3>
+              <ul class="space-y-2 text-sm text-gray-700">
+                <li>✓ Collective nouns (team, family) usually take singular verbs</li>
+                <li>✓ 'Each', 'Every', 'Either' take singular verbs</li>
+                <li>✓ Subjects joined by 'or'/'nor' - verb agrees with nearest subject</li>
+              </ul>
+            </div>
+          </div>
+        `,
+        'voice-active-passive': `
+          <div class="space-y-6">
+            <div class="bg-gradient-to-r from-violet-50 to-purple-50 p-6 rounded-xl border-l-4 border-violet-500">
+              <h3 class="text-xl font-bold text-violet-900 mb-3">Active & Passive Voice</h3>
+              <p class="text-gray-700">Learn to convert between active and passive voice.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="bg-green-50 p-5 rounded-xl border-l-4 border-green-500">
+                <h4 class="font-bold text-green-900 mb-3">Active Voice</h4>
+                <p class="text-sm text-gray-700 mb-2">Subject performs the action</p>
+                <p class="text-xs text-green-600"><strong>Example:</strong> The chef cooks the meal.</p>
+              </div>
+              
+              <div class="bg-blue-50 p-5 rounded-xl border-l-4 border-blue-500">
+                <h4 class="font-bold text-blue-900 mb-3">Passive Voice</h4>
+                <p class="text-sm text-gray-700 mb-2">Subject receives the action</p>
+                <p class="text-xs text-blue-600"><strong>Example:</strong> The meal is cooked by the chef.</p>
+              </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl border border-gray-200">
+              <h4 class="font-bold text-gray-900 mb-3">Conversion Formula</h4>
+              <p class="text-sm text-gray-700 mb-2"><strong>Active:</strong> Subject + Verb + Object</p>
+              <p class="text-sm text-gray-700"><strong>Passive:</strong> Object + be + Past Participle + by + Subject</p>
+            </div>
+
+            <div class="bg-gradient-to-r from-orange-50 to-red-50 p-6 rounded-xl border-l-4 border-orange-500">
+              <h3 class="text-lg font-bold text-orange-900 mb-3">📝 When to Use Passive</h3>
+              <ul class="space-y-2 text-sm text-gray-700">
+                <li>✓ Scientific writing: "The experiment was conducted..."</li>
+                <li>✓ When doer is unknown: "My bike was stolen"</li>
+                <li>✓ Formal reports: "The decision was made..."</li>
+              </ul>
+            </div>
+          </div>
+        `,
+        'conditionals-modals': `
+          <div class="space-y-6">
+            <div class="bg-gradient-to-r from-cyan-50 to-blue-50 p-6 rounded-xl border-l-4 border-cyan-500">
+              <h3 class="text-xl font-bold text-cyan-900 mb-3">Conditionals & Modals</h3>
+              <p class="text-gray-700">Express possibilities, permissions, and hypothetical situations.</p>
+            </div>
+
+            <div class="space-y-3">
+              <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                <h4 class="font-bold text-green-800">Zero Conditional</h4>
+                <p class="text-sm text-gray-600">If + present, present</p>
+                <p class="text-xs text-green-600 mt-1">If you heat water, it boils.</p>
+              </div>
+              
+              <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                <h4 class="font-bold text-blue-800">First Conditional</h4>
+                <p class="text-sm text-gray-600">If + present, will + verb</p>
+                <p class="text-xs text-blue-600 mt-1">If it rains, I will stay home.</p>
+              </div>
+              
+              <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
+                <h4 class="font-bold text-purple-800">Second Conditional</h4>
+                <p class="text-sm text-gray-600">If + past, would + verb</p>
+                <p class="text-xs text-purple-600 mt-1">If I had money, I would buy a car.</p>
+              </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl border border-gray-200">
+              <h4 class="font-bold text-gray-900 mb-3">Modal Verbs</h4>
+              <div class="grid md:grid-cols-2 gap-3">
+                <div class="bg-gray-50 p-3 rounded">
+                  <p class="font-semibold">Can / Could</p>
+                  <p class="text-xs text-gray-600">Ability, permission</p>
+                </div>
+                <div class="bg-gray-50 p-3 rounded">
+                  <p class="font-semibold">Must / Have to</p>
+                  <p class="text-xs text-gray-600">Obligation, necessity</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        `,
+        'reported-speech': `
+          <div class="space-y-6">
+            <div class="bg-gradient-to-r from-emerald-50 to-teal-50 p-6 rounded-xl border-l-4 border-emerald-500">
+              <h3 class="text-xl font-bold text-emerald-900 mb-3">Reported Speech</h3>
+              <p class="text-gray-700">Learn to report what someone said without using direct quotes.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="bg-blue-50 p-4 rounded-lg">
+                <h4 class="font-bold text-blue-800 mb-2">Direct Speech</h4>
+                <p class="text-sm text-gray-600">She said, "I am happy."</p>
+              </div>
+              <div class="bg-green-50 p-4 rounded-lg">
+                <h4 class="font-bold text-green-800 mb-2">Reported Speech</h4>
+                <p class="text-sm text-gray-600">She said that she was happy.</p>
+              </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl border border-gray-200">
+              <h4 class="font-bold text-gray-900 mb-3">Tense Changes</h4>
+              <ul class="space-y-2 text-sm text-gray-700">
+                <li>Present Simple → Past Simple</li>
+                <li>Present Continuous → Past Continuous</li>
+                <li>Present Perfect → Past Perfect</li>
+                <li>Will → Would</li>
+              </ul>
+            </div>
+
+            <div class="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl border-l-4 border-purple-500">
+              <h3 class="text-lg font-bold text-purple-900 mb-3">💡 Key Points</h3>
+              <ul class="space-y-2 text-sm text-gray-700">
+                <li>✓ Change pronouns according to context</li>
+                <li>✓ Backshift tenses when reporting past statements</li>
+                <li>✓ Change time expressions (today → that day)</li>
+              </ul>
+            </div>
+          </div>
+        `,
+        'sentence-clarity': `
+          <div class="space-y-6">
+            <div class="bg-gradient-to-r from-amber-50 to-yellow-50 p-6 rounded-xl border-l-4 border-amber-500">
+              <h3 class="text-xl font-bold text-amber-900 mb-3">Sentence Clarity & Structure</h3>
+              <p class="text-gray-700">Write clear, concise, and well-structured sentences.</p>
+            </div>
+
+            <div class="space-y-3">
+              <div class="bg-white p-4 rounded-lg border-l-4 border-green-500">
+                <h4 class="font-bold text-green-800">Simple Sentence</h4>
+                <p class="text-sm text-gray-600">One independent clause</p>
+                <p class="text-xs text-green-600 mt-1">Example: She reads books.</p>
+              </div>
+              
+              <div class="bg-white p-4 rounded-lg border-l-4 border-blue-500">
+                <h4 class="font-bold text-blue-800">Compound Sentence</h4>
+                <p class="text-sm text-gray-600">Two independent clauses joined by conjunction</p>
+                <p class="text-xs text-blue-600 mt-1">Example: She reads books, and he writes stories.</p>
+              </div>
+              
+              <div class="bg-white p-4 rounded-lg border-l-4 border-purple-500">
+                <h4 class="font-bold text-purple-800">Complex Sentence</h4>
+                <p class="text-sm text-gray-600">Independent + dependent clause</p>
+                <p class="text-xs text-purple-600 mt-1">Example: She reads books because she loves learning.</p>
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-red-50 to-orange-50 p-6 rounded-xl border-l-4 border-red-500">
+              <h3 class="text-lg font-bold text-red-900 mb-3">✨ Tips for Clarity</h3>
+              <ul class="space-y-2 text-sm text-gray-700">
+                <li>✓ Keep sentences concise and focused</li>
+                <li>✓ Avoid unnecessary words and repetition</li>
+                <li>✓ Use active voice when possible</li>
+                <li>✓ Place modifiers close to what they modify</li>
+              </ul>
+            </div>
+          </div>
+        `,
+        'common-errors': `
+          <div class="space-y-6">
+            <div class="bg-gradient-to-r from-red-50 to-pink-50 p-6 rounded-xl border-l-4 border-red-500">
+              <h3 class="text-xl font-bold text-red-900 mb-3">Common Grammar Errors</h3>
+              <p class="text-gray-700">Learn to identify and avoid frequent grammar mistakes.</p>
+            </div>
+
+            <div class="space-y-3">
+              <div class="bg-white p-4 rounded-lg border-l-4 border-red-400">
+                <h4 class="font-bold text-red-800 mb-2">Subject-Verb Agreement</h4>
+                <p class="text-sm text-gray-600">✗ She don't know → ✓ She doesn't know</p>
+              </div>
+              
+              <div class="bg-white p-4 rounded-lg border-l-4 border-orange-400">
+                <h4 class="font-bold text-orange-800 mb-2">Pronoun Usage</h4>
+                <p class="text-sm text-gray-600">✗ Me and him went → ✓ He and I went</p>
+              </div>
+              
+              <div class="bg-white p-4 rounded-lg border-l-4 border-yellow-400">
+                <h4 class="font-bold text-yellow-800 mb-2">Apostrophe Errors</h4>
+                <p class="text-sm text-gray-600">✗ Its a good day → ✓ It's a good day</p>
+              </div>
+              
+              <div class="bg-white p-4 rounded-lg border-l-4 border-green-400">
+                <h4 class="font-bold text-green-800 mb-2">Double Negatives</h4>
+                <p class="text-sm text-gray-600">✗ I don't know nothing → ✓ I don't know anything</p>
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-xl border-l-4 border-blue-500">
+              <h3 class="text-lg font-bold text-blue-900 mb-3">💡 Prevention Tips</h3>
+              <ul class="space-y-2 text-sm text-gray-700">
+                <li>✓ Proofread your writing carefully</li>
+                <li>✓ Read sentences aloud to catch errors</li>
+                <li>✓ Learn common error patterns</li>
+                <li>✓ Practice regularly with exercises</li>
+              </ul>
+            </div>
+          </div>
+        `
+      };
+
+      return contentMap[topic] || `
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl border-l-4 border-blue-500">
+            <h3 class="text-xl font-bold text-blue-900 mb-3">${title}</h3>
+            <p class="text-gray-700 leading-relaxed">Comprehensive learning content for this grammar topic.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-gray-900 mb-4">📚 Key Concepts</h4>
+            <ul class="space-y-3 text-sm text-gray-700">
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Master the fundamental concepts and rules</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Practice with real-world examples</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Learn common mistakes and how to avoid them</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">✓</span>
+                <span>Apply knowledge in professional contexts</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-gradient-to-r from-green-50 to-teal-50 p-6 rounded-xl border-l-4 border-green-500">
+            <h3 class="text-lg font-bold text-green-900 mb-3">💡 Learning Tips</h3>
+            <ul class="space-y-2 text-sm text-gray-700">
+              <li>✓ Practice regularly for better retention</li>
+              <li>✓ Use examples from your daily life</li>
+              <li>✓ Review and revise frequently</li>
+              <li>✓ Apply what you learn in real conversations</li>
+            </ul>
+          </div>
+
+          <div class="bg-gray-50 p-6 rounded-xl">
+            <h4 class="font-bold text-gray-900 mb-3">🎯 Next Steps</h4>
+            <p class="text-sm text-gray-600 mb-4">Continue practicing to master this topic.</p>
+            <button onclick="playVideo('${topic}')" class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+              Watch Video Tutorial
+            </button>
+          </div>
+        </div>
+      `;
     }
 
     // Video preview functionality
