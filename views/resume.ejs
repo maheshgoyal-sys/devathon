@@ -10,12 +10,28 @@
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     body { font-family: 'Inter', sans-serif; }
     .lesson-card:hover { transform: scale(1.02); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+    * { box-sizing: border-box; }
+    .group { max-width: 100%; overflow: hidden; }
+    .container-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    @media (min-width: 768px) {
+      .container-wrapper {
+        padding: 50px 40px;
+      }
+    }
+    @media (min-width: 1024px) {
+      .container-wrapper {
+        padding: 60px 60px;
+      }
+    }
   </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
 
-
-  
+  <div class="container-wrapper">
       <!-- Header -->
       <header class="text-center mb-12">
         <div class="inline-flex items-center justify-center gap-4 mb-4">
@@ -154,7 +170,7 @@
               </div>
             </div>
           </div>
-          <a href="/dashboard/lessons/Writting" class="mt-6 inline-flex items-center justify-center w-full px-8 py-4 bg-gradient-to-r from-orange-500 to-yellow-500 text-white rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg hover:shadow-xl group-hover:shadow-orange-200">
+          <a href="/dashboard/lessons/writing" class="mt-6 inline-flex items-center justify-center w-full px-8 py-4 bg-gradient-to-r from-orange-500 to-yellow-500 text-white rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg hover:shadow-xl group-hover:shadow-orange-200">
             <i class="fas fa-play mr-2"></i>Start Practicing
             <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
           </a>
@@ -237,10 +253,7 @@
         </div>
         <p>&copy; <%= new Date().getFullYear() %> GLA English. All rights reserved.</p>
       </footer>
-
-    </div>
   </div>
-
 
 </body>
 </html>
