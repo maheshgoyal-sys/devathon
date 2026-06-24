@@ -7,10 +7,10 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-green-50">
+<body class="bg-gradient-to-br from-green-50 via-green-100 to-green-50">
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="text-center mb-12">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16 my-8">
+    <div class="text-center mb-16">
       <h1 class="text-5xl font-bold text-gray-900 mb-4">Professional Resume Builder</h1>
       <p class="text-lg text-gray-600 max-w-2xl mx-auto">
         Create a stunning resume in minutes. Fill in your details and download a beautiful PDF instantly.
@@ -19,29 +19,48 @@
 
     <div class="grid lg:grid-cols-2 gap-8">
 
-      <!-- Form -->
-      <div class="bg-white rounded-2xl shadow-lg p-8 space-y-6">
-        <h2 class="text-2xl font-semibold text-gray-900 mb-6">Your Information</h2>
-        <form id="resumeForm" class="space-y-4">
-          <input type="text" name="name" placeholder="Full Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400" />
-          <input type="email" name="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400" />
-          <input type="text" name="phone" placeholder="Phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400" />
-          <textarea name="education" rows="4" placeholder="Education" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 resize-none"></textarea>
-          <textarea name="experience" rows="4" placeholder="Experience" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 resize-none"></textarea>
-          <input type="text" name="skills" placeholder="Skills" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400" />
+      <div class="bg-white rounded-2xl shadow-lg p-6 lg:p-8 space-y-6">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-6 text-center">Your Information</h2>
+        <form id="resumeForm" class="space-y-5">
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-gray-700">Full Name</label>
+            <input type="text" name="name" placeholder="Enter your full name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:border-transparent transition-colors" />
+          </div>
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-gray-700">Email Address</label>
+            <input type="email" name="email" placeholder="Enter your email address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:border-transparent transition-colors" />
+          </div>
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-gray-700">Phone Number</label>
+            <input type="text" name="phone" placeholder="Enter your phone number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:border-transparent transition-colors" />
+          </div>
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-gray-700">Education</label>
+            <textarea name="education" rows="4" placeholder="Enter your educational background, degrees, institutions, and graduation years" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:border-transparent transition-colors resize-none"></textarea>
+          </div>
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-gray-700">Work Experience</label>
+            <textarea name="experience" rows="4" placeholder="Enter your work experience, job titles, companies, and key responsibilities" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:border-transparent transition-colors resize-none"></textarea>
+          </div>
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-gray-700">Skills</label>
+            <input type="text" name="skills" placeholder="Enter your skills (e.g., JavaScript, Python, Leadership)" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:border-transparent transition-colors" />
+          </div>
 
           <button type="button" id="downloadBtn"
-            class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-200">
-            Download Resume PDF
+            class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 mt-8">
+            📄 Download Resume PDF
           </button>
         </form>
       </div>
 
       <!-- Live Preview -->
-      <div class="bg-white rounded-2xl shadow-lg p-8">
-        <h2 class="text-2xl font-semibold text-gray-900 mb-6">Live Preview</h2>
-        <div id="preview" class="border-2 border-gray-200 rounded-lg p-8 bg-gradient-to-br from-white to-green-50 min-h-[600px] text-gray-700 flex items-center justify-center">
-          <p class="text-gray-400 text-lg text-center">Start filling the form to see your resume preview</p>
+      <div class="bg-white rounded-2xl shadow-lg p-6 lg:p-8">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-6 text-center">Live Preview</h2>
+        <div id="preview" class="border-2 border-gray-200 rounded-lg p-6 lg:p-8 bg-gradient-to-br from-white to-green-50 min-h-[500px] lg:min-h-[600px] text-gray-700 flex items-center justify-center overflow-auto">
+          <div class="w-full max-w-md">
+            <p class="text-gray-400 text-lg text-center">Start filling the form to see your resume preview</p>
+          </div>
         </div>
       </div>
 
@@ -58,17 +77,51 @@
 
     function updatePreview() {
       const data = Object.fromEntries(new FormData(form).entries());
-      preview.innerHTML = `
-        <div class="text-center">
-          <h3 class="text-3xl font-bold text-green-700">${data.name || "Your Name"}</h3>
-          <p class="text-sm text-gray-600 mt-1">
-            ${data.email ? data.email : ""}${data.email && data.phone ? " | " : ""}${data.phone ? data.phone : ""}
-          </p>
-        </div>
+      const hasData = data.name || data.email || data.phone || data.education || data.experience || data.skills;
 
-        ${data.education ? `<div class="mt-6"><h4 class="text-lg font-bold text-green-700 mb-1 border-b border-green-700">EDUCATION</h4><p class="whitespace-pre-line text-sm">${data.education}</p></div>` : ""}
-        ${data.experience ? `<div class="mt-6"><h4 class="text-lg font-bold text-green-700 mb-1 border-b border-green-700">EXPERIENCE</h4><p class="whitespace-pre-line text-sm">${data.experience}</p></div>` : ""}
-        ${data.skills ? `<div class="mt-6"><h4 class="text-lg font-bold text-green-700 mb-1 border-b border-green-700">SKILLS</h4><p class="text-sm">${data.skills}</p></div>` : ""}
+      if (!hasData) {
+        preview.innerHTML = `
+          <div class="w-full max-w-md">
+            <p class="text-gray-400 text-lg text-center">Start filling the form to see your resume preview</p>
+          </div>
+        `;
+        return;
+      }
+
+      preview.innerHTML = `
+        <div class="w-full max-w-lg mx-auto bg-white p-6 rounded-lg shadow-sm">
+          <div class="text-center mb-6">
+            <h3 class="text-2xl font-bold text-green-700 mb-2">${data.name || "Your Name"}</h3>
+            ${(data.email || data.phone) ? `
+              <p class="text-sm text-gray-600">
+                ${data.email ? `<span>${data.email}</span>` : ""}
+                ${data.email && data.phone ? " • " : ""}
+                ${data.phone ? `<span>${data.phone}</span>` : ""}
+              </p>
+            ` : ""}
+          </div>
+
+          ${data.education ? `
+            <div class="mb-4">
+              <h4 class="text-lg font-bold text-green-700 mb-2 uppercase tracking-wide border-b border-green-200 pb-1">Education</h4>
+              <p class="text-sm text-gray-700 leading-relaxed whitespace-pre-line">${data.education}</p>
+            </div>
+          ` : ""}
+
+          ${data.experience ? `
+            <div class="mb-4">
+              <h4 class="text-lg font-bold text-green-700 mb-2 uppercase tracking-wide border-b border-green-200 pb-1">Experience</h4>
+              <p class="text-sm text-gray-700 leading-relaxed whitespace-pre-line">${data.experience}</p>
+            </div>
+          ` : ""}
+
+          ${data.skills ? `
+            <div class="mb-4">
+              <h4 class="text-lg font-bold text-green-700 mb-2 uppercase tracking-wide border-b border-green-200 pb-1">Skills</h4>
+              <p class="text-sm text-gray-700 leading-relaxed">${data.skills}</p>
+            </div>
+          ` : ""}
+        </div>
       `;
     }
 
@@ -76,38 +129,56 @@
       const data = Object.fromEntries(new FormData(form).entries());
       const doc = new jsPDF();
 
-      doc.setFillColor(16, 185, 129);
-      doc.rect(0, 0, 210, 40, "F");
-      doc.setTextColor(255, 255, 255);
-      doc.setFontSize(28);
-      doc.setFont("helvetica", "bold");
-      doc.text(data.name || "Your Name", 20, 25);
+      // Header background
+      doc.setFillColor(34, 197, 94);
+      doc.rect(0, 0, 210, 35, "F");
 
-      doc.setFontSize(11);
+      // Header text
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(24);
+      doc.setFont("helvetica", "bold");
+      doc.text(data.name || "Your Name", 20, 22);
+
+      // Contact info
+      doc.setFontSize(10);
       doc.setFont("helvetica", "normal");
-      let yPos = 33;
-      if (data.email) doc.text(data.email, 20, yPos);
-      if (data.phone) doc.text(" | " + (data.phone || ""), 20 + (data.email ? doc.getTextWidth(data.email) + 5 : 0), yPos);
+      let yPos = 32;
+      let contactText = "";
+      if (data.email) contactText += data.email;
+      if (data.email && data.phone) contactText += " • ";
+      if (data.phone) contactText += data.phone;
+
+      if (contactText) {
+        doc.text(contactText, 20, yPos);
+      }
 
       const addSection = (title, text) => {
         if (!text) return;
-        doc.setFontSize(16);
+
+        // Section title
+        doc.setTextColor(34, 197, 94);
+        doc.setFontSize(14);
         doc.setFont("helvetica", "bold");
-        doc.setTextColor(16, 185, 129);
-        doc.text(title, 20, yPos);
-        doc.line(20, yPos + 2, 190, yPos + 2);
         yPos += 10;
-        doc.setFontSize(11);
+        doc.text(title.toUpperCase(), 20, yPos);
+
+        // Section underline
+        doc.setDrawColor(34, 197, 94);
+        doc.line(20, yPos + 2, 190, yPos + 2);
+
+        // Section content
+        doc.setTextColor(51, 51, 51);
+        doc.setFontSize(10);
         doc.setFont("helvetica", "normal");
-        doc.setTextColor(0,0,0);
+        yPos += 8;
         const lines = doc.splitTextToSize(text, 170);
         doc.text(lines, 20, yPos);
-        yPos += lines.length * 6 + 5;
+        yPos += lines.length * 5 + 5;
       };
 
-      addSection("EDUCATION", data.education);
-      addSection("EXPERIENCE", data.experience);
-      addSection("SKILLS", data.skills);
+      addSection("Education", data.education);
+      addSection("Experience", data.experience);
+      addSection("Skills", data.skills);
 
       const fileName = data.name ? `${data.name.replace(/\s+/g,"_")}_Resume.pdf` : "Resume.pdf";
       doc.save(fileName);
